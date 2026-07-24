@@ -1,0 +1,111 @@
+# NextGen Healthcare
+
+> NextGen Healthcare is a leading provider of healthcare technology solutions, serving over 10,000 medical groups and 100,000+ physicians. Our mission is to empower the transformation of ambulatory care with innovative tools, including AI-driven workflows, EHR optimization, and enhanced patient-provider experiences.
+
+We are pioneering the integration of agentic AI, large language models (LLMs), and automation into real-world healthcare settings. Our commitment is to reduce administrative burden, improve care quality, and create a more human experience for clinicians and patients alike.
+
+## Solutions
+
+- [EHR for Mid-size to Enterprise Practices](https://www.nextgen.com/solutions/electronic-health-records/mid-size-to-enterprise-practices): Comprehensive electronic health record solutions designed for larger medical practices with advanced workflow management and scalability features.
+- [EHR for Small Practices (NextGen Office)](https://www.nextgen.com/solutions/electronic-health-records/small-practices-nextgen-office): Streamlined EHR solution tailored specifically for small medical practices with essential features and user-friendly interface.
+- [Mobile Solutions for Provider Experience](https://www.nextgen.com/solutions/provider-experience/mobile): Mobile-optimized healthcare tools that allow providers to access patient information and manage care from anywhere.
+- [Practice Management Solutions](https://www.nextgen.com/solutions/practice-management): Complete practice management platform for scheduling, billing, and administrative workflows to optimize practice operations.
+- [Patient Experience Solutions](https://www.nextgen.com/solutions/patient-experience): Digital tools and platforms designed to enhance patient engagement, communication, and overall healthcare experience.
+- [Provider Experience Solutions](https://www.nextgen.com/solutions/provider-experience): Technology solutions focused on improving clinician workflows, reducing administrative burden, and enhancing provider satisfaction.
+- [RCM for Mid-size to Enterprise Practices](https://www.nextgen.com/solutions/revenue-cycle-management/rcm-for-mid-enterprise-practices): Revenue cycle management services for larger practices including claims processing, denial management, and financial optimization.
+- [RCM for Small Practices](https://www.nextgen.com/solutions/revenue-cycle-management/rcm-for-small-practices): Simplified revenue cycle management tools designed to help small practices maximize collections and reduce billing complexities.
+- [Financial & Operational Analytics](https://www.nextgen.com/solutions/analytics-and-reporting/financial-operational-analytics): Advanced reporting and analytics tools to track practice performance, financial metrics, and operational efficiency.
+- [Enterprise Data Warehouse (EDW)](https://www.nextgen.com/solutions/analytics-and-reporting/enterprise-data-warehouse-edw): Centralized data repository that aggregates healthcare information for comprehensive reporting and population health insights.
+- [Mirth Integration Engine](https://www.nextgen.com/solutions/interoperability/mirth-integration-engine): Powerful integration platform for connecting healthcare systems and enabling seamless data exchange between applications.
+- [Interoperability Solutions](https://www.nextgen.com/solutions/interoperability): Complete suite of tools and services to enable secure data sharing and system integration across healthcare organizations.
+
+## Services
+
+- [Care Management Support Services](https://www.nextgen.com/services/care-management-support-services): Professional services to help healthcare organizations implement and optimize care management programs for better patient outcomes.
+- [Consulting Services](https://www.nextgen.com/services/consulting): Expert consulting services to guide healthcare organizations through technology implementation, optimization, and strategic planning.
+- [Credentialing & Fee Schedule Review](https://www.nextgen.com/services/credentialing-and-fee-schedule-review): Professional services to manage provider credentialing processes and optimize fee schedules for maximum reimbursement.
+- [Document Management Services](https://www.nextgen.com/services/document-management): Comprehensive document management solutions to digitize, organize, and streamline healthcare document workflows.
+- [Managed Cloud Hosting](https://www.nextgen.com/services/managed-cloud): Secure, scalable cloud hosting services specifically designed for healthcare organizations with 24/7 support and monitoring.
+- [Managed Services Optimization](https://www.nextgen.com/services/managed-services-optimization-packages): Ongoing optimization services to maximize the performance and efficiency of your NextGen healthcare technology investments.
+- [Professional Services](https://www.nextgen.com/services/professional-services): Comprehensive implementation, training, and support services to ensure successful deployment of NextGen healthcare solutions.
+- [Training Services](https://www.nextgen.com/services/training): Educational programs and training resources to help healthcare staff maximize their use of NextGen technology platforms.
+
+## Specialties
+
+- [Behavioral Health](https://www.nextgen.com/markets/specialties/behavioral-health): Specialized EHR and practice management solutions designed for behavioral health providers with mental health-specific workflows.
+- [Cardiology](https://www.nextgen.com/markets/specialties/cardiology): Cardiology-focused healthcare technology solutions with specialty-specific templates and cardiac care management features.
+- [FQHC](https://www.nextgen.com/markets/specialties/fqhc): Federally Qualified Health Center solutions designed to meet the unique needs and compliance requirements of community health centers.
+- [Gastroenterology](https://www.nextgen.com/markets/specialties/gastroenterology): Specialized gastroenterology solutions with procedure documentation, endoscopy integration, and GI-specific clinical workflows.
+- [Internal Medicine](https://www.nextgen.com/markets/specialties/ngo-internal-medicine): Internal medicine-focused EHR solutions with comprehensive adult care management and preventive care tracking features.
+- [Neurology](https://www.nextgen.com/markets/specialties/neurology): Neurology-specific healthcare technology with specialized templates for neurological assessments and treatment planning.
+- [Orthopedics](https://www.nextgen.com/markets/specialties/orthopedics): Orthopedic practice solutions with imaging integration, surgical planning tools, and musculoskeletal-specific documentation.
+- [Primary Care](https://www.nextgen.com/markets/specialties/ngo-primary-care): Primary care-focused solutions with preventive care tracking, chronic disease management, and family medicine workflows.
+- [Urology](https://www.nextgen.com/markets/specialties/urology): Urology-specific EHR solutions with specialty templates, procedure documentation, and urological care management features.
+- [Pulmonary & Sleep Medicine](https://www.nextgen.com/markets/specialties/pulmonary-sleep-medicine): Specialized solutions for pulmonary and sleep medicine practices with respiratory care workflows and sleep study integration.
+
+## Case Studies
+
+- [Virginia Cardiovascular Specialists](https://www.nextgen.com/case-studies/virginia-cardiovascular-specialists-improve-patient-care-through-integration-and-automation/): Learn how this cardiovascular practice improved patient care quality through NextGen's integration and automation capabilities.
+- [D'Andra D. Bingham, MD](https://www.nextgen.com/case-studies/dandra-d-bingham-md-brings-fun-back-into-clinic-days-with-nextgen-ambient-assist/): Discover how NextGen Ambient Assist helped this physician bring joy back to clinical practice by reducing documentation burden.
+- [LuxITH G.I.E.](https://www.nextgen.com/case-studies/luxith-g-i-e-leverages-mirth-connect-to-maintain-seamless-interoperability-across-luxembourg/): See how this Luxembourg healthcare organization uses Mirth Connect to maintain seamless interoperability across their network.
+- [Dr. Randy Naidoo](https://www.nextgen.com/case-studies/nextgen-office-ambient-assist-helps-dr-randy-naidoo-better-connect-with-young-patients/): Read how NextGen Office Ambient Assist helps this pediatrician better connect with young patients during appointments.
+- [WellSky](https://www.nextgen.com/case-studies/wellsky-develops-seamless-integrations-and-automates-deployment-with-mirth-connect/): Explore how WellSky developed seamless integrations and automated deployment processes using Mirth Connect technology.
+- [Keith M. Nord, MD](https://www.nextgen.com/case-studies/keith-m-nord-md-adds-new-patients-and-finishes-on-time-with-nextgen-ambient-assist/): Learn how NextGen Ambient Assist enabled this physician to see more patients while finishing appointments on schedule.
+
+## Press Releases
+
+- [NextGen Healthcare Named One of the Most Trustworthy Companies in America for Fourth Consecutive Year](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-named-one-of-the-most-trustworthy-companies-in-america-for-fourth): Press release announcing NextGen's fourth consecutive recognition as one of America's most trustworthy companies.
+- [NextGen Healthcare Unveils Latest AI-Driven Advancements to Transform the Patient-Provider Experience](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-unveils-latest-ai-driven-advancements-to-transform-the-patient-provider): Announcement of NextGen's latest artificial intelligence innovations designed to enhance healthcare delivery and patient care.
+- [NextGen Healthcare Chosen by Elite DNA Behavioral Health to Enhance Patient, Provider, and Staff Experience](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-chosen-by-elite-dna-behavioral-health-to-enhance-patient-provider-and-staff): News about Elite DNA Behavioral Health's selection of NextGen solutions to improve their overall healthcare experience.
+- [NextGen Healthcare Named a Best Midsize Employer by Forbes for 4th Year in a Row](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-named-a-best-midsize-employer-by-forbes-for-4th-year-in-a-row): Press release highlighting NextGen's fourth consecutive Forbes recognition as a best midsize employer.
+- [NextGen Healthcare Ranked #1 Behavioral Health Solution by KLAS for 2nd Year in a Row](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-ranked-1-behavioral-health-solution-by-klas-for-2nd-year-in-a-row): Announcement of NextGen's second consecutive #1 ranking for behavioral health solutions by KLAS Research.
+- [NextGen Healthcare Introduces NextGen Gastro Suite to Optimize Delivery of Gastrointestinal Care](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcare-introduces-nextgen-gastro-suite-to-optimize-delivery-of-gastrointestinal-care): Press release introducing the NextGen Gastro Suite designed specifically for gastroenterology practices and procedures.
+- [NextGen Healthcare's Practice Management Solutions and EHR Receive #1 Rankings](https://www.nextgen.com/company/newsroom/press-release/nextgen-healthcares-practice-management-solutions-and-electronic-health-record-receive-number-1): News about NextGen's practice management and EHR solutions receiving top industry rankings for performance and satisfaction.
+
+## Blog Posts
+
+- [The New UI is No UI: How AI is Transforming the EHR and Other Core Solutions](https://www.nextgen.com/blog/artificial-intelligence/the-new-ui-is-no-ui-how-ai-is-transforming-the-ehr-and-other-core-solutions): Explore how artificial intelligence is revolutionizing healthcare technology by eliminating traditional user interfaces in favor of intelligent automation.
+- [MIPS Performance Tips: What is MIPS and 3 Ways to Improve Your MIPS Score](https://www.nextgen.com/blog/value-based-care/mips-performance-tips-what-is-mips-and-3-ways-to-improve-your-mips-score): Learn about the Merit-based Incentive Payment System and discover three proven strategies to improve your practice's MIPS performance score.
+- [Why the Future of the EHR is Voice-Driven, Automated, and AI-Powered](https://www.nextgen.com/blog/artificial-intelligence/why-the-future-of-the-ehr-is-voice-driven-automated-and-ai-powered): Discover how voice recognition, automation, and AI are shaping the next generation of electronic health record systems.
+- [Geospatial Mapping Transforms Reno-Sparks Tribal Health Center](https://www.nextgen.com/blog/population-health/population-health-geospatial-mapping-transforms-reno-sparks-tribal-health-center): Read how geospatial mapping technology helped transform population health management at the Reno-Sparks Tribal Health Center.
+- [A New Era for Mirth Connect by NextGen Healthcare](https://www.nextgen.com/blog/industry-news/a-new-era-for-mirth-connect-by-nextgen-healthcare): Learn about the latest developments and enhancements to the Mirth Connect integration platform under NextGen Healthcare's leadership.
+- [How Mobile Healthcare Solutions + AI are Transforming Patient Care in 2025](https://www.nextgen.com/blog/mobile-ehr/how-mobile-healthcare-solutions-ai-are-transforming-patient-care-in-2025): Explore the latest trends in mobile healthcare technology and how AI integration is revolutionizing patient care delivery.
+- [The Future of Mobile Healthcare Technology: What's on the Rise in 2025](https://www.nextgen.com/blog/mobile-ehr/the-future-of-mobile-healthcare-technology-what-s-on-the-rise-in-2025): Discover emerging mobile healthcare technologies and trends that are expected to shape the industry throughout 2025.
+
+## Health IT 101
+
+- [EMR vs. EHR: What is the Difference?](https://www.nextgen.com/blog/health-it-101/emr-vs-ehr-what-is-the-difference): Clear explanation of the key differences between Electronic Medical Records (EMR) and Electronic Health Records (EHR) systems.
+- [How Do I Purchase an EHR?](https://www.nextgen.com/blog/health-it-101/how-do-i-purchase-an-ehr): Step-by-step guide to help healthcare practices navigate the process of selecting and purchasing an electronic health record system.
+- [How Do I Purchase a Practice Management (PM) System?](https://www.nextgen.com/blog/health-it-101/how-do-i-purchase-a-practice-management-pm-system): Comprehensive guide to evaluating, selecting, and purchasing a practice management system for your healthcare organization.
+- [What Should I Look for in an Electronic Health Record (EHR) System?](https://www.nextgen.com/blog/health-it-101/what-should-i-look-for-in-an-electronic-health-record-ehr-system): Essential features and considerations to evaluate when choosing an EHR system for your medical practice.
+- [What Value Does a Practice Management (PM) System Have in Ambulatory Care?](https://www.nextgen.com/blog/health-it-101/what-value-does-a-practice-management-pm-system-have-in-ambulatory-care): Overview of the benefits and value that practice management systems bring to ambulatory care settings and medical practices.
+- [Which is Better: Healthcare Software as a Service (SaaS) or a Professional License?](https://www.nextgen.com/blog/health-it-101/which-is-better-healthcare-software-as-a-service-saas-or-a-professional-license): Comparison of SaaS versus traditional licensing models for healthcare software to help you choose the best option.
+- [What is Interoperability in Healthcare?](https://www.nextgen.com/blog/health-it-101/what-is-interoperability-in-healthcare): Introduction to healthcare interoperability concepts and why seamless data exchange is crucial for modern medical practices.
+- [What is Revenue Cycle Management in Healthcare?](https://www.nextgen.com/blog/health-it-101/what-is-revenue-cycle-management-in-healthcare): Comprehensive explanation of revenue cycle management processes and how they impact healthcare practice financial performance.
+- [What is FHIR in Healthcare?](https://www.nextgen.com/blog/health-it-101/what-is-fhir-in-healthcare): Introduction to Fast Healthcare Interoperability Resources (FHIR) standards and their role in healthcare data exchange.
+- [What is Value-Based Care and Why Does It Matter to Your Practice?](https://www.nextgen.com/blog/health-it-101/what-is-value-based-care-and-why-does-it-matter-to-your-practice): Explanation of value-based care models and their impact on healthcare practices and patient outcomes.
+- [What Should I Look for in a Patient Engagement Solution?](https://www.nextgen.com/blog/health-it-101/what-should-i-look-for-in-a-patient-engagement-solution): Key features and capabilities to consider when selecting patient engagement technology for your healthcare practice.
+- [Should We Offer a Patient Self-Pay Option?](https://www.nextgen.com/blog/health-it-101/should-we-offer-a-patient-self-pay-option): Analysis of the benefits and considerations for implementing patient self-pay options in your medical practice.
+
+## eBooks
+
+- [Buyer's Guide to EHR Selection (NextGen Office)](https://www.nextgen.com/-/media/DAM/Collateral/NO_BuyersGuide_EBook.pdf): Comprehensive buyer's guide specifically for selecting NextGen Office EHR solutions for small medical practices.
+- [10 Steps to Find the EHR for You](https://www.nextgen.com/-/media/DAM/Collateral/CC_122021_10StepsFindtheEHRforYou_AMB_Ebook.pdf): Step-by-step methodology to help healthcare practices identify and select the right EHR system for their specific needs.
+- [Building an Integrated Platform](https://www.nextgen.com/-/media/DAM/Collateral/CO_120221_IntegratedPlatform_Ebook.pdf): Guide to creating a unified healthcare technology platform that seamlessly integrates all practice management and clinical systems.
+- [4 Critical Steps Against Ransomware](https://www.nextgen.com/-/media/DAM/Collateral/CO_4CriticalStepsAgainstRansomware_Ebook.pdf): Essential cybersecurity guide outlining four critical steps healthcare organizations must take to protect against ransomware attacks.
+- [Help Your Team Embrace New Health IT](https://www.nextgen.com/-/media/DAM/Collateral/CO_HelpYourTeamEmbraceNewHealthIT_Ebook.pdf): Strategies and best practices for successfully implementing new healthcare technology and ensuring staff adoption and engagement.
+- [Top Trends in the New Era of Health IT](https://www.nextgen.com/-/media/DAM/Collateral/CO_030121_TopTrendsInTheNewEra_ebook.pdf): Analysis of emerging healthcare technology trends and their potential impact on medical practices and patient care.
+- [Put the Brakes on Burnout](https://www.nextgen.com/-/media/DAM/Collateral/WH_100622_PuttheBrakesonBurnout.pdf): Comprehensive guide to identifying, preventing, and addressing healthcare provider burnout through technology and workflow optimization.
+- [Guide to VBC and ACO for Vytalize](https://www.nextgen.com/-/media/DAM/Collateral/Brochures/CO_VytalizeGuideToVBCandACO_Ebook.pdf): Specialized guide to value-based care and Accountable Care Organization models specifically designed for Vytalize Health partners.
+- [Get on the Cloud](https://www.nextgen.com/-/media/DAM/Collateral/E-Books/MC_GetOnTheCloud_Ebook.pdf): Comprehensive guide to cloud migration for healthcare organizations including benefits, considerations, and implementation strategies.
+- [Building Blocks of Interoperability](https://www.nextgen.com/-/media/DAM/Collateral/E-Books/CH_FundamentalBuildingBlocksofInterop_Ebook.pdf): Technical guide explaining the fundamental components and standards required to achieve healthcare interoperability and data exchange.
+- [7 Revenue Best Practices](https://www.nextgen.com/-/media/DAM/Collateral/E-Books/NO_050620_7RevenueBestPractices_DigitalGuide.pdf): Seven proven strategies and best practices for optimizing revenue cycle management and maximizing practice financial performance.
+
+## About & Legal
+
+- [About Us] (https://www.nextgen.com/company/about-us)
+- [Privacy Policy] (https://www.nextgen.com/privacy-policy)
+- [Legal Notice] (https://www.nextgen.com/legal-notice)
+- [Corporate Social Responsibility] (https://www.nextgen.com/company/)corporate-social-responsibility)
+- [Accessibility (ADA)] (https://www.nextgen.com/ada)
+- [Trust Center] (https://www.nextgen.com/trust)

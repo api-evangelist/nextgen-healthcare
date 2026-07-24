@@ -1,0 +1,51 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+source:
+- openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+- openapi/nextgen-office-fhir-r4-openapi.yaml
+description: >-
+  Candidate MCP tool surface DERIVED from the NextGen Office FHIR OpenAPI/Swagger. NextGen
+  publishes no official hosted/remote MCP server. Tools map one-to-one onto real Bulk FHIR
+  operationIds and the read/search interactions of the FHIR R4 Patient Access resources. All tools
+  inherit their input contract from the backing FHIR operation and require a SMART-on-FHIR OAuth2
+  bearer token. Not an authoritative provider manifest.
+server:
+  name: nextgen-healthcare
+  transport: http
+  url: null
+  auth: SMART-on-FHIR OAuth2 (bearer)
+tools:
+- name: search_patients
+  description: Search patients (Bulk FHIR) by encounter date / chart number, paginated
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#searchPatients
+- name: create_group
+  description: Create a FHIR Group for bulk export
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#createGroup
+- name: list_groups
+  description: List all FHIR Groups
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#getAllGroups
+- name: get_group
+  description: Retrieve a FHIR Group by id
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#getGroup
+- name: update_group
+  description: Update a FHIR Group
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#updateGroup
+- name: delete_group
+  description: Delete a FHIR Group
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#deleteGroup
+- name: group_export
+  description: Kick off an asynchronous Bulk FHIR $export for a Group's members
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#groupExport
+- name: poll_job_status
+  description: Poll the status of a Bulk FHIR export job
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#pollJobStatus
+- name: delete_job
+  description: Cancel/delete a Bulk FHIR export job
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#deleteJob
+- name: read_fhir_resource
+  description: Read a US Core FHIR R4 resource by type and id (GET /fhir/r4/{Resource}/{id})
+  source_operation: openapi/nextgen-office-fhir-r4-openapi.yaml#/fhir/r4/{Resource}/{id}
+- name: search_fhir_resource
+  description: Search a US Core FHIR R4 resource type (GET /fhir/r4/{Resource})
+  source_operation: openapi/nextgen-office-fhir-r4-openapi.yaml#/fhir/r4/{Resource}

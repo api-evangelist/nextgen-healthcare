@@ -1,0 +1,41 @@
+generated: '2026-07-24'
+method: derived
+source:
+- openapi/nextgen-office-fhir-r4-openapi.yaml
+- openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+format: fhir-operationoutcome
+description: >-
+  Error model for the NextGen FHIR APIs, derived from the HTTP status responses declared in the
+  Office FHIR R4 Swagger and the Bulk FHIR OpenAPI. Per HL7 FHIR RESTful conventions, error
+  responses carry an OperationOutcome resource (not RFC 9457 application/problem+json) whose
+  issue[].severity / issue[].code / issue[].diagnostics convey the specific fault.
+envelope:
+  media_type: application/fhir+json
+  resource: OperationOutcome
+  fields: ['issue[].severity', 'issue[].code', 'issue[].diagnostics', 'issue[].details']
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request parameters or malformed FHIR search/query
+  operationoutcome_code: invalid
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#searchPatients
+- status: 401
+  title: Unauthorized
+  description: Missing, expired, or invalid SMART-on-FHIR OAuth2 bearer token
+  operationoutcome_code: security
+  source_operation: openapi/nextgen-office-fhir-r4-openapi.yaml
+- status: 403
+  title: Forbidden
+  description: Token lacks the required SMART scope for the requested resource/interaction
+  operationoutcome_code: forbidden
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml#groupExport
+- status: 404
+  title: Not Found
+  description: Requested FHIR resource or bulk export job does not exist
+  operationoutcome_code: not-found
+  source_operation: openapi/nextgen-office-fhir-r4-openapi.yaml
+- status: 5XX
+  title: Server Error
+  description: Unexpected server-side error processing the FHIR request
+  operationoutcome_code: exception
+  source_operation: openapi/nextgen-office-bulk-fhir-r4-openapi.yml

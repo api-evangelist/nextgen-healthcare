@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NextGen Office Bulk FHIR R4 API
+  version: 1.0.0
+extends: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: nextgen-healthcare
+    x-apievangelist-standards: [HL7 FHIR Bulk Data Access, Flat FHIR, US Core STU4, USCDIv1, 21st Century Cures]
+    x-apievangelist-auth: SMART Backend Services OAuth2 (client_credentials / bearer JWT)
+    x-apievangelist-async: 'Prefer: respond-async; 202 + Content-Location; poll $export-poll-status'
+    x-apievangelist-conventions: conventions/nextgen-healthcare-conventions.yml
+    x-apievangelist-errors: errors/nextgen-healthcare-problem-types.yml
+- target: $.paths['/bulkfhir/r4/Group/{id}/$export'].get
+  update:
+    x-apievangelist-flow: bulk-export
+    x-apievangelist-note: Asynchronous group-level USCDIv1 export; returns a job Content-Location to poll

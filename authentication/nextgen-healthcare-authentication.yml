@@ -1,0 +1,26 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/nextgen-office-bulk-fhir-r4-openapi.yml, openapi/nextgen-office-fhir-r4-openapi.yaml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+- name: OauthSecurity
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+    tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+    scopes: 4
+  description: Access code based oauth authentication
+  sources:
+  - openapi/nextgen-office-fhir-r4-openapi.yaml

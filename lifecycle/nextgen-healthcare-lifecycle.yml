@@ -1,0 +1,30 @@
+generated: '2026-07-24'
+method: searched
+source:
+- fhir/nextgen-enterprise-r4-capabilitystatement.json
+- fhir/nextgen-office-r4-capabilitystatement.json
+- https://www.nextgen.com/api/regulatory-nge
+- https://www.nextgen.com/api/regulatory-ngo
+description: >-
+  Versioning and lifecycle posture for the NextGen FHIR/Enterprise API surface. Versioning is
+  expressed through the FHIR release in the service base URL path (fhir/r4, fhir/dstu2, fhir/ for
+  STU3) and through the NextGen Enterprise platform version (v5.9.0+). Multiple FHIR generations
+  are maintained in parallel; DSTU2 and STU3 (R3) are legacy surfaces predating the R4 Patient
+  Access API. No public status page or formal RFC 8594 Sunset-header deprecation policy was found.
+versioning:
+  scheme: uri-path-fhir-release
+  fhir_releases: [R4, DSTU2, STU3]
+  current: R4
+  platform_version: NextGen Enterprise v5.9.0+
+  docs: https://www.nextgen.com/api/regulatory-nge
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    DSTU2 (Enterprise) and STU3/R3 (Office) are legacy generations superseded by the R4 Patient
+    Access APIs; NextGen publishes no dated deprecation/sunset policy for them.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []

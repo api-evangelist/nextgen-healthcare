@@ -1,0 +1,86 @@
+generated: '2026-07-24'
+method: derived
+source: mcp/nextgen-healthcare-mcp.yml
+description: >-
+  Crosswalk binding each candidate MCP tool to its backing NextGen FHIR OpenAPI operation. The
+  Bulk FHIR tools bind to real operationIds; the FHIR R4 Patient Access read/search tools bind to
+  path+method (the published Office R4 Swagger declares no operationIds). No GraphQL surface
+  exists. Confidence is high for the Bulk operationId bindings and medium for the templated
+  resource read/search bindings.
+surfaces:
+  openapi:
+  - openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+  - openapi/nextgen-office-fhir-r4-openapi.yaml
+  graphql: null
+  mcp:
+    url: null
+    status: candidate (no hosted MCP server published)
+crosswalk:
+- tool: search_patients
+  category: bulk-fhir
+  rest: [searchPatients]
+  binding: rest
+  confidence: high
+- tool: create_group
+  category: bulk-fhir
+  rest: [createGroup]
+  binding: rest
+  confidence: high
+- tool: list_groups
+  category: bulk-fhir
+  rest: [getAllGroups]
+  binding: rest
+  confidence: high
+- tool: get_group
+  category: bulk-fhir
+  rest: [getGroup]
+  binding: rest
+  confidence: high
+- tool: update_group
+  category: bulk-fhir
+  rest: [updateGroup]
+  binding: rest
+  confidence: high
+- tool: delete_group
+  category: bulk-fhir
+  rest: [deleteGroup]
+  binding: rest
+  confidence: high
+- tool: group_export
+  category: bulk-fhir
+  rest: [groupExport]
+  binding: rest
+  confidence: high
+- tool: poll_job_status
+  category: bulk-fhir
+  rest: [pollJobStatus]
+  binding: rest
+  confidence: high
+- tool: delete_job
+  category: bulk-fhir
+  rest: [deleteJob]
+  binding: rest
+  confidence: high
+- tool: read_fhir_resource
+  category: patient-access-fhir
+  rest: ['GET /fhir/r4/{Resource}/{id}']
+  binding: rest-path
+  confidence: medium
+  note: Office R4 Swagger declares no operationIds; bound by path+method (read interaction per US Core resource)
+- tool: search_fhir_resource
+  category: patient-access-fhir
+  rest: ['GET /fhir/r4/{Resource}']
+  binding: rest-path
+  confidence: medium
+  note: Bound by path+method (search interaction per US Core resource)
+mcp_only: []
+rest_only:
+- capability: FHIR R4 resource reads/searches (Enterprise Patient Access, ~28 US Core resources)
+  note: The Enterprise Patient Access FHIR API has no downloadable OpenAPI; its surface is described by the CapabilityStatement, not mapped to individual tools here
+coverage:
+  tools_named: 11
+  tools_bound: 11
+  mcp_only: 0
+  rest_ops_total: 9
+  rest_ops_with_tool: 9
+  note: 9 Bulk FHIR operationIds fully bound; 2 templated tools cover the R4 read/search interactions

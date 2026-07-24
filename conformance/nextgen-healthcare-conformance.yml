@@ -1,0 +1,83 @@
+generated: '2026-07-24'
+method: searched
+description: >-
+  Standards conformance for the NextGen Healthcare FHIR and Enterprise API surface. Derived
+  from the live CapabilityStatements, SMART configuration / OpenID discovery documents, and the
+  published Swagger/OpenAPI, and cross-checked against NextGen's regulatory (21st Century Cures)
+  API pages and the corporate Trust Center certifications.
+source:
+- fhir/nextgen-enterprise-r4-capabilitystatement.json
+- fhir/nextgen-office-r4-capabilitystatement.json
+- fhir/nextgen-enterprise-r4-smart-configuration.json
+- fhir/nextgen-office-r4-smart-configuration.json
+- openapi/nextgen-office-fhir-r4-openapi.yaml
+- openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+- https://www.nextgen.com/trust
+docs:
+- https://www.nextgen.com/api/regulatory-nge
+- https://www.nextgen.com/api/regulatory-ngo
+standards:
+- id: hl7-fhir-r4
+  name: HL7 FHIR R4 (4.0.1)
+  conforms: true
+  evidence: CapabilityStatements advertise fhirVersion 4.0.1 for Enterprise and Office R4 service base URLs
+- id: hl7-fhir-dstu2
+  name: HL7 FHIR DSTU2
+  conforms: true
+  evidence: NextGen Enterprise Patient Access exposes a legacy DSTU2 service base URL
+- id: hl7-fhir-stu3
+  name: HL7 FHIR STU3 (R3)
+  conforms: true
+  evidence: NextGen Office publishes an R3/STU3 service base URL with C-CDA support
+- id: us-core
+  name: HL7 US Core Implementation Guide
+  conforms: true
+  evidence: APIs coded against US Core (STU4); CapabilityStatements advertise 26-28 US Core resource types
+- id: uscdi-v1
+  name: USCDI v1
+  conforms: true
+  evidence: Patient Access and Bulk FHIR APIs deliver USCDIv1 data elements
+- id: smart-app-launch
+  name: SMART App Launch Framework
+  conforms: true
+  evidence: smart-configuration advertises launch-ehr, launch-standalone, context-* and permission-* capabilities
+- id: smart-v2-scopes
+  name: SMART v2 granular scopes
+  conforms: true
+  evidence: capabilities include permission-v1 and permission-v2; Office scope set uses granular resource.rs/.r/.s scopes
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: authorization_code, client_credentials and refresh_token grants across both auth servers
+- id: oidc
+  name: OpenID Connect
+  conforms: true
+  evidence: sso-openid-connect capability; openid-configuration discovery published; issuer/jwks advertised
+- id: oauth-pkce
+  name: OAuth 2.0 PKCE (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: rfc8414-oauth-metadata
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: NextGen Enterprise publishes .well-known/openid-configuration; Office uses Keycloak OIDC discovery
+- id: bulk-data-access
+  name: HL7 FHIR Bulk Data Access (Flat FHIR)
+  conforms: true
+  evidence: NextGen Office Bulk FHIR API implements $export with async job polling (respond-async / Content-Location)
+- id: onc-21st-century-cures
+  name: ONC 21st Century Cures Act certified API criteria (g)(10)
+  conforms: true
+  evidence: Patient Access and Bulk FHIR APIs marketed as 21st Century Cures compliant on regulatory-nge / regulatory-ngo pages
+- id: fhir-operationoutcome
+  name: FHIR OperationOutcome error model
+  conforms: true
+  evidence: FHIR RESTful errors returned as OperationOutcome resources
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: errors use the FHIR OperationOutcome model, not application/problem+json
+- id: fapi
+  name: FAPI (Financial-grade API)
+  conforms: false
+  evidence: no FAPI security profile advertised

@@ -1,0 +1,51 @@
+generated: '2026-07-24'
+method: searched
+description: >-
+  Well-known discovery surface probed across the NextGen FHIR service base URLs and the
+  developer portal. The two live FHIR hosts publish SMART App Launch (.well-known/smart-configuration)
+  and, for NextGen Enterprise, RFC 8414 OAuth/OIDC discovery. developer.nextgen.com (GatewayPortal
+  Angular SPA) returns HTTP 200 for every /.well-known/* path but serves an HTML app shell, not a
+  real document, so those are recorded as not-a-document. No RFC 9116 security.txt is published.
+hosts:
+- host: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4
+  documents:
+  - path: /.well-known/smart-configuration
+    status: 200
+    file: ../fhir/nextgen-enterprise-r4-smart-configuration.json
+    note: SMART App Launch discovery (NextGen Enterprise R4)
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: nextgen-healthcare-nge-openid-configuration.json
+    note: OpenID Connect / OAuth2 discovery (NextGen Enterprise patient OAuth)
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+- host: https://fhir.meditouchehr.com/api/fhir/r4
+  documents:
+  - path: /.well-known/smart-configuration
+    status: 200
+    file: ../fhir/nextgen-office-r4-smart-configuration.json
+    note: SMART App Launch discovery (NextGen Office R4, Keycloak-backed)
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://developer.nextgen.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: not-a-document (GatewayPortal SPA HTML shell)
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: not-a-document (GatewayPortal SPA HTML shell)
+  - path: /.well-known/api-catalog
+    status: 200
+    note: not-a-document (GatewayPortal SPA HTML shell)
+- host: https://www.nextgen.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+security_txt: none

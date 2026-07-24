@@ -1,0 +1,49 @@
+generated: '2026-07-24'
+method: derived
+source:
+- openapi/nextgen-office-fhir-r4-openapi.yaml
+- openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+- fhir/nextgen-enterprise-r4-capabilitystatement.json
+description: >-
+  Cross-cutting request/response conventions for the NextGen FHIR APIs, derived from the OpenAPI/
+  Swagger and CapabilityStatements and grounded in the HL7 FHIR RESTful and Bulk Data Access
+  specifications the APIs implement.
+authentication:
+  style: 'SMART-on-FHIR OAuth2 bearer (Authorization: Bearer <jwt>)'
+  flows: [authorization_code, client_credentials, refresh_token]
+  pkce: S256
+  see: authentication/nextgen-healthcare-authentication.yml
+pagination:
+  style: fhir-bundle-links
+  request_params: [_count]
+  response: FHIR searchset Bundle with link[] entries (relation self/next/previous)
+  note: RESTful FHIR search returns a Bundle whose link array carries cursor-style paging URLs
+search:
+  style: fhir-search
+  common_params: [_lastUpdated, _id, category, date, patient]
+  note: US Core / FHIR search parameters per resource type
+versioning:
+  in_path: FHIR release (fhir/r4, fhir/dstu2, fhir/) in the service base URL
+  resource_version: meta.versionId on each FHIR resource; ETag returned on reads
+  concurrency: version-aware updates via If-Match / ETag (FHIR optimistic locking)
+idempotency:
+  supported: partial
+  mechanism: FHIR update (PUT) is idempotent by REST semantics; conditional update via If-Match/ETag
+  idempotency_key_header: null
+  note: No provider-documented Idempotency-Key header; idempotency is the standard FHIR PUT/If-Match model
+async:
+  style: fhir-bulk-data-async
+  request_header: 'Prefer: respond-async'
+  kickoff: 202 Accepted with Content-Location pointing at the status/poll endpoint
+  poll: GET $export-poll-status; X-Progress and Retry-After during processing; 200 with output manifest on completion
+  see: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+error_envelope:
+  media_type: application/fhir+json
+  resource: OperationOutcome
+  see: errors/nextgen-healthcare-problem-types.yml
+rate_limiting:
+  documented: false
+  note: No public rate-limit headers documented for the FHIR surface
+media_types:
+  request: [application/fhir+json, application/json]
+  response: [application/fhir+json, application/json]

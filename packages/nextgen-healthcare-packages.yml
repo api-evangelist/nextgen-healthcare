@@ -1,0 +1,24 @@
+generated: '2026-07-24'
+method: searched
+description: >-
+  First-party software NextGen Healthcare publishes. NextGen does not ship a dedicated client
+  SDK for its FHIR/Enterprise REST APIs on the public package registries (npm, PyPI, Maven Central,
+  NuGet, RubyGems all miss for a first-party NextGen FHIR client). Its marquee open-source product
+  is Mirth Connect, the healthcare integration engine, distributed as source and binaries from the
+  NextGenHealthcare GitHub organization rather than a language package registry.
+packages:
+- name: Mirth Connect (connect)
+  language: java
+  registry: github
+  url: https://github.com/NextGenHealthcare/connect
+  install: docker pull nextgenhealthcare/connect
+  official: true
+  note: >-
+    Open-source healthcare integration/interface engine ("the swiss army knife of healthcare
+    integration"). A message-routing/interoperability platform, not a client SDK for the FHIR APIs.
+sdk_search:
+  npm: no first-party NextGen FHIR client (third-party fhirclient/fhir-kit-client exist)
+  pypi: none (nextgen-healthcare/nextgen-fhir 404)
+  maven_central: none
+  nuget: none
+  rubygems: none

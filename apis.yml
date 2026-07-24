@@ -27,7 +27,7 @@ accessModel:
   - documentation
   generated: '2026-07-24'
   method: derived
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://nextgen.widen.net/content/mcckjhwu0f/svg/NG_Logo_Final_RGB.svg
 tags:
 - Healthcare
 - United States
@@ -159,6 +159,14 @@ apis:
   - type: Authentication
     url: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
 common:
+- type: DomainSecurity
+  url: security/nextgen-healthcare-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/nextgen-healthcare-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/nextgen-healthcare-scopes.yml
+- type: Authentication
+  url: authentication/nextgen-healthcare-authentication.yml
 - type: Website
   url: https://www.nextgen.com/
 - type: DeveloperPortal
@@ -185,6 +193,36 @@ common:
   url: https://www.nextgen.com/legal/terms-and-conditions
 - type: PrivacyPolicy
   url: https://www.nextgen.com/legal/privacy-policy
+- type: TrustCenter
+  url: https://www.nextgen.com/trust
+- type: Compliance
+  url: https://www.nextgen.com/trust
+- type: Conformance
+  url: conformance/nextgen-healthcare-conformance.yml
+- type: WellKnown
+  url: well-known/nextgen-healthcare-well-known.yml
+- type: Conventions
+  url: conventions/nextgen-healthcare-conventions.yml
+- type: ErrorCatalog
+  url: errors/nextgen-healthcare-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/nextgen-healthcare-lifecycle.yml
+- type: DataModel
+  url: data-model/nextgen-healthcare-data-model.yml
+- type: Packages
+  url: packages/nextgen-healthcare-packages.yml
+- type: LLMsTxt
+  url: llms/nextgen-healthcare-llms.txt
+- type: MCPServer
+  url: mcp/nextgen-healthcare-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/nextgen-healthcare-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/nextgen-healthcare-office-fhir-r4-overlay.yaml
+- type: Overlay
+  url: overlays/nextgen-healthcare-office-bulk-fhir-r4-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

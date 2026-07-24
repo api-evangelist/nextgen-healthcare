@@ -1,0 +1,67 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/nextgen-office-fhir-r4-openapi.yaml
+docs:
+- https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/.well-known/smart-configuration
+- https://fhir.meditouchehr.com/api/fhir/r4/.well-known/smart-configuration
+description: >-
+  SMART-on-FHIR OAuth2 scopes for the NextGen FHIR APIs. Enriched from the live published
+  smart-configuration documents (scopes_supported) for both NextGen Enterprise (patient OAuth)
+  and NextGen Office (Keycloak). NextGen Office advertises the full SMART v2 granular US Core
+  scope set (patient/, user/, system/ prefixes with .r/.s/.rs/.read verbs, plus category-filtered
+  Observation/Condition scopes); the representative families are listed here rather than the full
+  ~350-scope enumeration.
+schemes:
+- name: SMART-on-FHIR (NextGen Enterprise patient OAuth)
+  source: fhir/nextgen-enterprise-r4-smart-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://fhir.nextgen.com/nge/prod/patient-oauth/authorize
+    tokenUrl: https://fhir.nextgen.com/nge/prod/patient-oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://fhir.nextgen.com/nge/prod/patient-oauth/token
+- name: SMART-on-FHIR (NextGen Office, Keycloak realm nextgen)
+  source: fhir/nextgen-office-r4-smart-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
+    tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+  - flow: clientCredentials
+    tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication scope
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json, fhir/nextgen-office-r4-smart-configuration.json]
+- scope: offline_access
+  description: Request a refresh_token usable while the end-user remains offline
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json, fhir/nextgen-office-r4-smart-configuration.json]
+- scope: fhirUser
+  description: Return the fhirUser claim identifying the authorized user's FHIR resource
+  sources: [fhir/nextgen-office-r4-smart-configuration.json]
+- scope: launch
+  description: SMART EHR launch context
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json, fhir/nextgen-office-r4-smart-configuration.json]
+- scope: launch/patient
+  description: Request a patient-scoped access token (standalone launch)
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json, fhir/nextgen-office-r4-smart-configuration.json]
+- scope: launch/encounter
+  description: Request an encounter-scoped access token
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json, fhir/nextgen-office-r4-smart-configuration.json]
+- scope: patient/*.*
+  description: Full access to all FHIR resources in the patient compartment (Enterprise)
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json]
+- scope: user/*.*
+  description: Full access to all FHIR resources the user can see (Enterprise)
+  sources: [fhir/nextgen-enterprise-r4-smart-configuration.json]
+- scope: patient/[Resource].rs
+  description: SMART v2 granular read+search on a US Core resource in the patient compartment (Office; e.g. patient/Observation.rs)
+  sources: [fhir/nextgen-office-r4-smart-configuration.json]
+- scope: user/[Resource].rs
+  description: SMART v2 granular read+search on a US Core resource for the user (Office)
+  sources: [fhir/nextgen-office-r4-smart-configuration.json]
+- scope: system/[Resource].rs
+  description: SMART Backend Services granular read+search on a US Core resource (Office; client_credentials)
+  sources: [fhir/nextgen-office-r4-smart-configuration.json]
+- scope: patient/Observation.rs?category=laboratory
+  description: Category-filtered granular scope (Office advertises vital-signs, laboratory, social-history, survey, imaging, exam, procedure, activity, therapy, functional-status, cognitive-status, disability-status, sdoh variants)
+  sources: [fhir/nextgen-office-r4-smart-configuration.json]

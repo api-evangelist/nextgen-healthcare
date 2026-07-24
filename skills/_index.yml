@@ -1,0 +1,11 @@
+generated: '2026-07-24'
+method: generated
+skills:
+- file: nextgen-healthcare-bulk-fhir-export.md
+  name: Run a NextGen Office Bulk FHIR export
+  api: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+  operations: [createGroup, getGroup, groupExport, pollJobStatus, deleteJob]
+- file: nextgen-healthcare-smart-patient-access.md
+  name: Read patient records via SMART-on-FHIR patient access
+  api: openapi/nextgen-office-fhir-r4-openapi.yaml
+  operations: ['GET /fhir/r4/Patient/{id}', 'GET /fhir/r4/Condition', 'GET /fhir/r4/Observation']

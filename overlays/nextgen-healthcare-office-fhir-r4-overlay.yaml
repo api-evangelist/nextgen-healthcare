@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NextGen Office FHIR R4 API
+  version: 1.0.0
+extends: openapi/nextgen-office-fhir-r4-openapi.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: nextgen-healthcare
+    x-apievangelist-standards: [HL7 FHIR R4, US Core STU4, USCDIv1, SMART App Launch, 21st Century Cures]
+    x-apievangelist-auth: SMART-on-FHIR OAuth2 (authorization_code + PKCE)
+    x-apievangelist-conventions: conventions/nextgen-healthcare-conventions.yml
+    x-apievangelist-errors: errors/nextgen-healthcare-problem-types.yml
+    x-apievangelist-note: >-
+      Read-only US Core FHIR R4 Patient Access API. Errors returned as FHIR OperationOutcome.
+      Source Swagger declares no operationIds; consumers should key on path+method.

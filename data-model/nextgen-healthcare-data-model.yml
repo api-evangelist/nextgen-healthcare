@@ -1,0 +1,138 @@
+generated: '2026-07-24'
+method: derived
+source:
+- fhir/nextgen-enterprise-r4-capabilitystatement.json
+- fhir/nextgen-office-r4-capabilitystatement.json
+description: >-
+  Entity-relationship graph for the NextGen FHIR APIs, derived from the US Core resource types
+  advertised in the live R4 CapabilityStatements (28 for NextGen Enterprise, 26 for NextGen
+  Office). Relationships follow the standard HL7 FHIR reference model: the Patient resource is the
+  compartment root, and clinical/administrative resources reference it via subject/patient, with
+  Encounter, Practitioner and Organization as the other primary hubs.
+root_entity: Patient
+entities:
+- Patient
+- AllergyIntolerance
+- CarePlan
+- CareTeam
+- Condition
+- Coverage
+- Device
+- DiagnosticReport
+- DocumentReference
+- Encounter
+- Goal
+- Immunization
+- Location
+- MedicationAdministration
+- MedicationDispense
+- MedicationRequest
+- MedicationStatement
+- Observation
+- Organization
+- Practitioner
+- PractitionerRole
+- Procedure
+- Provenance
+- Questionnaire
+- QuestionnaireResponse
+- RelatedPerson
+- ServiceRequest
+- Specimen
+relationships:
+- from: AllergyIntolerance
+  to: Patient
+  kind: belongs_to
+  via: patient
+- from: Condition
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Observation
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Observation
+  to: Encounter
+  kind: belongs_to
+  via: encounter
+- from: Procedure
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Immunization
+  to: Patient
+  kind: belongs_to
+  via: patient
+- from: MedicationRequest
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: MedicationRequest
+  to: Practitioner
+  kind: belongs_to
+  via: requester
+- from: MedicationDispense
+  to: MedicationRequest
+  kind: belongs_to
+  via: authorizingPrescription
+- from: DiagnosticReport
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: DiagnosticReport
+  to: Observation
+  kind: has_many
+  via: result
+- from: DocumentReference
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Encounter
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Encounter
+  to: Location
+  kind: has_many
+  via: location
+- from: CarePlan
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: CareTeam
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Goal
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Coverage
+  to: Patient
+  kind: belongs_to
+  via: beneficiary
+- from: ServiceRequest
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: Specimen
+  to: Patient
+  kind: belongs_to
+  via: subject
+- from: PractitionerRole
+  to: Practitioner
+  kind: belongs_to
+  via: practitioner
+- from: PractitionerRole
+  to: Organization
+  kind: belongs_to
+  via: organization
+- from: RelatedPerson
+  to: Patient
+  kind: belongs_to
+  via: patient
+- from: Provenance
+  to: Patient
+  kind: belongs_to
+  via: target
