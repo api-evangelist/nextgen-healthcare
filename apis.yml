@@ -1,0 +1,190 @@
+aid: nextgen-healthcare
+url: https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/refs/heads/main/apis.yml
+name: NextGen Healthcare
+kind: company
+description: >-
+  NextGen Healthcare is a United States ambulatory electronic health record (EHR/EMR) and
+  practice-management vendor headquartered in Remote-first / Atlanta, Georgia, serving
+  outpatient specialties and community health with its NextGen Enterprise and NextGen Office
+  platforms plus the Mirth Connect interoperability engine. Its developer surface is
+  standards-driven: 21st Century Cures Act-certified HL7 FHIR APIs for patient access and
+  provider apps, a SMART App Launch API, and a Bulk FHIR (Flat FHIR) API delivering USCDI
+  data, alongside an 800+ route JSON RESTful Enterprise API family. NextGen Enterprise exposes
+  live FHIR R4 and DSTU2 service base URLs with SMART-on-FHIR OAuth2, and NextGen Office exposes
+  live FHIR R3/R4 and Bulk FHIR endpoints. FHIR resources are coded against the US Core /
+  USCDIv1 implementation guides. Developer onboarding is gated behind an API onboarding form and
+  app registration, which is standard for regulated health-data access in the US market.
+accessModel:
+  pricing: enterprise
+  onboarding: partner
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Partner onboarding (API onboarding form + app registration)
+  confidence: medium
+  source:
+  - authentication
+  - documentation
+  generated: '2026-07-24'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- United States
+- EHR
+- EMR
+- FHIR
+- HL7
+- Interoperability
+- SMART on FHIR
+- USCDI
+- Bulk FHIR
+- Patient Access
+- 21st Century Cures
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: nextgen-healthcare:nextgen-enterprise-patient-access-fhir-api
+  name: NextGen Enterprise Patient Access FHIR API
+  description: >-
+    HL7 FHIR API for the NextGen Enterprise EHR, certified under the 21st Century Cures Act
+    Patient Access criteria, exposing USCDI data to patient-facing apps. Available in FHIR R4
+    (4.0.1) and legacy DSTU2, authenticated with SMART-on-FHIR OAuth2 authorization-code flow.
+    The live R4 CapabilityStatement advertises 28 US Core resource types.
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - FHIR
+  - Patient Access
+  - EHR
+  - SMART on FHIR
+  properties:
+  - type: CapabilityStatement
+    url: fhir/nextgen-enterprise-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-enterprise-r4-smart-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/nge-fhir-r4
+  - type: Documentation
+    url: https://www.nextgen.com/patient-access-api
+  - type: APIReference
+    url: https://www.nextgen.com/api/regulatory-nge
+  - type: Authentication
+    url: https://fhir.nextgen.com/nge/prod/patient-oauth/authorize
+- aid: nextgen-healthcare:nextgen-enterprise-api
+  name: NextGen Enterprise API
+  description: >-
+    An extensive collection of JSON-based RESTful APIs (800+ routes) that power apps used by
+    provider organizations on the NextGen Enterprise platform (v5.9.0+), covering clinical and
+    practice-management data. Authenticated with OAuth2 and Global Service Account (GSA) auth.
+    Route-level documentation and sandbox access are gated behind the NextGen API onboarding form.
+  humanURL: https://www.nextgen.com/api/enterprise-uscdi-documentation
+  baseURL: https://www.nextgen.com/api
+  tags:
+  - REST
+  - EHR
+  - Practice Management
+  properties:
+  - type: Documentation
+    url: https://www.nextgen.com/api/enterprise-uscdi-documentation
+  - type: Documentation
+    url: https://www.nextgen.com/api
+  - type: APIReference
+    url: https://www.nextgen.com/api/regulatory-nge
+  - type: GettingStarted
+    url: https://www.nextgen.com/api-on-boarding
+- aid: nextgen-healthcare:nextgen-office-fhir-r4-api
+  name: NextGen Office FHIR R4 API
+  description: >-
+    HL7 FHIR R4 (4.0.1) Patient Access API for the cloud-based NextGen Office (formerly
+    MediTouch) EHR, coded against the US Core specification and exposing read-only USCDIv1 data.
+    A downloadable Swagger 2.0 definition (45 paths) is published, and the live R4
+    CapabilityStatement advertises 26 US Core resource types. Authenticated with SMART App
+    Launch / OpenID Connect OAuth2 via Keycloak.
+  humanURL: https://www.nextgen.com/api/regulatory-ngo
+  baseURL: https://fhir.meditouchehr.com/api/fhir/r4
+  tags:
+  - FHIR
+  - Patient Access
+  - EHR
+  - SMART on FHIR
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-office-fhir-r4-openapi.yaml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+- aid: nextgen-healthcare:nextgen-office-bulk-fhir-r4-api
+  name: NextGen Office Bulk FHIR R4 API
+  description: >-
+    Bulk FHIR (Flat FHIR) R4 API for the NextGen Office EHR, 21st Century Cures compliant,
+    enabling authorized vendors to export USCDIv1 data for multiple patients. A downloadable
+    OpenAPI 3.0.0 definition (5 paths) is published.
+  humanURL: https://www.nextgen.com/api/regulatory-ngo
+  baseURL: https://fhir.meditouchehr.com/api/bulkfhir/r4
+  tags:
+  - FHIR
+  - Bulk FHIR
+  - EHR
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-office-fhir-r3-api
+  name: NextGen Office FHIR R3 API
+  description: >-
+    HL7 FHIR STU3 (R3) API for the NextGen Office EHR with C-CDA support, authenticated with
+    SMART App Launch / OpenID Connect OAuth2 via Keycloak. Predecessor surface to the R4
+    Patient Access API.
+  humanURL: https://www.nextgen.com/api/regulatory-ngo
+  baseURL: https://fhir.meditouchehr.com/api/fhir/
+  tags:
+  - FHIR
+  - EHR
+  - C-CDA
+  properties:
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: Authentication
+    url: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
+common:
+- type: Website
+  url: https://www.nextgen.com/
+- type: DeveloperPortal
+  url: https://www.nextgen.com/developer-program
+- type: Portal
+  url: https://developer.nextgen.com/
+- type: Documentation
+  url: https://www.nextgen.com/api
+- type: APIReference
+  url: https://www.nextgen.com/api/regulatory-nge
+- type: GettingStarted
+  url: https://www.nextgen.com/api-on-boarding
+- type: Marketplace
+  url: https://www.nextgen.com/marketplace
+- type: GitHubOrganization
+  url: https://github.com/NextGenHealthcare
+- type: LinkedIn
+  url: https://www.linkedin.com/company/nextgen-healthcare-information-systems
+- type: Blog
+  url: https://www.nextgen.com/blog
+- type: Support
+  url: https://www.nextgen.com/contact-us
+- type: TermsOfService
+  url: https://www.nextgen.com/legal/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.nextgen.com/legal/privacy-policy
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

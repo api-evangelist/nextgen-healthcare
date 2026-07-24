@@ -1,0 +1,5412 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "NextGen Office FHIR API"
+  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html"
+  contact:
+    email: "nextgen-office-api@nextgen.com"
+consumes:
+  - application/json
+produces:
+  - application/json
+
+externalDocs:
+  description: "Find out more about NextGen Office FHIR API"
+  url: "https://www.nextgen.com/products-and-services/nextgen-office"
+
+host: "fhir.meditouchehr.com"
+basePath: "/api/"
+
+tags:
+  - name: "Patient"
+    description: "https://hl7.org/fhir/R4/patient.html"
+  - name: "DocumentReference"
+    description: "https://hl7.org/fhir/R4/documentreference.html"
+  - name: "Condition"
+    description: "https://hl7.org/fhir/R4/condition.html"
+  - name: "Goal"
+    description: "https://hl7.org/fhir/R4/goal.html"
+  - name: "Observation"
+    description: "https://hl7.org/fhir/R4/observation.html"
+  - name: "Procedure"
+    description: "https://hl7.org/fhir/R4/procedure.html"
+  - name: "Immunization"
+    description: "https://hl7.org/fhir/R4/immunization.html"
+  - name: "AllergyIntolerance"
+    description: "https://hl7.org/fhir/R4/allergyintolerance.html"
+  - name: "Encounter"
+    description: "https://hl7.org/fhir/R4/encounter.html"
+  - name: "MedicationRequest"
+    description: "https://hl7.org/fhir/R4/medicationrequest.html"
+  - name: "MedicationAdministration"
+    description: "https://hl7.org/fhir/R4/medicationadministration.html"
+  - name: "DiagnosticReport"
+    description: "https://hl7.org/fhir/R4/diagnosticreport.html"
+  - name: "Device"
+    description: "https://hl7.org/fhir/R4/device.html"
+  - name: "CareTeam"
+    description: "https://hl7.org/fhir/R4/careteam.html"
+  - name: "CarePlan"
+    description: "https://hl7.org/fhir/R4/careplan.html"
+  - name: "Practitioner"
+    description: "https://hl7.org/fhir/R4/practitioner.html"
+  - name: "PractitionerRole"
+    description: "https://hl7.org/fhir/R4/practitionerrole.html"
+  - name: "Location"
+    description: "https://hl7.org/fhir/R4/location.html"
+  - name: "Organization"
+    description: "https://hl7.org/fhir/R4/organization.html"
+  - name: "Provenance"
+    description: "https://hl7.org/fhir/R4/provenance.html"
+  - name: "Specimen"
+    description: "https://hl7.org/fhir/R4/specimen.html"
+  - name: "RelatedPerson"
+    description: "https://hl7.org/fhir/R4/relatedperson.html"
+  - name: "Coverage"
+    description: "https://hl7.org/fhir/R4/coverage.html"
+
+schemes:
+  - "https"
+paths:
+  "/fhir/r4/Patient/{id}":
+    get:
+      tags:
+        - Patient
+      description: "Fetches a single Patient by patient Id \n \n
+        FHIR Resource: Patient.name.given \n
+        * First Name \n
+        *	Middle Name \n \n
+        FHIR Resource: Patient.name.family \n
+        *	Last Name \n \n
+        FHIR Resource: Patient.name \n
+        *	Previous Name \n \n
+        FHIR Resource: Patient.name.suffix \n
+        *	Suffix \n \n
+        FHIR Resource: US Core Sex Extension \n
+        *	Sex \n  \n
+        FHIR Resource: Patient.birthDate \n
+        *	Date of Birth \n  \n
+        FHIR Resource: US Core Race Extension \n
+        *	Race \n  \n
+        FHIR Resource: US Core Ethnicity Extension \n
+        *	Ethnicity \n  \n
+        FHIR Resource: US Core Tribal Affiliation Extension \n
+        *	Tribal Affiliation \n  \n
+        FHIR Resource: US Core Gender Identity Extension \n
+        *	Gender Identity \n  \n
+        FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime \n
+        *   Deceased Status / Deceased Date \n \n  
+        FHIR Resource: Patient.communication \n
+        *	Preferred Language \n  \n
+        FHIR Resource: Patient.address \n
+        *	Address \n  \n
+        FHIR Resource: Patient.telecom \n
+        *	Phone Number"
+
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Patient"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Patient":
+    get:
+      tags:
+        - Patient
+      description: "Fetches a bundled resource containing the valid patients mentioned in the request parameters. \n \n
+        FHIR Resource: Patient.name.given \n
+        * First Name \n
+        *	Middle Name \n \n
+        FHIR Resource: Patient.name.family \n
+        *	Last Name \n \n
+        FHIR Resource: Patient.name \n
+        *	Previous Name \n \n
+        FHIR Resource: Patient.name.suffix \n
+        *	Suffix \n \n
+        FHIR Resource: US Core Sex Extension \n
+        *   Sex \n  \n
+        FHIR Resource: Patient.birthDate \n
+        *	Date of Birth \n  \n
+        FHIR Resource: US Core Race Extension \n
+        *	Race \n  \n
+        FHIR Resource: US Core Ethnicity Extension \n
+        *	Ethnicity \n  \n
+        FHIR Resource: US Core Tribal Affiliation Extension \n
+        *	Tribal Affiliation \n  \n
+        FHIR Resource: US Core Gender Identity Extension \n
+        *	Gender Identity \n  \n
+        FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime \n
+        *	Deceased Status / Deceased Date \n \n
+        FHIR Resource: Patient.communication \n
+        *	Preferred Language \n  \n
+        FHIR Resource: Patient.address \n
+        *	Address \n  \n
+        FHIR Resource: Patient.telecom \n
+        *	Phone Number"
+      parameters:
+        - $ref: "#/parameters/_id"
+        - $ref: "#/parameters/patient_identifier"
+        - $ref: "#/parameters/patient_name"
+        - $ref: "#/parameters/patient_birthdate"
+        - $ref: "#/parameters/patient_gender"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/PatientBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/DocumentReference/{id}":
+    get:
+      tags:
+        - DocumentReference
+      description: "Fetches a single Document Reference. A reference to a document of any kind for any purpose. Provides metadata about the document so that the document can be discovered and managed. \n \n
+        FHIR Resource: DocumentReference \n  \n
+        *	Consultation Note \n
+        *	Discharge Summary Note \n
+        *	History & Physical \n
+        *	Progress Note \n  \n
+        FHIR Resource: DocumentReference, DiagnosticReport \n
+        *	Imaging Narrative \n
+        *	Laboratory Report Narrative \n
+        *	Pathology Report Narrative \n
+        *	Procedure Note"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/DocumentReferenceBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/DocumentReference":
+    get:
+      tags:
+        - DocumentReference
+      description: "Fetches a bundled resource containing the valid Document References for the patient mentioned in the request. \n \n
+        FHIR Resource: DocumentReference \n  \n
+        *	Consultation Note \n
+        *	Discharge Summary Note \n
+        *	History & Physical \n
+        *	Progress Note \n  \n
+        FHIR Resource: DocumentReference, DiagnosticReport \n
+        *	Imaging Narrative \n
+        *	Laboratory Report Narrative \n
+        *	Pathology Report Narrative \n
+        *	Procedure Note"
+      parameters:
+        - $ref: "#/parameters/_id"
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/doc_ref_type"
+        - $ref: "#/parameters/doc_ref_category"
+        - $ref: "#/parameters/doc_ref_date"
+        - $ref: "#/parameters/doc_ref_status"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/DocumentReferenceBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Encounter/{id}":
+    get:
+      tags:
+        - Encounter
+      description: "Fetches a single Encounter. An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.  \n \n
+        FHIR Resource: Encounter \n
+        *	Encounters \n \n
+        FHIR Resource: Location \n
+        * Location \n"
+      parameters:
+        - $ref: "#/parameters/encounter_id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/Encounter"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Encounter":
+    get:
+      tags:
+        - Encounter
+      description: "Fetches a bundled resource containing encounter data based on the provided parameters.\n\n
+            - If only `_id` is provided, a bundle containing a single encounter is returned.\n
+            - If only `patient_id` is provided, multiple encounters for the patient may be returned.\n
+            - If `patient_id` and `date` are provided, encounters matching the patient and date range are returned.\n
+            - Requests containing both `_id` and `patient_id`, `_id` and `date`, only `date`, all three parameters together or providing no parameters will result in a `400 Bad Request`.\n\n
+        FHIR Resource: Encounter \n
+        *	Encounters \n \n
+        FHIR Resource: Location \n
+        * Location \n"
+      parameters:
+        - $ref: "#/parameters/optional_patient_id"
+        - $ref: "#/parameters/date"
+        - $ref: "#/parameters/_id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/EncounterBundled"
+        '400':
+          description: "**Invalid request:** The following conditions will result in a `400 Bad Request`:\n\n
+                  - `_id` and `patient_id` cannot be provided together.\n
+                  - `_id` and `date` cannot be provided together.\n
+                  - Providing only `date` is not allowed.\n
+                  - Providing all three parameters (`_id`, `patient_id`, and `date`) is not allowed.\n
+                  - Providing none is not allowed."
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Procedure/{id}":
+    get:
+      tags:
+        - Procedure
+      description: "Fetches a single Procedure by id. \n \n
+          FHIR Resource: Procedure \n
+          *	Procedures"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/Procedure"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Procedure":
+    get:
+      tags:
+        - Procedure
+      description: "Fetches a bundled resource containing the valid procedures for the patient mentioned in the request. The procedures pertain to the encounters available for the patient. \n \n
+        FHIR Resource: Procedure \n
+          *	Procedures"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/ProcedureBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Condition/{id}":
+    get:
+      tags:
+        - Condition
+      description: "Fetches a bundled resource containing the condition/problem associated with the provided resource id.  \n \n
+        FHIR Resource: Condition \n
+        *	Health Concerns \n
+        * Problems \n
+        * Encounter Diagnosis \n"
+      parameters:
+        - $ref: "#/parameters/condition_id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Condition"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Condition":
+    get:
+      tags:
+        - Condition
+      description: "Fetches a bundled resource containing the conditions/problems for the patient mentioned in the request. All conditions are mapped to SNOMED codes.  \n \n
+        FHIR Resource: Condition \n
+        *	Health Concerns \n
+        * Problems \n
+        * Encounter Diagnosis \n"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/condition_category"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/ConditionBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Goal/{id}":
+    get:
+      tags:
+        - Goal
+      description: "Fetches a single Goal by id. \n \n
+        FHIR Resource: Goal \n
+        *	Patient Goals"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Goal"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Goal":
+    get:
+      tags:
+        - Goal
+      description:  "Fetches a bundled resource containing the health concern goals for the patient mentioned in the request.\n \n
+          FHIR Resource: Goal \n
+          *	Patient Goals"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/GoalBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Observation/{id}":
+    get:
+      tags:
+        - Observation
+      description: "Fetches a single observation by id. \n \n
+        FHIR Resource: Observation  \n
+        *	Diastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n
+        *	Systolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n
+        *	Body Height - Body height (FHIR Core Profile) \n
+        *	Body Weight - Body weight (FHIR Core Profile) \n
+        *	Heart Rate - Heart rate (FHIR Core Profile) \n
+        *	Respiratory Rate - Body temperature (FHIR Core Profile) \n
+        *	Body Temperature - Body temperature (FHIR Core Profile) \n
+        *	Pulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n
+        *	Inhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n
+        *	BMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n
+        *	Weight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n
+        *	Occipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n
+        *   Smoking Status \n
+        *   Sexual Orientation \n
+        *   Occupation"
+      parameters:
+        - $ref: "#/parameters/observation_id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Observation"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Observation":
+    get:
+      tags:
+        - Observation
+      description: "Fetches a bundled resource containing the observations. for the patient mentioned in the request. \n \n
+        FHIR Resource: Observation  \n
+        *	Diastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n
+        *	Systolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n
+        *	Body Height - Body height (FHIR Core Profile) \n
+        *	Body Weight - Body weight (FHIR Core Profile) \n
+        *	Heart Rate - Heart rate (FHIR Core Profile) \n
+        *	Respiratory Rate - Body temperature (FHIR Core Profile) \n
+        *	Body Temperature - Body temperature (FHIR Core Profile) \n
+        *	Pulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n
+        *	Inhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n
+        *	BMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n
+        *	Weight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n
+        *	Occipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n
+        *   Smoking Status \n
+        *   Sexual Orientation \n
+        *   Occupation"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/observation_code"
+        - $ref: "#/parameters/observation_category"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/ObservationBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Immunization/{id}":
+    get:
+      tags:
+        - Immunization
+      description: "Fetches a single immunization record by id. \n \n
+        FHIR Resource: Immunization \n
+        *	Immunization"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/Immunization"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Immunization":
+    get:
+      tags:
+        - Immunization
+      description:  "Fetches a bundled resource containing the immunization records for the patient mentioned in the request. All immunizations contain cvx code mapping\n \n
+        FHIR Resource: Immunization \n
+        *	Immunization"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/ImmunizationBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/AllergyIntolerance/{id}":
+    get:
+      tags:
+        - AllergyIntolerance
+      description: "Fetches a single allergy/intolerance record by id. Allergy codes are mapped to RxNorm codes. \n \n
+        FHIR Resource: AllergyIntolerance \n
+        *	Substance (Drug Class) \n
+        *	Substance (Medication) \n
+        *	Reaction"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/AllergyIntolerance"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/AllergyIntolerance":
+    get:
+      tags:
+        - AllergyIntolerance
+      description:  "Fetches a bundled resource containing the allergy/intolerance records for the patient mentioned in the request. Allergy codes are mapped to RxNorm codes.  \n \n
+        FHIR Resource: AllergyIntolerance \n
+        *	Substance (Drug Class) \n
+        *	Substance (Medication) \n
+        *	Reaction"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/AllergyIntoleranceBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/MedicationRequest/{id}":
+    get:
+      tags:
+        - MedicationRequest
+      description: "Fetches a single medication prescription record by id. Medications are mapped to RxNorm codes. \n \n
+        FHIR Resource: MedicationRequest \n
+        *	Medications"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationRequest"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/MedicationRequest":
+    get:
+      tags:
+        - MedicationRequest
+      description:  "Fetches a bundled resource containing all the medication prescription records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n
+        FHIR Resource: MedicationRequest \n
+        *	Medications"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+        - $ref: "#/parameters/mr_intent"
+        - $ref: "#/parameters/mr_status"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationRequestBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/MedicationDispense/{id}":
+    get:
+      tags:
+        - MedicationDispense
+      description: "Fetches a single medication dispense record by id. Medications are mapped to RxNorm codes. \n \n
+        FHIR Resource: MedicationDispense \n
+        *	Medications"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationDispense"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/MedicationDispense":
+    get:
+      tags:
+        - MedicationDispense
+      description: "Returns a FHIR Bundle of MedicationDispense resources for the patient. Supported search parameters: patient (required), status (optional), _revinclude (optional, for Provenance:target). Parameters reflect actual implementation."
+      parameters:
+        - $ref: "#/parameters/patient"
+        - $ref: "#/parameters/status"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationDispenseBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+
+  "/fhir/r4/MedicationAdministration/{id}":
+    get:
+      tags:
+        - MedicationAdministration
+      description: "Fetches a single medication administration record by id. Medications are mapped to RxNorm codes. \n \n
+        FHIR Resource: MedicationAdministration \n
+        *	Medications"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationAdministration"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/MedicationAdministration":
+    get:
+      tags:
+        - MedicationAdministration
+      description: "Fetches a bundled resource containing all the medication administration records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n
+        FHIR Resource: MedicationAdministration \n
+        *	Medications"
+      parameters:
+        - $ref: "#/parameters/patient"
+        - $ref: "#/parameters/ma_status"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/MedicationAdministrationBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/DiagnosticReport/{id}":
+    get:
+      tags:
+        - DiagnosticReport
+      description: "Fetches a single lab or radiology result by id. The observations contained in the resource.  \n \n
+        FHIR Resource: DocumentReference, DiagnosticReport \n
+        *	Imaging Narrative \n
+        *	Laboratory Report Narrative \n
+        *	Pathology Report Narrative \n
+        *	Procedure Note \n \n
+        FHIR Resource: Observation, DiagnosticReport \n
+        *	Tests \n
+        *	Values/Results \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/DiagnosticReport"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/DiagnosticReport":
+    get:
+      tags:
+        - DiagnosticReport
+      description:  "Fetches a bundled resource containing all the lab or radiology results for the patient mentioned in the request. The observations contained in the resource.  \n \n
+        FHIR Resource: DocumentReference, DiagnosticReport \n
+        *	Imaging Narrative \n
+        *	Laboratory Report Narrative \n
+        *	Pathology Report Narrative \n
+        *	Procedure Note \n \n
+        FHIR Resource: Observation, DiagnosticReport \n
+        *	Tests \n
+        *	Values/Results \n"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+        - $ref: "#/parameters/dr_category"
+        - $ref: "#/parameters/dr_code"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/DiagnosticReportBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Device/{id}":
+    get:
+      tags:
+        - Device
+      description:  "Fetches a single implantable device by id.  \n \n
+        FHIR Resource: Device \n
+        *	Unique Device Identifier(s) for Patients� Implantable Device(s) \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Device"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Device":
+    get:
+      tags:
+        - Device
+      description:  "Fetches a bundled resource containing all the implantable devices for the patient mentioned in the request.  \n \n
+        FHIR Resource: Device \n
+        *	Unique Device Identifier(s) for Patients� Implantable Device(s) \n"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/DeviceBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/CarePlan/{id}":
+    get:
+      tags:
+        - CarePlan
+      description: "Fetches a single plan of treatment(care plans, orders) and assessment note by id. \n \n
+        FHIR Resource: CarePlan \n
+        *	Assessment and Plan of Treatment \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/CarePlan"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/CarePlan":
+    get:
+      tags:
+        - CarePlan
+      description:  "Fetches a bundled resource containing plan of treatment(care plans, orders) and assessment notes for the patient mentioned in the request. \n \n
+        FHIR Resource: CarePlan \n
+        *	Assessment and Plan of Treatment \n"
+
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+        - $ref: "#/parameters/cp_category"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/CarePlanBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/CareTeam/{id}":
+    get:
+      tags:
+        - CareTeam
+      description: "Fetches a single Care Team member by id.  \n \n
+        FHIR Resource: CareTeam \n
+        *	Care Team \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/CareTeamBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/CareTeam":
+    get:
+      tags:
+        - CareTeam
+      description:  "Fetches a bundled resource containing details of the Care Team members for the patient or care team ID mentioned in the request.  \n \n
+        FHIR Resource: CareTeam \n \n
+            - If only `patient_id` is provided, care team for the patient may be returned.\n
+            - If only `_id` is provided, care team for the care team ID may be returned.\n
+            - If `patient_id` and `status` are provided, care team members matching the patient and status are returned.\n
+            - Requests containing both `_id` and `patient_id`, `_id` and `status`, `status` alone or all three parameters together or providing no parameters will result in a `400 Bad Request`.\n\n
+        *	Care Team \n"
+      parameters:
+        - $ref: "#/parameters/optional_patient_id"
+        - $ref: "#/parameters/ct_status"
+        - $ref: "#/parameters/_id"
+
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/CareTeamBundled"
+        '400':
+          description: "**Invalid request:** The following conditions will result in a `400 Bad Request`:\n\n
+                          - `_id` and `patient_id` cannot be provided together.\n
+                          - `_id` and `status` cannot be provided together.\n
+                          - Providing only `status` is not allowed.\n
+                          - Providing all three parameters (`_id`, `patient_id`, and `status`) is not allowed.\n
+                          - Providing none is not allowed."
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Practitioner/{id}":
+    get:
+      tags:
+        - Practitioner
+      description: "Fetches a Practitioner by id. Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.  \n \n
+        FHIR Resource: Practitioner \n
+        *	Practitioner \n \n
+        FHIR Resource: Location \n
+        * Location \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Practitioner"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/PractitionerRole/{id}":
+    get:
+      tags:
+        - PractitionerRole
+      description: "Fetches a Practitioner Role by id.  \n \n
+        FHIR Resource: PractitionerRole \n
+        *	Practitioner Role \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/PractitionerRole"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/PractitionerRole":
+      get:
+        tags:
+          - PractitionerRole
+        description: "Fetches a bundled resource containing practitioner role data based on the provided parameters.\n\n
+              - If `practitioner_id` is provided, a bundle containing a practitioner role is returned.\n\n
+          FHIR Resource: PractitionerRole \n
+        *	Practitioner Role \n"
+        parameters:
+          - $ref: "#/parameters/practitioner_id"
+        responses:
+          '200':
+            description: success
+            schema:
+              $ref: "#/definitions/PractitionerRoleBundled"
+          '404':
+            $ref: "#/responses/ResourceNotFound404"
+          '401':
+            $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Location/{id}":
+    get:
+      tags:
+        - Location
+      description: "Fetches Location by id. Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodated.  \n \n
+        FHIR Resource: Location \n
+        *	Location \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Location"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Organization/{id}":
+    get:
+      tags:
+        - Organization
+      description: "Fetches an Organization by id. Organization is a formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  \n \n
+        FHIR Resource: Organization \n
+        *	Organization \n \n
+        FHIR Resource: Location \n
+        * Location \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Organization"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Provenance/{id}":
+    get:
+      tags:
+        - Provenance
+      description: "Fetches Provenance by id. Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource.  \n \n
+        FHIR Resource: Provenance.recorded \n
+        *	Author Time Stamp \n \n
+        FHIR Resource: Provenance.agent \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Provenance"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Specimen/{id}":
+    get:
+      tags:
+        - Specimen
+      description: |
+        Fetches a single Specimen by ID.
+
+        FHIR Resource: [Specimen](http://hl7.org/fhir/R4/specimen.html)
+        * Retrieves a specific Specimen resource by its logical ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: The ID of the Specimen resource
+      responses:
+        '200':
+          description: Success - Returns the Specimen resource.
+          schema:
+            $ref: "#/definitions/Specimen"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Specimen":
+    get:
+      tags:
+        - Specimen
+      description: |
+        Fetches a Bundle containing Specimen resources.
+        
+        Supports filtering by patient or _id. If neither parameter is provided, the server will return a 400 Bad Request.
+        
+        FHIR Resource: [Specimen](http://hl7.org/fhir/R4/specimen.html)
+      parameters:
+        - name: _id
+          in: query
+          required: false
+          type: string
+          description: Search by Specimen logical ID
+        - name: patient
+          in: query
+          required: false
+          type: string
+          description: Search by Patient reference (e.g., patient ID)
+      responses:
+        '200':
+          description: Success - Returns a Bundle of Specimen resources.
+          schema:
+            $ref: "#/definitions/SpecimenBundled"
+        '400':
+          description: |
+            **Invalid request:** The following conditions will result in a `400 Bad Request`:
+            
+            - `_id` and `patient` cannot be provided together.
+            - Neither `_id` nor `patient` is provided.
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/RelatedPerson/{id}":
+    get:
+      tags:
+        - RelatedPerson
+      description: "Fetches a Related Person by id.  \n \n
+              FHIR Resource: RelatedPerson \n
+              *	Related Person \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/RelatedPerson"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/RelatedPerson":
+      get:
+        tags:
+          - RelatedPerson
+        description: "Fetches a bundled resource containing RelatedPerson data based on the provided parameters.\n\n
+                - If `patient_id` is provided, a bundle containing a related persons is returned.\n\n
+            FHIR Resource: Related Person \n
+          *	Related Person \n"
+        parameters:
+          - $ref: "#/parameters/patient_id"
+        responses:
+          '200':
+            description: success
+            schema:
+              $ref: "#/definitions/RelatedPersonBundled"
+          '404':
+            $ref: "#/responses/ResourceNotFound404"
+          '401':
+            $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Coverage/{id}":
+    get:
+      tags:
+        - Coverage
+      description: "Fetches a Coverage by id.  \n \n
+                    FHIR Resource: Coverage \n
+                    * Coverage resource represents insurance coverage details for a patient \n"
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: "#/definitions/Coverage"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  "/fhir/r4/Coverage":
+    get:
+      tags:
+        - Coverage
+      description: "Fetches a bundled resource containing Coverage data based on the provided parameters.\n\n
+                    - If `patient` is provided, a bundle containing the coverages is returned.\n\n
+                    FHIR Resource: Coverage \n
+                    * Coverage resource represents insurance coverage details for a patient \n"
+      parameters:
+        - $ref: "#/parameters/patient_id"
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: "#/definitions/CoverageBundled"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+  '/ccda':
+    get:
+      tags:
+        - CCDA
+      description:  Fetches a resource containing details of the Patient in CCDA format
+      parameters:
+        - $ref: "#/parameters/patient_id"
+        - $ref: "#/parameters/date"
+      produces:
+        - text/xml
+      responses:
+        '200':
+          $ref: "#/responses/Success200"
+        '404':
+          $ref: "#/responses/ResourceNotFound404"
+        '401':
+          $ref: "#/responses/ResourceNotAuthorized401"
+
+securityDefinitions:
+  OauthSecurity:
+    description: Access code based oauth authentication
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: "https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4"
+    tokenUrl: "https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token"
+    scopes:
+      openid: Open ID scope
+      launch/patient: Used by clients to request a patient-scoped access token
+      offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+      patient/*.read: Read access to all Patient Resources
+
+security:
+  - OauthSecurity:
+      - "patient/*.read"
+
+parameters:
+  id:
+    description: The id of the resource
+    name: "id"
+    in: "path"
+    required: true
+    type: string
+  _id:
+    description: The id of the resource
+    name: "_id"
+    in: query
+    required: false
+    type: string
+  date:
+    description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+    name: "date"
+    in: query
+    type: string
+  patient_identifier:
+    description: A patient identifier
+    name: "identifier"
+    in: query
+    required: false
+    type: string
+  patient_name:
+    description: Name of the patient
+    name: "name"
+    in: query
+    required: false
+    type: string
+  patient_birthdate:
+    description: Date of birth of the patient.The format is YYYY-MM-DD e.g. 1905-08-23.There shall be no time zone.Dates shall be valid dates. See https://www.hl7.org/fhir/R4/search.html#birthDate.
+    name: "birthdate"
+    in: query
+    required: false
+    type: string
+  patient_gender:
+    description: Gender of the patient. Supported values male | female | undifferentiated | both. See http://hl7.org/fhir/R4/valueset-administrative-gender.html
+    name: "gender"
+    in: query
+    required: false
+    type: string
+  patient_id:
+    description: The id of the patient
+    name: "patient"
+    in: query
+    required: true
+    type: string
+  optional_patient_id:
+    description: The id of the patient
+    name: "patient"
+    in: query
+    required: false
+    type: string
+  doc_ref_type:
+    description: Kind of document (LOINC if possible). See http://hl7.org/fhir/R4/valueset-c80-doc-typecodes.html
+    name: "type"
+    in: query
+    required: false
+    type: string
+  doc_ref_category:
+    description: Categorization of document. Only clinical-note category supported. See http://hl7.org/fhir/R4/valueset-document-classcodes.html
+    name: "category"
+    in: query
+    required: false
+    type: string
+  doc_ref_date:
+    description: When this document reference was created.A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/search.html#date.
+    name: "date"
+    in: query
+    required: false
+    type: string
+  doc_ref_status:
+    description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
+    name: "status"
+    in: query
+    required: false
+    type: string
+  encounter_id:
+    description: The id of the resource with prefix values PT with hyphen.Example PT-123
+    name: "id"
+    in: "path"
+    required: true
+    type: string
+  condition_id:
+    description: The id of the resource with prefix values PL | HC | ED with hyphen.Example PL-123
+    name: "id"
+    in: "path"
+    required: true
+    type: string
+  condition_category:
+    description: The category of the condition. See http://hl7.org/fhir/R4/valueset-condition-category.html
+    name: "category"
+    in: query
+    required: false
+    type: string
+  observation_id:
+    description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+    name: "id"
+    in: "path"
+    required: true
+    type: string
+  observation_category:
+    description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
+    name: "category"
+    in: query
+    required: false
+    type: string
+  observation_code:
+    description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
+    name: "code"
+    in: query
+    required: false
+    type: string
+  mr_status:
+    description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
+    name: "status"
+    in: query
+    required: false
+    type: string
+  mr_intent:
+    description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
+    name: "intent"
+    in: query
+    required: false
+    type: string
+  ma_status:
+    description: Status of the medication administration. See http://hl7.org/fhir/R4/valueset-medication-admin-status.html
+    name: "status"
+    in: query
+    required: false
+    type: string
+  dr_category:
+    description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+    name: "category"
+    in: query
+    required: false
+    type: string
+  dr_code:
+    description: The code for the report, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+    name: "code"
+    in: query
+    required: false
+    type: string
+  cp_category:
+    description: Type of plan. See http://hl7.org/fhir/R4/valueset-care-plan-category.html
+    name: "category"
+    in: query
+    required: true
+    type: string
+  ct_status:
+    description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
+    name: "status"
+    in: query
+    required: false
+    type: string
+  patient:
+    description: The id of the patient
+    name: "patient"
+    in: query
+    required: true
+    type: string
+  status:
+      description: Status of the medication dispense
+      name: "status"
+      in: query
+      required: false
+      type: string
+  practitioner_id:
+    description: The id of the practitioner
+    name: "practitioner"
+    in: query
+    required: true
+    type: string
+
+responses:
+  Success200:
+    description: Success
+  ResourceNotFound404:
+    description: Resource not found
+  ResourceNotAuthorized401:
+    description: Resource not authorized to be viewed by this user
+
+definitions:
+  Condition:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      clinicalStatus:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - system
+            description: Code defined by a terminology system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+
+      verificationStatus:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - system
+            description: Code defined by a terminology system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                  - display
+                  - system
+              description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+            - coding
+            - text
+
+      code:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - system
+            description: Code defined by a terminology system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+          display:
+            type: string
+            minLength: 1
+            description: Text alternative for the resource
+        required:
+          - reference
+      encounter:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+          display:
+            type: string
+            minLength: 1
+            description: Text alternative for the resource
+        required:
+          - reference
+      onsetDateTime:
+        type: string
+        minLength: 1
+        description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+    required:
+      - resourceType
+      - id
+      - meta
+      - clinicalStatus
+      - verificationStatus
+      - category
+      - code
+      - subject
+      - onsetDateTime
+  ConditionBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Consitions in entry field
+      link:
+        type: object
+        properties:
+          relation:
+            type: string
+            minLength: 1
+            description: relation of the resource with link provided in url
+          url:
+            type: string
+            minLength: 1
+            description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Condition resource in entry
+            resource:
+              $ref: "#/definitions/Condition"
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+
+  Practitioner:
+    type: object
+    properties:
+      responseType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      identifier:
+        description: An identifier for the person as this agent
+        type: array
+        uniqueItems: true
+        minItems: 1
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              minLength: 1
+              description: The namespace for the identifier value
+            value:
+              type: string
+              minLength: 1
+              description: The value that is unique
+          required:
+            - system
+            - value
+      name:
+        type: array
+        description: The name(s) associated with the practitioner
+        items:
+          type: object
+          properties:
+            family:
+              type: string
+              description: Family name (often called 'Surname')
+            given:
+              type: array
+              description: Given names (not always 'first'). Includes middle names
+              items:
+                type: string
+          required:
+            - family
+      active:
+        type: boolean
+        description: Whether this practitioner's record is in active use
+      address:
+        type: array
+        description: Address(es) of the practitioner that are not role specific (typically home address)
+        items:
+          type: object
+          properties:
+            line:
+              type: array
+              description: Street name, number, direction & P.O. Box etc.
+              items:
+                type: string
+            city:
+              type: string
+              description: Name of city, town etc.
+            state:
+              type: string
+              description: Sub-unit of country
+            postalCode:
+              type: string
+              description: Postal code for area
+          required:
+            - city
+            - state
+            - postalCode
+    required:
+      - responseType
+      - id
+      - meta
+      - identifier
+      - name
+      - active
+      - address
+
+  PractitionerRole:
+    type: object
+    properties:
+      responseType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      identifier:
+        description: Business Identifiers that are specific to a role
+        type: array
+        uniqueItems: true
+        minItems: 1
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              minLength: 1
+              description: The namespace for the identifier value
+            value:
+              type: string
+              minLength: 1
+              description: The value that is unique
+          required:
+            - system
+            - value
+      organization:
+        type: object
+        description: Organization where the roles are available
+        properties:
+          reference:
+            type: string
+            description: Reference to Organization Resource
+          display:
+            type: string
+            description: Practice name
+      practitioner:
+        type: object
+        description: Practitioner that is able to provide the defined services for the organization
+        properties:
+          reference:
+            type: string
+            description: Reference to Practitioner Resource
+          display:
+            type: string
+            description: Practitioner name
+      location:
+        type: array
+        description: The location(s) at which this practitioner provides care
+        items:
+          type: object
+          properties:
+            reference:
+              type: string
+              description: Reference to Location Resource
+            display:
+              type: string
+              description: Location name
+      specialty:
+        type: array
+        description: Specific specialty of the practitioner
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+            code:
+              type: string
+            display:
+              type: string
+      telecom:
+        type: array
+        description: Contact details that are specific to the role/location/service
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              description: phone | fax | email | pager | url | sms | other
+            value:
+              type: string
+              description: The actual contact point details
+            use:
+              type: string
+              description: home | work | temp | old | mobile - purpose of this contact point
+    required:
+      - id
+      - identifier
+      - responseType
+      - practitioner
+
+  PractitionerRoleBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        description: The id of the resource.
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of practitioner role in entry field
+
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective practitioner role resource in entry
+            resource:
+              $ref: "#/definitions/PractitionerRole"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - total
+      - link
+      - entry
+
+  RelatedPerson:
+    type: object
+    properties:
+      responseType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      active:
+        type: boolean
+        description: Whether this related person's record is in active use
+      patient:
+        type: object
+        description: The patient this person is related to
+        properties:
+          reference:
+            type: string
+      relationship:
+        type: array
+        description: The nature of the relationship
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+              minLength: 1
+      name:
+        type: array
+        description: A name associated with the person
+        items:
+          type: object
+          properties:
+            family:
+              type: string
+              description: Family name (often called 'Surname')
+            given:
+              type: array
+              description: Given names (not always 'first'). Includes middle names
+              items:
+                type: string
+            use:
+              type: string
+              description: usual | official | temp | nickname | anonymous | old | maiden
+      telecom:
+        type: array
+        description: Contact details that are specific to the role/location/service
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              description: phone | fax | email | pager | url | sms | other
+            value:
+              type: string
+              description: The actual contact point details
+            use:
+              type: string
+              description: home | work | temp | old | mobile - purpose of this contact point
+      address:
+        type: array
+        description: Address where the related person can be contacted or visited
+        items:
+          type: object
+          properties:
+            line:
+              type: array
+              description: Street name, number, direction & P.O. Box etc.
+              items:
+                type: string
+            city:
+              type: string
+              description: Name of city, town etc.
+            state:
+              type: string
+              description: Sub-unit of country
+            postalCode:
+              type: string
+              description: Postal code for area
+    required:
+      - responseType
+      - id
+      - meta
+      - active
+      - patient
+
+  RelatedPersonBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Related Person record in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective RelatedPerson resource in entry
+            resource:
+              $ref: "#/definitions/RelatedPerson"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+
+  Coverage:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        example: "Coverage"
+      id:
+        type: string
+        minLength: 1
+        description: ID of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      identifier:
+        type: array
+        description: Business identifier for the coverage
+        items:
+          type: object
+          properties:
+            type:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                      code:
+                        type: string
+            value:
+              type: string
+      status:
+        type: string
+        description: Status of the coverage (e.g., active)
+      type:
+        type: object
+        description: Type of coverage (e.g., PPO, HMO)
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      subscriberId:
+        type: string
+        description: Identifier of the subscriber
+      beneficiary:
+        type: object
+        description: Patient covered by the policy
+        properties:
+          reference:
+            type: string
+      relationship:
+        type: object
+        description: Relationship of beneficiary to subscriber
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                code:
+                  type: string
+          text:
+            type: string
+      payor:
+        type: array
+        description: Payor responsible for the coverage
+        items:
+          type: object
+          properties:
+            reference:
+              type: string
+      class:
+        type: array
+        description: Plan or group classification
+        items:
+          type: object
+          properties:
+            type:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                      code:
+                        type: string
+            value:
+              type: string
+            name:
+              type: string
+      period:
+        type: object
+        description: Coverage period
+        properties:
+          start:
+            type: string
+          end:
+            type: string
+    required:
+      - resourceType
+      - id
+      - meta
+      - beneficiary
+      - payor
+
+  CoverageBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        example: "Bundle"
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        description: Type of search
+      total:
+        type: integer
+        description: Number of Coverage records in entry
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: Relation to the resource
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of the respective Coverage resource
+            resource:
+              $ref: "#/definitions/Coverage"
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - link
+
+  Device:
+    type: object
+    properties:
+      responseType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      udiCarrier:
+        type: object
+        description: Unique Device Identifier (UDI) Barcode string
+        properties:
+          deviceIdentifier:
+            type: string
+            description: Mandatory fixed portion of UDI
+          issuer:
+            type: string
+            description: UDI Issuing Organization
+          carrierHRF:
+            type: string
+            description: UDI Human Readable Barcode String
+      status:
+        type: string
+        description: active | inactive | entered-in-error | unknown
+      distinctIdentifier:
+        type: string
+        description: The distinct identification string
+      manufacturer:
+        type: string
+        description: Name of device manufacturer
+      manufactureDate:
+        type: string
+        description: Date when the device was made
+      expirationDate:
+        type: string
+        description: Date and time of expiry of this device (if applicable)
+      lotNumber:
+        type: string
+        description: Lot number of manufacture
+      serialNumber:
+        type: string
+        description: Serial number assigned by the manufacturer
+      modelNumber:
+        type: string
+        description: The model number for the device
+      type:
+        type: object
+        description: The kind or type of device
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      version:
+        type: array
+        description: The actual design of the device or software version running on the device
+        items:
+          type: object
+          properties:
+            value:
+              type: string
+              description: The version text
+      patient:
+        type: object
+        description: Patient to whom Device is affixed
+        properties:
+          reference:
+            type: string
+    required:
+      - responseType
+      - id
+
+  PatientBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      Meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Consitions in entry field
+
+      Link:
+        type: object
+        properties:
+          relation:
+            type: string
+            minLength: 1
+            description: relation of the resource with link provided in url
+          url:
+            type: string
+            minLength: 1
+            description: FHIR URI of the request
+            required:
+              - relation
+              - url
+          entry:
+            type: array
+            items:
+              type: object
+              properties:
+                fullUrl:
+                  type: string
+                  minLength: 1
+                  description: FHIR URI of respective Condition resource in entry
+                resource:
+                  $ref: "#/definitions/Patient"
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+
+  Patient:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      active:
+        type: boolean
+        description: Whether this patient's record is in active use.
+
+      identifier:
+        type: array
+        description: An identifier for the patient
+        items:
+          type: object
+          properties:
+            use:
+              type: string
+            type:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                      code:
+                        type: string
+                      display:
+                        type: string
+                    required:
+                      - system
+                      - code
+                      - display
+                text:
+                  type: string
+            System:
+              type: string
+            Value:
+              type: string
+              required:
+                - use
+                - type
+                - System
+                - Value
+      telcom:
+        type: array
+        description: contact detail for the individual
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+            use:
+              type: string
+            value:
+              type: string
+      name:
+        type: array
+        description: name associated with the patient
+        items:
+          type: object
+          properties:
+            use:
+              type: string
+            text:
+              type: string
+            family:
+              type: string
+            given:
+              type: array
+              items:
+                type: string
+            givenElement:
+              type: array
+              items:
+                type: string
+      address:
+        type: array
+        description: address of the patient
+        items:
+          type: object
+          properties:
+            line:
+              type: array
+              items:
+                type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+            period:
+              type: object
+              properties:
+                start:
+                  format: date-time
+                  type: string
+                end:
+                  format: date-time
+                  type: string
+            use:
+              type: string
+      birthdate:
+        format: date-time
+        type: string
+      extension:
+        type: array
+        items:
+          type: object
+          properties:
+            url:
+              type: string
+            value:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+
+      communication:
+        description: language used to communicate with the patient
+        type: array
+        items:
+          type: object
+          properties:
+            language:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                      code:
+                        type: string
+                      display:
+                        type: string
+                text:
+                  type: string
+
+      deceasedBoolean:
+        type: boolean
+        description:
+          Indicates if the patient is deceased but date of death is not known.
+          Mutually exclusive with 'deceasedDateTime'.
+
+      deceasedDateTime:
+        type: string
+        format: date-time
+        description:
+          Date and time when the patient died.
+          Only present if patient is deceased and a date of death is known. Mutually exclusive with 'deceasedBoolean'.
+    required:
+      - resourceType
+      - id
+      - active
+      - identifier
+      - telcom
+      - name
+      - address
+      - birthDate
+      - extension
+      - communication
+
+  DocumentReference:
+    type: object
+    description: A reference to a document
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      identifier:
+        type: array
+        items:
+          type: object
+          properties:
+            value:
+              type: string
+              minLength: 1
+              description: the value that is unique
+        description: an identifier for a DocumentReference
+      status:
+        type: string
+        minLength: 1
+      type:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - system
+            description: Code defined by a terminology system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                  - display
+                  - system
+              description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+            - coding
+            - text
+
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+          display:
+            type: string
+            minLength: 1
+            description: Text alternative for the resource
+        required:
+          - reference
+      date:
+        type: string
+        minLength: 1
+      author:
+        type: array
+        items:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+            display:
+              type: string
+              minLength: 1
+              description: Text alternative for the resource
+          required:
+            - reference
+      custodian:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+          display:
+            type: string
+            minLength: 1
+            description: Text alternative for the resource
+        required:
+          - reference
+      content:
+        type: array
+        items:
+          type: object
+          properties:
+            attachment:
+              type: object
+              properties:
+                contentType:
+                  type: string
+                  minLength: 1
+                data:
+                  type: string
+                  minLength: 0
+            format:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+            context:
+              type: object
+              properties:
+                encounter:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                        minLength: 1
+                        description: Literal reference, Relative, internal or absolute URL
+                      display:
+                        type: string
+                        minLength: 1
+                        description: Text alternative for the resource
+                    required:
+                      - reference
+                period:
+                  type: object
+                  description: Time of service that is being documented
+                  properties:
+                    start:
+                      type: string
+                      minLength: 1
+                      description: Starting time with inclusive boundary
+                    end:
+                      type: string
+                      minLength: 1
+                      description: End time with inclusive boundary, if not ongoing
+  DocumentReferenceBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            minLength: 1
+      type:
+        type: string
+        minLength: 1
+      total:
+        type: integer
+        description: number of document reference record
+      link:
+        type: object
+        properties:
+          relation:
+            type: string
+            minLength: 1
+            description: relation of the resource with link provided in url
+          url:
+            type: string
+            minLength: 1
+            description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Condition resource in entry
+            resource:
+              $ref: "#/definitions/DocumentReference"
+
+  Observation:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      text:
+        type: object
+        properties:
+          status:
+            type: string
+          div:
+            type: string
+        required:
+          - text
+      status:
+        type: string
+        minLength: 1
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+
+                    type: string
+                    minLength: 1
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                  - display
+                  - system
+                description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+            - coding
+            - text
+
+      code:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+
+                    type: string
+                    minLength: 1
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                  - display
+                  - system
+                description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+            - coding
+            - text
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+        required:
+          - subject
+      effectiveDateTime:
+        type: string
+        format: date-time
+      issued:
+        type: string
+        format: date-time
+      valueCodeableConcept:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - system
+            description: Code defined by a terminology system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+      interpretation:
+        type: object
+        description: Codes identifying interpretations of observations. See "http://hl7.org/fhir/ValueSet/observation-interpretation"
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                code:
+                  type: string
+                display:
+                  type: string
+
+    required:
+      - resourceType
+      - id
+      - meta
+      - text
+      - status
+      - category
+      - code
+      - subject
+      - effectiveDateTime
+      - issued
+      - valueCodeableConcept
+  Goal:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          profile:
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      lifecyclestatus:
+        type: string
+        description: describe the status
+      description:
+        type: object
+        description: describe the status.
+        properties:
+          text:
+            type: string
+
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+      target:
+        type: array
+        items:
+          type: object
+          properties:
+            due date:
+              type: string
+              minLength: 1
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+
+    required:
+      - resourceType
+      - id
+      - meta
+      - lifecyclestatus
+      - description
+      - subject
+      - target
+
+  GoalBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      Meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Goals in entry field
+      Link:
+        type: object
+        properties:
+          relation:
+            type: string
+            minLength: 1
+            description: relation of the resource with link provided in url
+          url:
+            type: string
+            minLength: 1
+            description: FHIR URI of the request
+            required:
+              - relation
+              - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Goal resource in entry
+            resource:
+              $ref: "#/definitions/Goal"
+    required:
+      - resourceType
+      - id
+      - Meta
+      - type
+      - total
+      - link
+      - entry
+
+  ObservationBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+            format: date-time
+        required:
+          - meta
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Consitions in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective observation resource in entry
+            url:
+              type: string
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Condition resource in entry
+            resource:
+              $ref: "#/definitions/Observation"
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+  Procedure:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        description: The id of the resource.
+
+      meta:
+        type: object
+        properties:
+          profile:
+            type: array
+            items:
+              type: string
+      status:
+        type: string
+        description: preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown
+      code:
+        type: object
+        description: Identification of the procedure
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                code:
+                  type: string
+                system:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      subject:
+        type: object
+        description: Who the procedure was performed on.
+        properties:
+          reference:
+            type: string
+        required:
+          - reference
+      performedDateTime:
+        type: string
+        description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+    required:
+      - status
+      - id
+      - resourceType
+      - meta
+      - subject
+  ProcedureBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        description: The id of the resource.
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of procedure in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Condition resource in entry
+            resource:
+              $ref: "#/definitions/Procedure"
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+
+  DeviceBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      Meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of Devices in entry field
+      Link:
+        type: object
+        properties:
+          relation:
+            type: string
+            minLength: 1
+            description: relation of the resource with link provided in url
+          url:
+            type: string
+            minLength: 1
+            description: FHIR URI of the request
+            required:
+              - relation
+              - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Device resource in entry
+            resource:
+              $ref: "#/definitions/Device"
+    required:
+      - resourceType
+      - id
+      - Meta
+      - type
+      - total
+      - link
+      - entry
+
+  Encounter:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        description: The id of the resource.
+
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            type: array
+            description: Profiles this resource claims to conform to
+            items:
+              type: string
+
+        required:
+          - profile
+      identifier:
+        type: array
+        description: Identifier(s) by which this encounter is known
+        items:
+          type: object
+          properties:
+            use:
+              type: string
+              description: usual | official | temp | secondary | old
+            system:
+              type: string
+              description: the namespace for the identifier value
+            value:
+              type: string
+              description: The value that is unique
+          required:
+            - use
+      status:
+        type: string
+        description: describe the encounter status.
+      class:
+        type: object
+        description: Classification of patient encounte
+        properties:
+          system:
+            type: string
+            description: Identity of the terminology system
+          code:
+            type: string
+            description: Symbol in syntax defined by the system
+          display:
+            type: string
+            description: Representation defined by the system
+      type:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              description: Specific type of encounter
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+      participant:
+        type: array
+        description: List of participants involved in the encounter
+        items:
+          type: object
+          properties:
+            type:
+              type: array
+              items:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                        code:
+                          type: string
+                        display:
+                          type: string
+                  text:
+                    type: string
+            period:
+              type: object
+              properties:
+                start:
+                  type: string
+                end:
+                  type: string
+            individual:
+              type: object
+              properties:
+                reference:
+                  type: string
+      period:
+        type: object
+        properties:
+          start:
+            type: string
+          end:
+            type: string
+      reasoncode:
+        type: array
+        items:
+          type: object
+          properties:
+            text:
+              type: string
+
+      hospitalization:
+        type: object
+        properties:
+          dischargeDisposition:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                    code:
+                      type: string
+                    display:
+                      type: string
+              text:
+                type: string
+      location:
+        type: array
+        items:
+          type: object
+          properties:
+            location:
+              type: object
+              properties:
+                reference:
+                  type: string
+
+    required:
+      - status
+      - class
+      - location
+      - subject
+      - resourceType
+      - id
+      - meta
+
+  EncounterBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        description: The id of the resource.
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of encounter in entry field
+
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective encounter resource in entry
+            resource:
+              $ref: "#/definitions/Encounter"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+
+  Organization:
+    type: object
+    description: A grouping of people or organizations with a common purpose
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          profile:
+            type: array
+            items:
+              type: string
+      identifier:
+        type: array
+        description: Identifies this organization across multiple system
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              description: The namespace for the identifier value
+            value:
+              type: string
+              description: The value that is unique
+          required:
+            - system
+            - value
+      active:
+        type: boolean
+        description: Whether the organization's record is still in active use
+      name:
+        type: string
+        description: Name used for the organization
+      telecom:
+        type: array
+        description: A contact detail for the organization
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+            use:
+              type: string
+      address:
+        type: array
+        description: An address for the organization
+        items:
+          type: object
+          properties:
+            line:
+              type: array
+              description: Street name, number, direction & P.O. Box etc.
+              items:
+                type: string
+            city:
+              type: string
+              description: Name of city, town etc.
+            state:
+              type: string
+              description: Sub-unit of country (abbreviation)
+            postalcode:
+              type: string
+              description: Postal code for area
+            country:
+              type: string
+              description: Country (e.g. can be ISO 3166 2 or 3 letter code)
+    required:
+      - resourceType
+      - id
+      - meta
+      - identifier
+      - active
+      - name
+      - address
+      - telecom
+      - entry
+      - link
+
+  Immunization:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          profile:
+            type: string
+      status:
+        type: string
+        description: completed | entered-in-error | not-done
+      vaccineCode:
+        type: object
+        description: Vaccine product administered
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  description: Representation defined by the system
+      patient:
+        type: string
+        description: Who was immunized
+      statusReason:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  description: Representation defined by the system
+          text:
+            type: string
+            description: Plain text representation of the concept
+      occurrenceDateTime:
+        type: string
+        description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      primarySource:
+        type: boolean
+        description: Indicates context the data was recorded in
+    required:
+      - id
+      - resourceType
+      - status
+      - vaccineCode
+      - occurrenceDateTime
+  ImmunizationBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of immunization in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+        required:
+          - relation
+          - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective Immunization resource in entry
+            resource:
+              $ref: "#/definitions/Immunization"
+    required:
+      - id
+      - resourceType
+      - meta
+      - entry
+      - link
+      - total
+
+  Location:
+    description: Details and position information for a physical place
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          profile:
+            type: array
+            items:
+              type: string
+      identifier:
+        type: array
+        description: Unique code or number identifying the location to its users
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              description: The namespace for the identifier value
+            value:
+              type: string
+              description: The value that is unique
+          required:
+            - system
+            - value
+      name:
+        type: string
+        description: Name of the location as used by humans
+      status:
+        type: string
+        description: active | suspended | inactive
+      managingOrganization:
+        type: object
+        description: Organization responsible for provisioning and upkeep
+        properties:
+          reference:
+            type: string
+            description: Reference to Organization Resource
+          display:
+            type: string
+            description: Practice name
+      address:
+        type: array
+        description: Physical location
+        items:
+          type: object
+          properties:
+            line:
+              type: array
+              description: Street name, number, direction & P.O. Box etc.
+              items:
+                type: string
+            city:
+              type: string
+              description: Name of city, town etc.
+            state:
+              type: string
+              description:   Sub-unit of country (abbreviations ok)
+            postalcode:
+              type: string
+              description: Postal code for area
+            country:
+              type: string
+              description: Country (e.g. can be ISO 3166 2 or 3 letter code)
+      telecom:
+        type: array
+        description: Contact details of the location
+        items:
+          type: object
+          properties:
+            system:
+              type: string
+              description: phone | fax | email | pager | url | sms | other
+            value:
+              type: string
+              description: The actual contact point details
+            use:
+              type: string
+              description:   home | work | temp | old | mobile - purpose of this contact point
+    required:
+      - resourceType
+      - id
+      - meta
+      - identifier
+      - name
+      - status
+      - managingOrganization
+      - address
+      - telecom
+  AllergyIntolerance:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      meta:
+        type: object
+        properties:
+          profile:
+            type: string
+      clinicalStatus:
+        type: object
+        description: active | inactive | resolved
+        properties:
+          coding:
+            type: array
+            description: Code defined by a terminology system
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      verificationStatus:
+        type: object
+        description: unconfirmed | confirmed | refuted | entered-in-error
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      code:
+        type: object
+        description: Code that identifies the allergy or intolerance
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      patient:
+        type: object
+        description: Who the sensitivity is for
+        properties:
+          reference:
+            type: string
+      recordedDate:
+        type: string
+        description: Date first version of the resource instance was recorded
+      reaction:
+        type: array
+        description: Adverse Reaction Events linked to exposure to substance
+        items:
+          type: object
+          properties:
+            manifestation:
+              type: array
+              description: Clinical symptoms/signs associated with the Event
+              items:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                          description: Identity of the terminology system
+                        code:
+                          type: string
+                        display:
+                          type: string
+                  text:
+                    type: string
+            onset:
+              type: string
+              description: Date(/time) when manifestations showed
+            severity:
+              type: string
+              description: mild | moderate | severe (of event as a whole)
+        required:
+          - manifestation
+          - severity
+    required:
+      - verificationStatus
+      - resourceType
+      - id
+      - meta
+      - clinicalStatus
+
+  AllergyIntoleranceBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of allergy intolerance record in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective allergyintolerance resource in entry
+            resource:
+              $ref: "#/definitions/AllergyIntolerance"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+
+  CareTeam:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+      status:
+        type: string
+        minLength: 1
+        description: proposed | active | suspended | inactive | entered-in-error
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+      participant:
+        type: array
+        description: Members of the team
+        items:
+          type: object
+          properties:
+            role:
+              type: array
+              description: Type of involvement
+              items:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                          description: Identity of the terminology system
+                        code:
+                          type: string
+                        display:
+                          type: string
+                  text:
+                    type: string
+                    minLength: 1
+            member:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  minLength: 1
+                  description: Literal reference, Relative, internal or absolute URL
+                display:
+                  type: string
+                  minLength: 1
+                  description: Text alternative for the resource
+              required:
+                - reference
+    required:
+      - status
+
+  CareTeamBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of CareTeam record in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective CareTeam resource in entry
+            resource:
+              $ref: "#/definitions/CareTeam"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+
+  Provenance:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          versionId:
+            type: string
+          lastUpdated:
+            type: string
+            format: date-time
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+      target:
+        type: array
+        items:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Target Reference with prefix value PTP with hyphen.Example PTP-123
+      recorded:
+        type: string
+        format: date-time
+      agent:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: object
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                        minLength: 1
+                        description: Symbol in syntax defined by the system
+                      code:
+                        type: string
+                        minLength: 1
+                        description: Symbol in syntax defined by the system
+                      display:
+                        type: string
+                        minLength: 1
+                        description: Representation defined by the system
+                text:
+                  type: string
+                  minLength: 1
+                  description: Plain text representation of the concept
+            who:
+              type: object
+              properties:
+                reference:
+                  type: string
+            onBehalfOf:
+              type: object
+              properties:
+                reference:
+                  type: string
+    required:
+      - id
+      - resourceType
+      - meta
+      - target
+      - recorded
+      - agent
+      - type
+      - who
+      - onBehalfOf
+      - display
+      - system
+      - code
+      - coding
+      - text
+  CarePlan:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          profile:
+            type: array
+            items:
+              type: object
+              properties:
+                profile:
+                  type: string
+      text:
+        type: object
+        properties:
+          status:
+            type: string
+          div:
+            type: string
+      status:
+        type: string
+        description: draft | active | on-hold | revoked | completed | entered-in-error | unknown
+      intent:
+        type: string
+        description: proposal | plan | order | option
+      category:
+        type: array
+        description: describe the type of plan
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              description: Code defined by a terminology system
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    description: Symbol in syntax defined by the system
+      subject:
+        type: object
+        description: Who the care plan is for
+        properties:
+          reference:
+            type: string
+      activity:
+        type: array
+        description: Action to occur as part of plan
+        items:
+          type: object
+          properties:
+            detail:
+              type: object
+              properties:
+                code:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          system:
+                            type: string
+                          code:
+                            type: string
+                          display:
+                            type: string
+                status:
+                  type: string
+    required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - activity
+      - intent
+
+  CarePlanBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      type:
+        type: string
+        minLength: 1
+        description: Type of Search
+      total:
+        type: integer
+        description: Number of careplan record in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective careplan resource in entry
+            resource:
+              $ref: "#/definitions/CarePlan"
+    required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+  DiagnosticReportBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: Persistent identifier for the bundle
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+            format: date-time
+        required:
+          - lastUpdated
+      type:
+        type: string
+        minLength: 1
+        description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+      total:
+        type: integer
+        description: Number of DiagnosticReports in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective observation resource in entry
+            url:
+              type: string
+              minLength: 1
+              description: Reference details for the link
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: URI for resource (Absolute URL server address or URI for UUID/OID)
+            resource:
+              $ref: "#/definitions/DiagnosticReport"
+          required:
+            - fullUrl
+            - resource
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+
+  DiagnosticReport:
+    type: object
+    properties:
+      resourceType:
+        type: string
+      id:
+        type: string
+      meta:
+        type: object
+        properties:
+          lastUpdated:
+            type: string
+            description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+          profile:
+            type: array
+            items:
+              type: string
+              description: Profiles this resource claims to conform to
+              minLength: 1
+      status:
+        type: string
+        minLength: 1
+        description: registered | partial | preliminary | final +
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                  - display
+                  - system
+                description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+            - coding
+            - text
+      code:
+        type: object
+        description: Code that identifies the allergy or intolerance
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  description: Identity of the terminology system
+                code:
+                  type: string
+                display:
+                  type: string
+          text:
+            type: string
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+      encounter:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+          display:
+            type: string
+            minLength: 1
+            description: Representation defined by the system
+        required:
+          - reference
+          - display
+      effectiveDateTime:
+        type: string
+        minLength: 1
+      issued:
+        type: string
+        minLength: 1
+        description: DateTime this version was made
+      performer:
+        type: array
+        items:
+          type: object
+          description: Responsible Diagnostic Service
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+            display:
+              type: string
+              minLength: 1
+              description: Representation defined by the system
+          required:
+            - reference
+            - display
+      presentedForm:
+        type: array
+        items:
+          type: object
+          description: Entire report as issued
+          properties:
+            contentType:
+              type: string
+              minLength: 1
+              description: Mime type of the content, with charset etc.
+            data:
+              type: string
+              minLength: 1
+              description: Data inline, base64ed
+          required:
+            - contentType
+            - data
+    required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - category
+      - code
+      - subject
+      - encounter
+      - effectiveDateTime
+      - issued
+      - performer
+      - presentedForm
+  MedicationRequest:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      status:
+        type: string
+        minLength: 1
+        description: active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+      intent:
+        type: string
+        minLength: 1
+        description: proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                required:
+                  - system
+                  - code
+                description: Code defined by a terminology system
+          required:
+            - coding
+      reportedBoolean:
+        type: boolean
+        description: Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.
+      medicationCodableConcept:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                code:
+                  type: string
+                  minLength: 1
+                  description: Symbol in syntax defined by the system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - display
+                - code
+                - system
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+          - text
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+        required:
+          - reference
+      encounter:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+        required:
+          - reference
+      authoredOn:
+        type: string
+        minLength: 1
+        description: When request was initially authored
+      requester:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: Literal reference, Relative, internal or absolute URL
+        required:
+          - reference
+      reasonCode:
+        type: array
+        description: Reason or indication for ordering or not ordering the medication
+        items:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Code system for diagnosis (e.g., ICD-10)
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Diagnosis code defined by system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Full description for diagnosis code defined by system
+                required:
+                  - system
+                  - code
+                  - display
+          required:
+            - coding
+      dosageInstruction:
+        type: array
+        description: How the medication should be taken
+        items:
+          type: object
+          properties:
+            text:
+              type: string
+              minLength: 1
+              description: Free text dosage instructions e.g. SIG
+            route:
+              type: object
+              description: How drug should enter body
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                        minLength: 1
+                        description: Symbol in syntax defined by the system
+                      code:
+                        type: string
+                        minLength: 1
+                        description: Symbol in syntax defined by the system
+                      display:
+                        type: string
+                        minLength: 1
+                        description: Representation defined by the system
+                    required:
+                      - display
+                      - code
+                      - system
+                text:
+                  type: string
+                  minLength: 1
+                  description: Plain text representation of the concept
+              required:
+                - coding
+                - text
+            timing:
+              type: object
+              description: When medication should be administered
+              properties:
+                code:
+                  type: object
+                  description: TimingAbbreviation defined by system (e.g. - BID | TID | QID | AM | PM | QD | QOD)
+                  properties:
+                    text:
+                      type: string
+                      minLength: 1
+                      description: Frequency of medication defined by system
+                repeat:
+                  type: object
+                  properties:
+                    frequency:
+                      type: number
+                      minimum: 1
+                      description: Event occurs frequency times per period
+                    period:
+                      type: number
+                      minimum: 1
+                      description: Event occurs frequency times per period
+                    periodUnit:
+                      type: string
+                      minLength: 1
+                      description: Unit of time (second, minute, hour, day, week, month, year)
+            doseAndRate:
+              type: array
+              description: Amount of medication administered
+              items:
+                type: object
+                properties:
+                  doseQuantity:
+                    type: object
+                    properties:
+                      value:
+                          type: number
+                          minimum: 1
+                          description: Amount of medication per dose
+                      unit:
+                        type: string
+                        minLength: 1
+                        description: Unit defined by the system
+                      system:
+                        type: string
+                        minLength: 1
+                        description: Code system for the unit (e.g. http://unitsofmeasure.org)
+                      code:
+                        type: string
+                        minLength: 1
+                        description: UCUM code for the unit
+          required:
+            - text
+            - timing
+            - doseAndRate
+      dispenseRequest:
+        type: object
+        description: Medication supply authorization
+        properties:
+          numberOfRepeatsAllowed:
+            type: integer
+            minimum: 0
+            description: Number of refills authorized - non-negative repeat number
+          quantity:
+            type: object
+            description: Amount of medication to supply per dispense
+            properties:
+              value:
+                type: number
+                format: decimal
+                description: Quantity value
+              unit:
+                type: string
+                minLength: 1
+                description: Unit of measurement (e.g., mg, mL, unit)
+              system:
+                type: string
+                minLength: 1
+                description: The system that defines the coded unit
+              code:
+                type: string
+                minLength: 1
+                description: UCUM code
+            required:
+              - value
+              - unit
+              - system
+              - code
+        required:
+          - numberOfRepeatsAllowed
+          - quantity
+    required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - intent
+      - category
+      - reportedBoolean
+      - medicationCodableConcept
+      - subject
+      - encounter
+      - authoredOn
+      - reasonCode
+      - requester
+      - dosageInstruction
+      - dispenseRequest
+  MedicationRequestBundled:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+      id:
+        type: string
+        minLength: 1
+        description: Persistent identifier for the bundle
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+            format: date-time
+        required:
+          - lastUpdated
+      type:
+        type: string
+        minLength: 1
+        description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+      total:
+        type: integer
+        description: Number of MedicationRequests in entry field
+      link:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: FHIR URI of respective observation resource in entry
+            url:
+              type: string
+              minLength: 1
+              description: Reference details for the link
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: URI for resource (Absolute URL server address or URI for UUID/OID)
+            resource:
+              $ref: "#/definitions/MedicationRequest"
+          required:
+            - fullUrl
+            - resource
+    required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+  Specimen:
+    type: object
+    properties:
+      resourceType:
+        type: string
+        example: "Specimen"
+      id:
+        type: string
+      status:
+        type: string
+      type:
+        type: object
+      subject:
+        type: object
+      collection:
+        type: object
+    required:
+      - resourceType
+      - id
+  SpecimenBundled:
+    type: object
+    description: A FHIR Bundle of Specimen resources
+    properties:
+      resourceType:
+        type: string
+        example: "Bundle"
+      type:
+        type: string
+        example: "searchset"
+      total:
+        type: integer
+        example: 1
+      entry:
+        type: array
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              example: "http://example.com/fhir/r4/Specimen/123"
+            resource:
+              $ref: "#/definitions/Specimen"
+  MedicationDispense:
+    type: object
+    description: Dispensing a medication to a named patient
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+        description: The type of the FHIR resource (should be 'MedicationDispense')
+      id:
+        type: string
+        minLength: 1
+        description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      status:
+        type: string
+        minLength: 1
+        description: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown
+      medicationCodeableConcept:
+        type: object
+        description: Coded form of the medication being dispensed (e.g., RxNorm)
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: The identification of the code system (e.g., RxNorm)
+                code:
+                  type: string
+                  minLength: 1
+                  description: The code itself from the code system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - system
+                - code
+                - display
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: The patient for whom the medication is dispensed
+        required:
+          - reference
+      performer:
+        type: array
+        description: Who performed the dispense
+        items:
+          type: object
+          properties:
+            actor:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  minLength: 1
+                  description: Reference to the performer resource
+              required:
+                - reference
+          required:
+            - actor
+      type:
+        type: object
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              description: Type of medication dispense (e.g. Trial fill, partial fill, emergency fill, etc.)
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: Code system for the type (e.g., http://terminology.hl7.org/CodeSystem/v3-ActCode)
+                code:
+                  type: string
+                  minLength: 1
+                  description: Code for the type of dispense
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - system
+                - code
+                - display
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+      quantity:
+          type: object
+          properties:
+            value:
+              type: number
+              description: Amount dispensed
+            unit:
+              type: string
+              minLength: 1
+              description: Unit defined by the system
+            system:
+              type: string
+              minLength: 1
+              description: Code system for the unit(e.g. http://unitsofmeasure.org)
+            code:
+              type: string
+              minLength: 1
+              description: UCUM code for the unit
+          required:
+            - value
+            - unit
+            - system
+            - code
+      whenHandedOver:
+        type: string
+        format: date-time
+        description: When product was given out or mailed
+      dosageInstruction:
+        type: array
+        items:
+          type: object
+          description: How the medication is to be used by the patient or administered by the caregiver
+          properties:
+            text:
+              type: string
+              description: Free text dosage instructions e.g. SIG
+            timing:
+              type: object
+              description: When medication should be administered
+              properties:
+                code:
+                  type: object
+                  description: Timing code for when medication should be administered
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          system:
+                            type: string
+                            minLength: 1
+                            description: Symbol in syntax defined by the system
+                          code:
+                            type: string
+                            minLength: 1
+                            description: Symbol in syntax defined by the system
+                          display:
+                            type: string
+                            minLength: 1
+                            description: Representation defined by the system
+                    text:
+                      type: string
+                      minLength: 1
+                      description: TimingAbbreviation defined by system (e.g. - BID | TID | QID | AM | PM | QD | QOD)
+                  required:
+                    - coding
+            doseAndRate:
+              type: array
+              items:
+                type: object
+                description: Amount of medication administered
+                properties:
+                  doseQuantity:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                        minimum: 1
+                        description: Amount of medication per dose
+                      unit:
+                        type: string
+                        minLength: 1
+                        description: Unit defined by the system
+                      system:
+                        type: string
+                        minLength: 1
+                        description: Code system for the unit (e.g. http://unitsofmeasure.org)
+                      code:
+                        type: string
+                        minLength: 1
+                        description: UCUM code for the unit
+                required:
+                  - doseQuantity
+          required:
+            - text
+            - timing
+            - doseAndRate
+    required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - medicationCodeableConcept
+      - subject
+      - performer
+      - type
+      - quantity
+      - whenHandedOver
+      - dosageInstruction
+  MedicationDispenseBundled:
+    type: object
+    description: A FHIR Bundle of MedicationDispense resources
+    properties:
+      resourceType:
+        type: string
+        description: Always 'Bundle'
+      id:
+        type: string
+        description: Persistent identifier for the bundle
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+            format: date-time
+            description: When the bundle was last updated
+        required:
+          - lastUpdated
+      type:
+        type: string
+        description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+      total:
+        type: integer
+        description: Number of MedicationDispense in entry field
+      link:
+        type: array
+        description: Links related to this bundle
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              description: Relation type (e.g., self, next, previous)
+            url:
+              type: string
+              minLength: 1
+              description: Reference details for the link
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        description: Entries in the bundle (each is a MedicationDispense resource)
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: URI for resource (Absolute URL server address or URI for UUID/OID)
+            resource:
+              $ref: "#/definitions/MedicationDispense"
+          required:
+            - fullUrl
+            - resource
+    required:
+      - resourceType
+      - type
+      - entry
+  MedicationAdministration:
+    type: object
+    description: Administration of medication to a patient
+    properties:
+      resourceType:
+        type: string
+        minLength: 1
+        description: The type of the FHIR resource (should be 'MedicationAdministration')
+      id:
+        type: string
+        minLength: 1
+        description: The id of the resource
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          profile:
+            description: Profiles this resource claims to conform to
+            type: array
+            items:
+              type: string
+        required:
+          - profile
+      status:
+        type: string
+        minLength: 1
+        description: in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown
+      medicationCodeableConcept:
+        type: object
+        description: Coded form of the medication being administered (e.g., RxNorm)
+        properties:
+          coding:
+            type: array
+            items:
+              type: object
+              properties:
+                system:
+                  type: string
+                  minLength: 1
+                  description: The identification of the code system (e.g., RxNorm)
+                code:
+                  type: string
+                  minLength: 1
+                  description: The code itself from the code system
+                display:
+                  type: string
+                  minLength: 1
+                  description: Representation defined by the system
+              required:
+                - system
+                - code
+                - display
+          text:
+            type: string
+            minLength: 1
+            description: Plain text representation of the concept
+        required:
+          - coding
+      subject:
+        type: object
+        properties:
+          reference:
+            type: string
+            minLength: 1
+            description: The patient to whom the medication was administered
+        required:
+          - reference
+      context:
+        type: object
+        description: Encounter associated with the administration
+        properties:
+          reference:
+            type: string
+            description: Reference to the Encounter resource
+      effectiveDateTime:
+        type: string
+        format: date-time
+        description: Start and end time of administration (may be dateTime or Period)
+      performer:
+        type: array
+        description: Who performed the administration
+        items:
+          type: object
+          properties:
+            actor:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  minLength: 1
+                  description: Reference to the performer resource (Practitioner)
+              required:
+                - reference
+          required:
+            - actor
+      request:
+        type: object
+        description: Back-reference to the originating MedicationRequest
+        properties:
+          reference:
+            type: string
+            description: Reference to the MedicationRequest resource
+      dosage:
+        type: object
+        description: Details of how medication was taken
+        properties:
+          text:
+            type: string
+            description: Free text dosage instructions e.g. SIG
+          route:
+            type: object
+            description: Path of substance into body
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Code system for route (e.g., NCI Thesaurus)
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Code for the route
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Representation defined by the system
+                  required:
+                    - system
+                    - code
+                    - display
+          dose:
+            type: object
+            description: Amount of medication per dose
+            properties:
+              value:
+                type: number
+                description: Amount administered
+              unit:
+                type: string
+                minLength: 1
+                description: Unit defined by the system
+              system:
+                type: string
+                minLength: 1
+                description: Code system for the unit (e.g. http://unitsofmeasure.org)
+              code:
+                type: string
+                minLength: 1
+                description: UCUM code for the unit
+            required:
+              - value
+              - unit
+              - system
+              - code
+    required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - medicationCodeableConcept
+      - subject
+  MedicationAdministrationBundled:
+    type: object
+    description: A FHIR Bundle of MedicationAdministration resources
+    properties:
+      resourceType:
+        type: string
+        description: Always 'Bundle'
+      id:
+        type: string
+        description: Persistent identifier for the bundle
+      meta:
+        type: object
+        description: Metadata about the resource
+        properties:
+          lastUpdated:
+            type: string
+            format: date-time
+            description: When the bundle was last updated
+        required:
+          - lastUpdated
+      type:
+        type: string
+        description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+      total:
+        type: integer
+        description: Number of MedicationAdministration in entry field
+      link:
+        type: array
+        description: Links related to this bundle
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              description: Relation type (e.g., self, next, previous)
+            url:
+              type: string
+              minLength: 1
+              description: Reference details for the link
+          required:
+            - relation
+            - url
+      entry:
+        type: array
+        description: Entries in the bundle (each is a MedicationAdministration resource)
+        items:
+          type: object
+          properties:
+            fullUrl:
+              type: string
+              minLength: 1
+              description: URI for resource (Absolute URL server address or URI for UUID/OID)
+            resource:
+              $ref: "#/definitions/MedicationAdministration"
+          required:
+            - fullUrl
+            - resource
+    required:
+      - resourceType
+      - type
+      - entry

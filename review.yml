@@ -1,0 +1,187 @@
+aid: nextgen-healthcare
+name: NextGen Healthcare
+review:
+  question: Does NextGen Healthcare expose a real, documented public developer surface with FHIR CapabilityStatements and downloadable specs?
+  answer: true
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: United States
+  developerPortal:
+    url: https://www.nextgen.com/developer-program
+    status: 200
+    confirmed: true
+    note: >-
+      Public human-readable developer program + API hub at https://www.nextgen.com/api (200) and
+      https://www.nextgen.com/developer-program (200). A gated API gateway/developer portal is
+      served at https://developer.nextgen.com/ (200, "GatewayPortal" SPA). Route-level Enterprise
+      API docs and sandbox access require completing the API onboarding form
+      (https://www.nextgen.com/api-on-boarding, 200).
+  fhirCapability:
+    captured: true
+    fhirVersion: 4.0.1 (R4)
+    statements:
+      - platform: NextGen Enterprise
+        base: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+        metadata: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/metadata
+        status: 200
+        resourceCount: 28
+        savedAs: fhir/nextgen-enterprise-r4-capabilitystatement.json
+        resources: >-
+          AllergyIntolerance, CarePlan, CareTeam, Condition, Coverage, Device, DiagnosticReport,
+          DocumentReference, Encounter, Endpoint, Goal, Immunization, Location, MedicationDispense,
+          MedicationRequest, MedicationStatement, Observation, Organization, Patient, Practitioner,
+          PractitionerRole, Procedure, Provenance, Questionnaire, QuestionnaireResponse,
+          RelatedPerson, ServiceRequest, Specimen
+      - platform: NextGen Office
+        base: https://fhir.meditouchehr.com/api/fhir/r4
+        metadata: https://fhir.meditouchehr.com/api/fhir/r4/metadata
+        status: 200
+        resourceCount: 26
+        savedAs: fhir/nextgen-office-r4-capabilitystatement.json
+        resources: >-
+          AllergyIntolerance, CarePlan, CareTeam, Condition, Coverage, Device, DiagnosticReport,
+          DocumentReference, Encounter, Goal, Immunization, Location, MedicationAdministration,
+          MedicationDispense, MedicationRequest, Observation, OperationDefinition, Organization,
+          Patient, Practitioner, PractitionerRole, Procedure, Provenance, RelatedPerson,
+          ServiceRequest, Specimen
+    dstu2Note: >-
+      NextGen Enterprise DSTU2 base https://fhir.nextgen.com/nge/prod/fhir-api/fhir/dstu2/ is live
+      but its /metadata probe returned HTTP 400 (a FHIR OperationOutcome error) for an anonymous
+      request, so no DSTU2 CapabilityStatement was saved. DSTU2 route docs are published at
+      https://fhir.nextgen.com/nge/prod/fhir-api/index.html?urls.primaryName=DSTU2.
+  smartConfiguration:
+    captured: true
+    documents:
+      - platform: NextGen Enterprise
+        url: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/.well-known/smart-configuration
+        status: 200
+        savedAs: fhir/nextgen-enterprise-r4-smart-configuration.json
+        authorization_endpoint: https://fhir.nextgen.com/nge/prod/patient-oauth/authorize
+        token_endpoint: https://fhir.nextgen.com/nge/prod/patient-oauth/token
+        scopes_supported:
+          - openid
+          - offline_access
+          - launch
+          - launch/patient
+          - launch/encounter
+          - patient/*.*
+          - user/*.*
+      - platform: NextGen Office
+        url: https://fhir.meditouchehr.com/api/fhir/r4/.well-known/smart-configuration
+        status: 200
+        savedAs: fhir/nextgen-office-r4-smart-configuration.json
+        authorization_endpoint: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
+        token_endpoint: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+        capabilities: >-
+          launch-ehr, launch-standalone, sso-openid-connect, client-public,
+          client-confidential-symmetric, client-confidential-asymmetric, context-ehr-patient,
+          context-standalone-patient, context-ehr-encounter, context-standalone-encounter,
+          permission-offline, permission-patient, permission-user, permission-v1, permission-v2,
+          authorize-post
+      - platform: NextGen Office (OpenID)
+        url: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/.well-known/openid-configuration
+        status: 200
+        savedAs: fhir/nextgen-office-openid-configuration.json
+  downloadableSpecs:
+    harvested: true
+    count: 2
+    specs:
+      - name: NextGen Office FHIR R4 (Patient Access)
+        format: Swagger 2.0
+        paths: 45
+        provenance: https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+        status: 200
+        savedAs: openapi/nextgen-office-fhir-r4-openapi.yaml
+        note: >-
+          info.description states "coded against the US Core Specification (FHIR Version: 4.0.0)".
+      - name: NextGen Office Bulk FHIR R4
+        format: OpenAPI 3.0.0
+        paths: 5
+        provenance: https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+        status: 200
+        savedAs: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
+    enterpriseApiNote: >-
+      The NextGen Enterprise API (800+ JSON RESTful routes) is documented but its route-level
+      reference and any machine-readable spec are gated behind the API onboarding form and app
+      registration; no Enterprise OpenAPI was publicly downloadable, so none was fabricated.
+  authModel:
+    scheme: SMART-on-FHIR (OAuth2 authorization-code)
+    enterprise: OAuth2 authorization-code with SMART launch scopes (patient/*.*, user/*.*, launch/patient) via NextGen patient-oauth server; Enterprise REST APIs also use OAuth2 + Global Service Account (GSA) auth
+    office: SMART App Launch over OpenID Connect (OAuth2) via Keycloak realm "nextgen"; supports client-confidential-asymmetric and SMART permission-v2 scopes
+  standardsConformance:
+    usCore: true
+    usCDI: USCDIv1
+    smartAppLaunch: true
+    bulkData: true (Flat FHIR / Bulk FHIR R4, NextGen Office)
+    twentyFirstCenturyCures: true (ONC-certified Patient Access, Smart App Launch, Bulk FHIR)
+    ukCore: false
+    auCore: false
+    daVinci: not evidenced in published surface
+    carin: not evidenced in published surface
+  accessPosture: >-
+    Gated. FHIR service base URLs, CapabilityStatements, and SMART configurations are publicly
+    reachable (anonymous 200), and two NextGen Office Swagger/OpenAPI specs are downloadable, but
+    production data access, Enterprise route docs, and sandbox credentials require an API
+    onboarding form and app registration. This is an honest gated-but-documented healthcare
+    developer surface.
+findings:
+  summary: >-
+    NextGen Healthcare (nextgen.com) is a US ambulatory EHR/EMR and practice-management vendor
+    with a real, standards-driven public developer surface. Confirmed live FHIR R4 (4.0.1)
+    CapabilityStatements for both NextGen Enterprise (28 resources) and NextGen Office (26
+    resources), plus SMART-on-FHIR .well-known/smart-configuration for both and a NextGen Office
+    OpenID configuration. Two downloadable NextGen Office specs were harvested verbatim (Swagger
+    2.0 FHIR R4 with 45 paths; OpenAPI 3.0.0 Bulk FHIR with 5 paths). The Enterprise JSON REST
+    API family (800+ routes) is documented but gated behind onboarding. Auth is SMART-on-FHIR
+    OAuth2; standards are US Core / USCDIv1 / SMART App Launch / Bulk FHIR under 21st Century
+    Cures. Home market: United States.
+  transports:
+    - protocol: REST (FHIR R4)
+      scheme: https
+      baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+      documented: true
+    - protocol: REST (FHIR DSTU2)
+      scheme: https
+      baseURL: https://fhir.nextgen.com/nge/prod/fhir-api/fhir/dstu2/
+      documented: true
+      note: Live endpoint; anonymous /metadata returned HTTP 400 OperationOutcome.
+    - protocol: REST (FHIR R4)
+      scheme: https
+      baseURL: https://fhir.meditouchehr.com/api/fhir/r4
+      documented: true
+    - protocol: REST (FHIR R3/STU3)
+      scheme: https
+      baseURL: https://fhir.meditouchehr.com/api/fhir/
+      documented: true
+    - protocol: Bulk FHIR (Flat FHIR)
+      scheme: https
+      baseURL: https://fhir.meditouchehr.com/api/bulkfhir/r4
+      documented: true
+    - protocol: REST (JSON, Enterprise)
+      scheme: https
+      baseURL: https://www.nextgen.com/api
+      documented: true
+      note: 800+ routes; route-level reference gated behind onboarding.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in NextGen's FHIR or Enterprise API surface as of the review date.
+sources:
+  - url: https://www.nextgen.com/api
+    type: Documentation
+    note: API hub listing Patient Access (DSTU2/R4), Enterprise (800+ routes), NextGen Office FHIR, Smart App Launch, and Bulk FHIR APIs.
+  - url: https://www.nextgen.com/patient-access-api
+    type: Documentation
+    note: NextGen Enterprise and NextGen Office FHIR base URLs and OAuth2 endpoints.
+  - url: https://www.nextgen.com/api/regulatory-ngo
+    type: Documentation
+    note: NextGen Office regulatory page linking the downloadable Swagger R4 and Bulk FHIR specs; read-only USCDIv1.
+  - url: https://www.nextgen.com/api/regulatory-nge
+    type: APIReference
+    note: NextGen Enterprise regulatory/interoperability page; USCDI, OAuth2, GSA auth, Enterprise v5.9.0+.
+  - url: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/metadata
+    type: CapabilityStatement
+    note: Live NextGen Enterprise R4 CapabilityStatement (fhirVersion 4.0.1, 28 resources).
+  - url: https://fhir.meditouchehr.com/api/fhir/r4/metadata
+    type: CapabilityStatement
+    note: Live NextGen Office R4 CapabilityStatement (fhirVersion 4.0.1, 26 resources).
