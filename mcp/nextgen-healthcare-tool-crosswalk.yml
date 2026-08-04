@@ -14,7 +14,8 @@ surfaces:
   graphql: null
   mcp:
     url: null
-    status: candidate (no hosted MCP server published)
+    status: candidate
+    status_raw: candidate
 crosswalk:
 - tool: search_patients
   category: bulk-fhir
