@@ -1,0 +1,95 @@
+name: NextGen Healthcare API Rate Limits
+description: >
+  NextGen Healthcare does not publicly disclose specific API rate limit thresholds. Rate
+  limits are managed at the platform level and may vary by developer program tier, API
+  product, and enterprise agreement. OAuth 2.0 access tokens for the Patient Access FHIR
+  API use bearer token authentication; refresh tokens must be exchanged within 48 hours
+  of issuance. Bulk FHIR API operations use asynchronous patterns per the HL7 FHIR Bulk
+  Data Access specification. Contact NextGen Healthcare support or your account team for
+  specific rate limit allocations.
+specificationVersion: '0.1'
+url: https://www.nextgen.com/api
+limits:
+  - name: Enterprise API Request Rate Limit
+    description: >
+      The NextGen Enterprise API (400+ RESTful routes) does not publicly document specific
+      rate limit thresholds. Access is provisioned through the API Developer Program with
+      limits configurable per application and deployment context. Applications making
+      excessive requests may receive HTTP 429 Too Many Requests responses. Contact your
+      NextGen account team for specific thresholds applicable to your integration.
+    type: requests
+    period: configurable
+    limit: contact-for-details
+    scope: per-application
+    enforcement: HTTP 429 Too Many Requests
+    api: NextGen Enterprise API
+  - name: Patient Access FHIR API Token Limits
+    description: >
+      The NextGen Enterprise Patient Access FHIR API uses OAuth 2.0 authorization code
+      flow. Client credentials (client_id and client_secret) are issued provisionally upon
+      requesting an application in the NextGen API Developer Portal and become active after
+      administrator approval. Refresh tokens must be exchanged within 48 hours of issuance.
+      Access tokens are presented as Bearer tokens in the Authorization header.
+    type: tokens
+    api: NextGen Enterprise Patient Access FHIR API
+    authentication:
+      authorize_endpoint: https://fhir.nextgen.com/nge/prod/patient-oauth/authorize
+      token_endpoint: https://fhir.nextgen.com/nge/prod/patient-oauth/token
+      grant_types:
+        - authorization_code
+        - refresh_token
+      token_format: Bearer
+      header: Authorization
+    token_expiration:
+      refresh_token: 48 hours
+      access_token: contact-for-details
+    sandbox_credentials:
+      username: patientapitest
+      password: Password1!
+  - name: Bulk FHIR API Concurrent Export Limit
+    description: >
+      The NextGen Office Bulk FHIR API uses an asynchronous request pattern per the HL7
+      FHIR Bulk Data Access specification. Clients initiate a bulk export kick-off request,
+      poll a status endpoint for job completion, and download NDJSON result files. Concurrent
+      bulk export jobs per application may be limited. SMART Backend Services authorization
+      is required for system-to-system authentication.
+    type: concurrent-jobs
+    api: NextGen Office Bulk FHIR API
+    base_url: https://fhir.meditouchehr.com/api/bulkfhir/r4
+    pattern: async-polling
+    steps:
+      - kick-off
+      - status-polling
+      - download
+    limit: contact-for-details
+    scope: per-application
+  - name: SMART App Launch FHIR API Rate Limit
+    description: >
+      The NextGen Office SMART App Launch FHIR API enables single-patient data access for
+      EHR-integrated applications. Rate limits are not publicly documented. Applications
+      use SMART on FHIR OAuth 2.0 authorization code flow with EHR context launch parameters.
+      The .well-known/smart-configuration endpoint provides server capabilities and metadata.
+    type: requests
+    api: NextGen Office SMART App Launch FHIR API
+    limit: contact-for-details
+    scope: per-application
+    smart_configuration: https://fhir.meditouchehr.com/.well-known/smart-configuration
+  - name: Patient Search API Rate Limit
+    description: >
+      The Bulk FHIR Patient Search API (GET /api/bulkfhir/r4/$patient-search) assists
+      clients in searching for active patients within a practice for inclusion in bulk
+      export groups. Specific rate limits are not publicly documented.
+    type: requests
+    api: Bulk FHIR Patient Search
+    endpoint: https://fhir.meditouchehr.com/api/bulkfhir/r4/$patient-search
+    method: GET
+    limit: contact-for-details
+    scope: per-application
+notes:
+  - "Rate limit details are not publicly disclosed by NextGen Healthcare"
+  - "Refresh tokens for Enterprise Patient Access FHIR API expire after 48 hours"
+  - "Bulk FHIR uses HL7 async pattern: kick-off, status polling, NDJSON download"
+  - "Sandbox test credentials: username=patientapitest, password=Password1!"
+  - "For specific rate limit thresholds, contact NextGen Healthcare support or developer program"
+  - "Developer portal: https://dev-cd.nextgen.com/api"
+  - "Onboarding: https://www.nextgen.com/api-on-boarding"

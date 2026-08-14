@@ -1,0 +1,134 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "fhir": "http://hl7.org/fhir/",
+    "smart": "http://www.hl7.org/fhir/smart-app-launch/",
+    "nextgen": "https://www.nextgen.com/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "provider": "schema:provider",
+    "serviceType": "schema:serviceType",
+    "category": "schema:category",
+    "documentation": "schema:documentation",
+    "termsOfService": "schema:termsOfService",
+    "fhirVersion": "fhir:fhirVersion",
+    "resourceType": "fhir:resourceType",
+    "baseURL": "schema:entryPoint",
+    "authorizationURL": "schema:actionAccessibilityRequirement",
+    "tokenURL": "schema:accessibilityFeature",
+    "apiProduct": {
+      "@id": "schema:WebAPI",
+      "@type": "schema:WebAPI"
+    },
+    "endpoint": {
+      "@id": "schema:EntryPoint",
+      "@type": "schema:EntryPoint"
+    },
+    "tags": "schema:keywords",
+    "version": "schema:version",
+    "license": "schema:license",
+    "contact": "schema:contactPoint",
+    "supportedProfiles": "fhir:supportedProfile",
+    "rest": "fhir:rest",
+    "resource": "fhir:resource",
+    "interaction": "fhir:interaction",
+    "searchParam": "fhir:searchParam"
+  },
+  "@type": "schema:WebAPI",
+  "name": "NextGen Healthcare API",
+  "description": "NextGen Healthcare REST and FHIR APIs for clinical data, scheduling, patient engagement, and healthcare interoperability.",
+  "url": "https://www.nextgen.com/api",
+  "provider": {
+    "@type": "schema:Organization",
+    "name": "NextGen Healthcare",
+    "url": "https://www.nextgen.com/",
+    "sameAs": [
+      "https://github.com/nextgenhealthcare",
+      "https://www.linkedin.com/company/nextgenhealthcareinc",
+      "https://twitter.com/nextgen"
+    ]
+  },
+  "tags": [
+    "EHR",
+    "FHIR",
+    "Healthcare",
+    "Ambulatory Care",
+    "Clinical Data",
+    "Patient Access",
+    "SMART on FHIR",
+    "Practice Management",
+    "Interoperability",
+    "HL7",
+    "21st Century Cures"
+  ],
+  "apiProduct": [
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Enterprise API",
+      "description": "400+ JSON-based RESTful API routes for NextGen Enterprise EHR and practice management systems.",
+      "url": "https://www.nextgen.com/api",
+      "endpoint": {
+        "@type": "schema:EntryPoint",
+        "urlTemplate": "https://fhir.nextgen.com"
+      },
+      "documentation": "https://www.nextgen.com/api"
+    },
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Enterprise Patient Access FHIR API",
+      "description": "FHIR R4 Patient Access API enabling patients to connect to their health records via smartphones or browser-based applications.",
+      "fhirVersion": "4.0.1",
+      "endpoint": {
+        "@type": "schema:EntryPoint",
+        "urlTemplate": "https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4"
+      },
+      "authorizationURL": "https://fhir.nextgen.com/nge/prod/patient-oauth/authorize",
+      "tokenURL": "https://fhir.nextgen.com/nge/prod/patient-oauth/token",
+      "supportedProfiles": [
+        "http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server"
+      ]
+    },
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Office Patient FHIR API",
+      "description": "FHIR R4 Patient Access API for NextGen Office (formerly MediTouch) ambulatory practices via YourHealthFile.",
+      "fhirVersion": "4.0.1",
+      "endpoint": {
+        "@type": "schema:EntryPoint",
+        "urlTemplate": "https://fhir.meditouchehr.com"
+      },
+      "documentation": "https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-patient-api-developer-guide"
+    },
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Office SMART App Launch FHIR API",
+      "description": "SMART on FHIR App Launch API for NextGen Office enabling vendor applications to obtain USCDIv1 clinical data.",
+      "fhirVersion": "4.0.1",
+      "endpoint": {
+        "@type": "schema:EntryPoint",
+        "urlTemplate": "https://fhir.meditouchehr.com"
+      },
+      "documentation": "https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-r4-smart-app-launch-api-developer-guide"
+    },
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Office Bulk FHIR API",
+      "description": "Bulk FHIR API for NextGen Office enabling authorized vendors to obtain USCDIv1 data for multiple patients.",
+      "fhirVersion": "4.0.1",
+      "endpoint": {
+        "@type": "schema:EntryPoint",
+        "urlTemplate": "https://fhir.meditouchehr.com/api/bulkfhir/r4"
+      },
+      "documentation": "https://www.nextgen.com/-/media/files/ngo/NextGen-Office-FHIR-R4-Bulk-FHIR-API-Developer-Guide"
+    },
+    {
+      "@type": "schema:WebAPI",
+      "name": "NextGen Mirth Connect Integration Engine API",
+      "description": "Open-source healthcare integration engine supporting HL7 v2, FHIR, and other healthcare data standards.",
+      "url": "https://github.com/nextgenhealthcare/connect",
+      "documentation": "https://www.nextgen.com/solutions/interoperability/api-fhir",
+      "license": "https://github.com/nextgenhealthcare/connect/blob/main/LICENSE"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+name: NextGen Healthcare API Plans and Pricing
+description: >
+  NextGen Healthcare offers multiple API access tiers through its Developer Program for
+  ambulatory EHR and practice management integrations. Developer program access is free
+  for development and testing; production deployment fees vary by program tier and data
+  scope. Patient Access APIs are free to develop; Enterprise API Distributor programs may
+  have associated fees based on data needs. Contact NextGen Healthcare sales for enterprise
+  licensing and production pricing.
+specificationVersion: '0.1'
+url: https://www.nextgen.com/developer-program
+plans:
+  - name: Patient Access API (Free Developer)
+    description: >
+      Developer access to NextGen Patient Access FHIR APIs (DSTU2 and R4) for building
+      applications that enable patients to retrieve their health records from NextGen
+      Enterprise and NextGen Office practices. No charge to develop or launch a Patient
+      Access app. Developers register directly at developer.nextgen.com for regulatory
+      Patient Access applications.
+    url: https://www.nextgen.com/developer-program
+    pricing: Free
+    pricingModel: free
+    features:
+      - FHIR R4 and DSTU2 Patient Access APIs
+      - OAuth 2.0 authorization code flow
+      - Sandbox access for development
+      - Patient demographics and clinical data
+      - USCDI v1 data elements
+      - 21st Century Cures Act compliant
+  - name: Open Access Developer Program (Free)
+    description: >
+      Developer program for NextGen Enterprise clients building internal API applications
+      for their own organization. No fee to develop or deploy applications under this
+      program. Applications may be shared with other client organizations via the API
+      Distribution Program. Access to Enterprise API documentation and sandboxes provided
+      following developer registration and product compatibility review.
+    url: https://www.nextgen.com/developer-program
+    pricing: Free
+    pricingModel: free
+    features:
+      - Enterprise API access (400+ RESTful routes)
+      - API sandboxes for testing
+      - Code samples and documentation
+      - Developer community access
+      - Clinical, administrative, and PM data APIs
+      - Internal application deployment
+  - name: API Distributor Program
+    description: >
+      Full-service development platform for independent software vendors (ISVs) and
+      technology partners building commercial applications for distribution to NextGen
+      Healthcare client organizations. Provides all tools, documentation, and sandboxes
+      to develop and launch market-ready API applications. No charge for development or
+      platform use; production distribution may have associated fees based on data scope
+      and distribution scale. Includes preferred developer treatment and business
+      development assistance.
+    url: https://www.nextgen.com/developer-program
+    pricing: Contact for pricing
+    pricingModel: custom
+    features:
+      - Full Enterprise API access
+      - API sandboxes for testing
+      - Code samples and documentation
+      - Developer community access
+      - Preferred developer treatment
+      - Business development assistance
+      - Application marketplace listing eligibility
+      - Commercial distribution rights
+  - name: NextGen Enterprise EHR (Platform License)
+    description: >
+      Base platform license for NextGen Enterprise EHR and practice management system
+      required for client organizations to enable API integrations. Enterprise EHR pricing
+      starts at approximately $200 per user per month for small practices and approximately
+      $150 per user per month for larger organizations with 1,000+ users. API access is
+      bundled with platform licensing for client organizations.
+    url: https://www.nextgen.com/
+    pricing: Starting at $150-$200/user/month
+    pricingModel: per-user-monthly
+    features:
+      - NextGen Enterprise EHR
+      - Practice management (PM)
+      - API access for integrated applications
+      - Patient portal and engagement tools
+      - Clinical documentation workflows
+      - Revenue cycle management
+      - Scheduling and administrative tools
+notes:
+  - "Patient Access API development has no charge per 21st Century Cures Act compliance mandates"
+  - "Open Access Developer Program is free for internal client application development"
+  - "API Distributor Program may have production fees based on data scope — contact sales"
+  - "Enterprise EHR platform license required for client organizations using the APIs"
+  - "Contact NextGen Healthcare at nextgen.com for custom enterprise and ISV pricing"
+contact:
+  sales: https://www.nextgen.com/
+  developer: https://www.nextgen.com/api-on-boarding
+  developer_portal: https://dev-cd.nextgen.com/api

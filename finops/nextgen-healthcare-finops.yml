@@ -1,0 +1,152 @@
+name: NextGen Healthcare API FinOps Framework
+description: >
+  FinOps Framework FOCUS-aligned cost and usage considerations for NextGen Healthcare
+  API integrations covering Enterprise APIs, FHIR Patient Access APIs, SMART on FHIR,
+  and Bulk FHIR capabilities. NextGen Healthcare uses a combination of free developer
+  program tiers for Patient Access and Open Access applications, with custom pricing for
+  API Distributor partners and enterprise EHR platform licensing starting at $150-$200
+  per user per month. Cost optimization focuses on program tier selection, data scope
+  management, and phased API adoption aligned with regulatory compliance timelines.
+specificationVersion: '1.0'
+framework: FinOps Framework
+alignment: FOCUS 1.0
+url: https://www.nextgen.com/developer-program
+provider: NextGen Healthcare
+costDrivers:
+  - name: Developer Program Tier Selection
+    description: >
+      NextGen Healthcare offers three developer program tiers with different cost profiles:
+      Patient Access API (free), Open Access Developer (free for internal client apps), and
+      API Distributor Program (potentially fee-based for commercial distribution). Selecting
+      the appropriate tier for your use case is the primary cost driver for API access.
+    category: License
+    optimization: >
+      Determine whether your application qualifies as a Patient Access app (free) or
+      internal client app (free via Open Access) before pursuing the Distributor program.
+      Engage with NextGen's business development team early to understand fee structures
+      for commercial distribution before committing to an Distributor program agreement.
+
+  - name: Enterprise EHR Platform Licensing
+    description: >
+      Client organizations (healthcare practices and systems) pay per-user monthly fees
+      for NextGen Enterprise EHR and PM platform ($150-$200/user/month range). API access
+      for internal integrations is bundled with platform licensing. Organizations must
+      maintain an active NextGen Enterprise license to use the Open Access Developer API.
+    category: License
+    unit: per-user/month
+    typical_range: "$150-$200/user/month"
+    optimization: >
+      Negotiate multi-year enterprise agreements to lock in per-user rates. Audit active
+      user counts regularly to align license counts with actual clinical staff usage.
+      Evaluate whether NextGen Office (ambulatory/smaller practice) vs. NextGen Enterprise
+      (larger health systems) is the appropriate platform for your organization size.
+
+  - name: API Distributor Commercial Fees
+    description: >
+      ISVs and technology partners distributing commercial API applications through the
+      NextGen API Distributor Program may incur fees based on scope of data needs and
+      distribution scale. Fees are not publicly disclosed and require direct negotiation
+      with NextGen Healthcare. Factor in revenue share, per-site deployment fees, or
+      usage-based charges depending on the distributor agreement structure.
+    category: Usage
+    unit: contact-for-details
+    optimization: >
+      Negotiate distributor agreements based on anticipated client deployment volume to
+      secure volume discounts. Clearly define data scope requirements upfront to avoid
+      scope creep increasing fees. Evaluate whether marketplace listing generates sufficient
+      pipeline to offset distributor program costs.
+
+  - name: Bulk FHIR Export Data Volume
+    description: >
+      NextGen Office Bulk FHIR API exports USCDIv1 data for entire patient groups as
+      NDJSON payloads. Data volume scales with practice size and patient population.
+      Infrastructure costs for storing, processing, and analyzing exported NDJSON data
+      are borne by the consuming organization, not NextGen Healthcare.
+    category: Usage
+    unit: GB/export-job
+    optimization: >
+      Use the Patient Search API to filter and scope export groups precisely before
+      initiating bulk exports. Schedule bulk exports during off-peak hours to minimize
+      operational impact. Implement incremental export patterns using FHIR _since
+      parameters where supported. Compress and archive NDJSON output promptly to reduce
+      downstream storage costs.
+
+  - name: Developer Onboarding and Integration Effort
+    description: >
+      Integration engineering effort to implement OAuth 2.0 authorization flows, FHIR R4
+      resource parsing, SMART on FHIR launch context, and NextGen Enterprise proprietary
+      JSON data standard. Sandbox access is provided at no cost but internal engineering
+      time for development, QA, and compliance validation is a significant cost factor.
+      Refresh token management (48-hour expiration window) requires robust token refresh
+      logic.
+    category: Engineering
+    optimization: >
+      Leverage NextGen's sandbox test credentials (username=patientapitest, password=Password1!)
+      for early-stage FHIR testing. Use the API Explorer and Swagger JSON documentation in
+      the developer portal to reduce spec research time. Factor in refresh token management
+      complexity when scoping OAuth 2.0 implementation effort.
+
+  - name: 21st Century Cures Compliance Infrastructure
+    description: >
+      NextGen FHIR APIs (Patient Access, SMART App Launch, Bulk FHIR) are designed to meet
+      21st Century Cures Act and ONC interoperability requirements. Organizations leveraging
+      these APIs for regulatory compliance (e.g., CMS Patient Access Final Rule) gain shared
+      compliance infrastructure value from NextGen's certified implementations, reducing
+      internal compliance build costs.
+    category: Compliance
+    optimization: >
+      Quantify the avoided cost of building FHIR R4-compliant, ONC-certified infrastructure
+      independently when evaluating NextGen API licensing costs. Align API adoption roadmap
+      with 21st Century Cures compliance deadlines to justify and prioritize API integration
+      spend.
+
+costAllocation:
+  - dimension: API Product
+    description: >
+      Allocate costs by API product line: Enterprise API, Patient Access FHIR, SMART App
+      Launch, Bulk FHIR, or Mirth Connect integration. Map each product to specific
+      business use cases and clinical workflow owners for accurate cost attribution.
+  - dimension: Developer Program Tier
+    description: >
+      Track costs separately for Patient Access (free), Open Access (free/internal), and
+      API Distributor (commercial) program tiers. Distributor program fees should be
+      attributed to the revenue-generating product lines they support.
+  - dimension: Practice/Client Organization
+    description: >
+      For ISVs with multi-site deployments, allocate API integration and distributor costs
+      by client practice or health system to enable per-client profitability analysis.
+  - dimension: Environment
+    description: >
+      Separate sandbox/development costs (primarily engineering time) from production
+      operational costs (platform fees, support, maintenance). Track sandbox usage to
+      measure integration development efficiency.
+  - dimension: Compliance Mandate
+    description: >
+      Tag API costs to specific regulatory programs (21st Century Cures, CMS Patient
+      Access Final Rule, ONC interoperability requirements) for compliance budget reporting
+      and audit purposes.
+
+budgeting:
+  - recommendation: >
+      Register for the free Patient Access API developer program first to assess
+      NextGen FHIR API capabilities before committing to distributor program fees.
+  - recommendation: >
+      Engage NextGen Healthcare business development early in the sales cycle to
+      understand distributor program fee structures and negotiate volume pricing based
+      on anticipated deployment scale.
+  - recommendation: >
+      Budget internal engineering effort for OAuth 2.0 implementation, FHIR R4 resource
+      parsing, refresh token management (48-hour window), and NextGen proprietary JSON
+      data standard handling as separate line items from API licensing fees.
+  - recommendation: >
+      Align Bulk FHIR API adoption budget with 21st Century Cures Act compliance
+      timelines and ONC certification deadlines to justify regulatory-driven spend.
+  - recommendation: >
+      Include infrastructure costs for NDJSON bulk export storage, processing, and
+      analytics pipelines when budgeting for Bulk FHIR API integrations at scale.
+
+contact:
+  sales: https://www.nextgen.com/
+  developer: https://www.nextgen.com/api-on-boarding
+  developer_portal: https://dev-cd.nextgen.com/api
+  github: https://github.com/nextgenhealthcare

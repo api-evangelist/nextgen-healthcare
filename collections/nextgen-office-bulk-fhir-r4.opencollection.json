@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NextGen Office BulK FHIR API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/$patient-search",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "encDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "patientChartNo",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search Patients"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Group APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all Groups"
+        },
+        {
+          "info": {
+            "name": "Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Group"
+        },
+        {
+          "info": {
+            "name": "Retrieve Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve Group"
+        },
+        {
+          "info": {
+            "name": "Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update Group"
+        },
+        {
+          "info": {
+            "name": "Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Group"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Export APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Group Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/Group/:id/$export",
+            "headers": [
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the group"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "FHIR Operation to obtain a detailed set of FHIR resources of diverse resource types pertaining to all patients in specified Group."
+        },
+        {
+          "info": {
+            "name": "Poll Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/$export-poll-status",
+            "params": [
+              {
+                "name": "_jobId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "After a bulk data request has been started, the client MAY poll the status URL provided in the Content-Location header."
+        },
+        {
+          "info": {
+            "name": "Delete Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fhir.meditouchehr.com/api/bulkfhir/r4/$export-poll-status",
+            "params": [
+              {
+                "name": "_jobId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "After a bulk data request has been started, a client MAY send a delete request to the URL provided in the Content-Location header to cancel the request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
