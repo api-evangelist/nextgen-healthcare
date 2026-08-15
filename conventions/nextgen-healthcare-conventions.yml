@@ -44,6 +44,17 @@ error_envelope:
 rate_limiting:
   documented: false
   note: No public rate-limit headers documented for the FHIR surface
+  see: rate-limits/nextgen-healthcare-rate-limits.yml
+events:
+  documented: false
+  note: >-
+    Re-checked 2026-08-14. Neither R4 CapabilityStatement advertises the FHIR Subscription resource,
+    and NextGen documents no webhooks, event catalog or AsyncAPI for any API surface, so there is no
+    event/push contract to capture. Asynchrony exists only inside the Bulk FHIR $export polling
+    pattern above. No asyncapi/ artifact and no Webhooks pointer were emitted, because emitting one
+    would assert an event surface NextGen does not serve.
+sandbox:
+  see: sandbox/nextgen-healthcare-sandbox.yml
 media_types:
   request: [application/fhir+json, application/json]
   response: [application/fhir+json, application/json]

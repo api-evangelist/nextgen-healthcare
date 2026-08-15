@@ -1,0 +1,95 @@
+generated: '2026-08-14'
+method: searched
+source: https://github.com/nextgenhealthcare/connect/releases
+docs:
+- https://github.com/nextgenhealthcare/connect/releases
+- https://github.com/nextgenhealthcare/connect/wiki
+description: >-
+  The only dated, publicly readable NextGen Healthcare release channel is the GitHub Releases feed
+  for Mirth Connect (NextGen Connect), the open-source integration engine. Each release carries a
+  semantic version, a publication date, and links to a "What's New", "Upgrade Guide" and
+  "Release Notes" wiki page. The NextGen Enterprise, NextGen Office, FHIR Patient Access and Bulk
+  FHIR API surfaces publish no public changelog: their release notes sit behind the NextGen Success
+  Community login (community.nextgen.com), so API consumers cannot read version history without a
+  customer account. FHIR version movement is instead expressed as new service base URLs
+  (fhir/dstu2 -> fhir/ (STU3) -> fhir/r4).
+scheme: semver
+current_version: 4.5.2
+current_version_date: '2024-09-23'
+staleness_note: >-
+  The most recent Mirth Connect release is 4.5.2 (2024-09-23); the official Docker images were last
+  rebuilt 2024-10-28. As of this pass that is roughly 23 months without a tagged release on the
+  company's flagship open-source product.
+entries:
+- version: 4.5.2
+  date: '2024-09-23'
+  type: patch
+  breaking: false
+  highlights:
+  - Enhancements, bug fixes and security improvements
+  - 'Notice: in 2025 Mirth Connect moves to Java 17 as the minimum supported Java version'
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.5.2
+- version: 4.5.1
+  date: '2024-07-29'
+  type: patch
+  breaking: false
+  highlights:
+  - Security improvements
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.5.1
+- version: 4.5.0
+  date: '2024-01-31'
+  type: major
+  breaking: false
+  highlights:
+  - Security updates and bug fixes
+  - Duo Multi-Factor Authentication moved to the Universal Prompt (Traditional Prompt retired 2024-03-30)
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.5.0
+- version: 4.4.2
+  date: '2023-11-06'
+  type: patch
+  breaking: false
+  highlights:
+  - Bug fixes and an improvement to exporting messages
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.4.2
+- version: 4.4.1
+  date: '2023-10-16'
+  type: patch
+  breaking: false
+  highlights:
+  - Security improvements
+  - First release not affected by CVE-2023-43208
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.4.1
+- version: 4.4.0
+  date: '2023-07-31'
+  type: major
+  breaking: false
+  security_advisory: Affected by CVE-2023-43208 — upgrade to 4.4.1 or later
+  highlights:
+  - New Mirth Connect Setup Wizard functionality
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.4.0
+- version: 4.3.0
+  date: '2023-03-28'
+  type: major
+  breaking: false
+  security_advisory: Affected by CVE-2023-43208 / CVE-2023-37679 — upgrade to 4.4.1 or later
+  highlights:
+  - Setup Wizard additions
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.3.0
+- version: 4.2.0
+  date: '2022-12-07'
+  type: major
+  breaking: false
+  security_advisory: Affected by CVE-2023-43208 / CVE-2023-37679 — upgrade to 4.4.1 or later
+  highlights:
+  - Streamlined listener-port selection; usernames surfaced in the UI
+  url: https://github.com/nextgenhealthcare/connect/releases/tag/4.2.0
+coverage:
+  covered_products: [Mirth Connect / NextGen Connect]
+  uncovered_products:
+  - NextGen Enterprise API
+  - NextGen Enterprise Patient Access FHIR API
+  - NextGen Office FHIR R4 / R3 API
+  - NextGen Office Bulk FHIR R4 API
+  uncovered_reason: >-
+    Release notes for the EHR and FHIR API surfaces are published only in the NextGen Success
+    Community (community.nextgen.com), which requires a customer login.

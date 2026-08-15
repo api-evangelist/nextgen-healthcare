@@ -1,4 +1,4 @@
-generated: '2026-07-24'
+generated: '2026-08-14'
 method: derived
 status: candidate
 source:
@@ -10,6 +10,19 @@ description: >-
   operationIds and the read/search interactions of the FHIR R4 Patient Access resources. All tools
   inherit their input contract from the backing FHIR operation and require a SMART-on-FHIR OAuth2
   bearer token. Not an authoritative provider manifest.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: oauth
+  verified: derived
+  note: >-
+    Re-probed 2026-08-14: no NextGen-published hosted MCP endpoint and no NextGen-published stdio
+    package. The only MCP server for the Mirth Connect surface on npm is @easysolutions906/mirth-mcp,
+    published by a third party, not by NextGen Healthcare — it is deliberately NOT recorded here as
+    a NextGen deployment. Mode is `none` because this file is a derived candidate; no endpoint URL
+    was guessed.
 server:
   name: nextgen-healthcare
   transport: http

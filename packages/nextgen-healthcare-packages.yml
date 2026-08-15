@@ -1,24 +1,141 @@
-generated: '2026-07-24'
+generated: '2026-08-14'
 method: searched
+source:
+- https://github.com/nextgenhealthcare/connect/releases
+- https://hub.docker.com/r/nextgenhealthcare/connect
+- https://proxy.golang.org
+- https://registry.npmjs.org
 description: >-
-  First-party software NextGen Healthcare publishes. NextGen does not ship a dedicated client
-  SDK for its FHIR/Enterprise REST APIs on the public package registries (npm, PyPI, Maven Central,
-  NuGet, RubyGems all miss for a first-party NextGen FHIR client). Its marquee open-source product
-  is Mirth Connect, the healthcare integration engine, distributed as source and binaries from the
-  NextGenHealthcare GitHub organization rather than a language package registry.
+  First-party software NextGen Healthcare publishes. NextGen ships NO client SDK for its FHIR or
+  NextGen Enterprise REST APIs on any public package registry — npm, PyPI, Maven Central, NuGet,
+  RubyGems, Packagist and crates.io all miss for a first-party NextGen FHIR/Enterprise client, and
+  the developer guides instruct integrators to call the endpoints with curl or Postman directly.
+  What NextGen does publish as software is Mirth Connect (NextGen Connect), the open-source
+  healthcare integration engine, distributed as GitHub releases and official Docker images, plus a
+  small set of Go/Terraform libraries for THIRD-PARTY cloud-ops APIs (CloudHealth, Sumo Logic) that
+  are not clients for any NextGen API. Currency is recorded as structured version/published fields
+  below: the flagship product's last tagged release is 4.5.2 (2024-09-23) and the Go/Terraform
+  libraries have not been released since 2019-2020.
 packages:
 - name: Mirth Connect (connect)
   language: java
   registry: github
-  url: https://github.com/NextGenHealthcare/connect
-  install: docker pull nextgenhealthcare/connect
+  url: https://github.com/nextgenhealthcare/connect
+  releases_url: https://github.com/nextgenhealthcare/connect/releases
+  install: Download the installer/ZIP from the GitHub release page
+  version: 4.5.2
+  published: '2024-09-23'
+  license: MPL-2.0
   official: true
+  for_api: null
   note: >-
     Open-source healthcare integration/interface engine ("the swiss army knife of healthcare
-    integration"). A message-routing/interoperability platform, not a client SDK for the FHIR APIs.
+    integration"). A message-routing/interoperability platform and the home of the mccommand CLI,
+    not a client SDK for the FHIR APIs. No Maven Central coordinates are published; the client jars
+    ship inside the distribution.
+- name: nextgenhealthcare/connect (Docker)
+  language: docker
+  registry: dockerhub
+  url: https://hub.docker.com/r/nextgenhealthcare/connect
+  install: docker pull nextgenhealthcare/connect
+  version: 4.5.2
+  published: '2024-10-28'
+  official: true
+  note: >-
+    Official container image for Mirth Connect. Tag 4.5.2 and the floating `latest` tag were both
+    last rebuilt 2024-10-28; `latest` is unpinned, so a consumer pulling it cannot tell which build
+    they are getting from the tag alone.
+- name: connect-docker
+  language: python
+  registry: github
+  url: https://github.com/nextgenhealthcare/connect-docker
+  install: git clone https://github.com/nextgenhealthcare/connect-docker
+  version: null
+  published: '2025-04-09'
+  license: MPL-2.0
+  official: true
+  note: >-
+    Official Dockerfiles/build tooling for the Mirth Connect images. No tagged releases — version is
+    null because the repository publishes none; `published` is the last commit date.
+- name: connect-examples
+  language: javascript
+  registry: github
+  url: https://github.com/nextgenhealthcare/connect-examples
+  install: git clone https://github.com/nextgenhealthcare/connect-examples
+  version: null
+  published: '2024-09-09'
+  license: MPL-2.0
+  official: true
+  note: Example Mirth Connect channels and code templates. Untagged repository, so version is null.
+- name: fhir-example-channels
+  language: javascript
+  registry: github
+  url: https://github.com/nextgenhealthcare/fhir-example-channels
+  install: git clone https://github.com/nextgenhealthcare/fhir-example-channels
+  version: null
+  published: '2022-06-28'
+  license: MPL-2.0
+  official: true
+  note: >-
+    Example NextGen Connect channels for FHIR integration. The closest thing NextGen publishes to
+    FHIR sample code as a package. Untagged repository; last commit 2022-06-28.
+- name: cloudhealth-sdk-go
+  language: go
+  registry: gomodules
+  url: https://pkg.go.dev/github.com/nextgenhealthcare/cloudhealth-sdk-go
+  install: go get github.com/nextgenhealthcare/cloudhealth-sdk-go
+  version: v0.0.0-20200413131328-6fb1cd037126
+  published: '2020-04-13'
+  official: true
+  for_api: CloudHealth (VMware) — a third-party API, not a NextGen API
+  note: >-
+    First-party NextGen open source, but a client for someone else's API. Pseudo-version only — no
+    semver tag has ever been published.
+- name: sumologic-sdk-go
+  language: go
+  registry: gomodules
+  url: https://pkg.go.dev/github.com/nextgenhealthcare/sumologic-sdk-go
+  install: go get github.com/nextgenhealthcare/sumologic-sdk-go
+  version: v0.0.0-20190820162259-58b28fb038ee
+  published: '2019-08-20'
+  official: true
+  for_api: Sumo Logic — a third-party API, not a NextGen API
+  note: Pseudo-version only; no tagged release since 2019.
+- name: terraform-provider-cloudhealth
+  language: go
+  registry: gomodules
+  url: https://pkg.go.dev/github.com/nextgenhealthcare/terraform-provider-cloudhealth
+  install: go get github.com/nextgenhealthcare/terraform-provider-cloudhealth
+  version: v0.1.0
+  published: '2019-07-08'
+  official: true
+  for_api: CloudHealth (VMware) — a third-party API, not a NextGen API
+- name: terraform-provider-sumologic
+  language: go
+  registry: gomodules
+  url: https://pkg.go.dev/github.com/nextgenhealthcare/terraform-provider-sumologic
+  install: go get github.com/nextgenhealthcare/terraform-provider-sumologic
+  version: v0.2.0
+  published: '2019-08-20'
+  official: true
+  for_api: Sumo Logic — a third-party API, not a NextGen API
 sdk_search:
-  npm: no first-party NextGen FHIR client (third-party fhirclient/fhir-kit-client exist)
-  pypi: none (nextgen-healthcare/nextgen-fhir 404)
-  maven_central: none
+  npm: >-
+    No first-party NextGen client. Third-party/community packages exist for the integration engine
+    (mirth-api, mirth-node, mirthjs, @saga-it/mirthsync, @easysolutions906/mirth-mcp) — none are
+    published by NextGen Healthcare.
+  pypi: none (nextgen-healthcare / nextgen-fhir 404)
+  maven_central: none — no Mirth Connect coordinates published to Maven Central
   nuget: none
   rubygems: none
+  packagist: none
+  crates_io: none
+  pkg_go_dev: >-
+    Four first-party modules, all for third-party APIs (CloudHealth, Sumo Logic); none is a NextGen
+    API client.
+first_party_sdk_for_nextgen_apis: 0
+staleness:
+  flagship_last_release: '2024-09-23'
+  note: >-
+    The company's flagship first-party software has no tagged release in ~23 months and the Go
+    libraries none in ~6 years. Recorded as evidence, not as a judgement.

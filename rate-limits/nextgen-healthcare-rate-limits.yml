@@ -1,3 +1,21 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.nextgen.com/api
+docs:
+- https://www.nextgen.com/api
+- https://www.nextgen.com/api/-/media/files/ngo/NextGen-Office-FHIR-R4-Patient-Access-API-Developer-Guide
+limit_count: 0
+headers_documented: false
+rate_limit_headers: []
+retry_after: undocumented
+exhaustion_status: 429
+limits_note: >-
+  NextGen publishes NO numeric rate limits and NO rate-limit response headers for any of its API
+  surfaces. Nothing in the public developer guides, the /api documentation hub or the regulatory
+  pages names an X-RateLimit-*/RateLimit-* header, a Retry-After contract, a window or a quota, so
+  limit_count is an honest zero: the entries below are the enforcement *surfaces* that exist and
+  the token-lifetime facts NextGen does document, not published limits. An agent integrating here
+  cannot read a runtime budget signal off a response.
 name: NextGen Healthcare API Rate Limits
 description: >
   NextGen Healthcare does not publicly disclose specific API rate limit thresholds. Rate
@@ -43,9 +61,7 @@ limits:
     token_expiration:
       refresh_token: 48 hours
       access_token: contact-for-details
-    sandbox_credentials:
-      username: patientapitest
-      password: Password1!
+    sandbox: sandbox/nextgen-healthcare-sandbox.yml
   - name: Bulk FHIR API Concurrent Export Limit
     description: >
       The NextGen Office Bulk FHIR API uses an asynchronous request pattern per the HL7
@@ -89,7 +105,7 @@ notes:
   - "Rate limit details are not publicly disclosed by NextGen Healthcare"
   - "Refresh tokens for Enterprise Patient Access FHIR API expire after 48 hours"
   - "Bulk FHIR uses HL7 async pattern: kick-off, status polling, NDJSON download"
-  - "Sandbox test credentials: username=patientapitest, password=Password1!"
+  - "Sandbox credentials are issued on request by the NextGen Office API team, not published — see sandbox/nextgen-healthcare-sandbox.yml"
   - "For specific rate limit thresholds, contact NextGen Healthcare support or developer program"
   - "Developer portal: https://dev-cd.nextgen.com/api"
   - "Onboarding: https://www.nextgen.com/api-on-boarding"

@@ -1,0 +1,87 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.nextgen.com/api/-/media/files/ngo/NextGen-Office-FHIR-R4-Patient-Access-API-Developer-Guide
+docs:
+- https://www.nextgen.com/api/-/media/files/ngo/NextGen-Office-FHIR-R4-Patient-Access-API-Developer-Guide
+- https://www.nextgen.com/developer-program
+- https://www.nextgen.com/api-on-boarding
+description: >-
+  NextGen Healthcare runs API sandboxes, but they are credential-gated rather than self-service.
+  The developer program pages state that API sandboxes are included at no charge in the Open Access
+  and API Distributor programs; the NextGen Office Patient Access API Developer Guide publishes the
+  named test patients used for validation and the OAuth parameters of the test flow, but withholds
+  the client ID, client secret and test-patient passwords, which the NextGen Office API team issues
+  on request. There is no test-vs-live key prefix scheme and no published magic identifiers beyond
+  the test patients below. Everything recorded here is quoted from NextGen's own documents; no test
+  values were invented, and no credential is reproduced that NextGen does not publish.
+model: gated-sandbox
+self_service: false
+test_live_separation:
+  scheme: none-published
+  note: >-
+    NextGen does not publish a test/live key-prefix or mode flag. Separation is by issued client
+    application: the API team registers a callback URL and issues credentials scoped to a sandbox
+    practice.
+access:
+  request_url: https://www.nextgen.com/api-on-boarding
+  contact: nextgen-office-api@nextgen.com
+  issued_by: NextGen Office API team
+  required_registration_fields:
+  - Contact e-mail address
+  - Organization name
+  - Organization description
+  - Client application name
+  - Client application use-case description
+  - OAuth Callback URL (should not include query parameters)
+  fee: >-
+    "There's no charge to develop an API application or use our platform which includes API
+    sandboxes." — https://www.nextgen.com/developer-program
+test_patients:
+- name: Smith, David
+  identifier: HF428946492
+  source: NextGen Office Patient Access API Developer Guide
+- name: Smith, Anna
+  identifier: HF428946523
+  source: NextGen Office Patient Access API Developer Guide
+- name: Smith, Alex
+  identifier: HF429119572
+  source: NextGen Office Patient Access API Developer Guide
+test_patient_credentials:
+  published: false
+  note: >-
+    "Please contact nextgen-office-api@nextgen.com for the test patient's credentials." — the guide
+    prints usernames/passwords as placeholders only.
+test_auth_flow:
+  grant_type: Authorization Code (with PKCE)
+  code_challenge_method: SHA-256
+  client_authentication: Send as Basic Auth header
+  callback_url_example: https://oauth.pstmn.io/v1/callback
+  authorization_url: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+  client_id: <issued_client_id>
+  client_secret: <issued_client_secret>
+  scope: '{Add Allowed scopes}'
+  note: >-
+    The guide's worked example uses Postman's hosted OAuth callback (oauth.pstmn.io) as the
+    registered redirect URI; that is Postman's tool, not a NextGen-published Postman collection.
+example_request:
+  description: Verbatim example read from the developer guide, using test patient Smith, David
+  url: https://fhir.meditouchehr.com/api/fhir/r4/Patient/428946492
+  method: GET
+  auth: 'Authorization: Bearer <access_token>'
+sandbox_hosts:
+- host: https://fhir.meditouchehr.com
+  note: NextGen Office FHIR R4 / Bulk FHIR — same host serves sandbox and production, separated by issued credentials
+- host: https://fhir.nextgen.com
+  note: NextGen Enterprise Patient Access FHIR — sandbox access provisioned through the developer portal
+time_simulation:
+  supported: false
+  note: No test clocks or time-simulation tooling published.
+fixtures:
+  supported: false
+  note: >-
+    No downloadable fixture bundle or trigger tooling published; the reference data set is the
+    three test patients above inside an issued sandbox practice.
+see_also:
+  authentication: authentication/nextgen-healthcare-authentication.yml
+  scopes: scopes/nextgen-healthcare-scopes.yml
+  plans: plans/nextgen-healthcare-plans-pricing.yml

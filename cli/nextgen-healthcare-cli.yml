@@ -1,0 +1,143 @@
+generated: '2026-08-14'
+method: searched
+source:
+- https://github.com/nextgenhealthcare/connect/blob/development/command/src/com/mirth/connect/cli/CommandLineInterface.java
+- https://github.com/nextgenhealthcare/connect
+description: >-
+  NextGen Healthcare ships one first-party command-line tool: the Mirth Connect Command Line
+  Interface ("Mirth Connect Shell", launched as mccommand), bundled with every Mirth Connect /
+  NextGen Connect integration-engine distribution. It is an administrative client for a running
+  Mirth Connect server, not a client for the FHIR or NextGen Enterprise REST APIs — those two
+  API families ship no CLI. The command surface below is transcribed verbatim from the help text
+  in the first-party source (command/src/com/mirth/connect/cli/CommandLineInterface.java).
+name: Mirth Connect Shell
+binary: mccommand
+official: true
+targets: Mirth Connect / NextGen Connect integration engine server (self-hosted or Mirth Fully Managed)
+install:
+- method: bundled
+  note: Ships inside the Mirth Connect server and client distributions (mccommand / mccommand.bat)
+  url: https://github.com/nextgenhealthcare/connect/releases
+- method: docker
+  note: Available inside the official container image
+  url: https://hub.docker.com/r/nextgenhealthcare/connect
+invocation:
+  usage: mccommand -a <address> -u <user> -p <password> [-s <script>] [-c <config file>]
+  options:
+  - flag: -a
+    arg: address
+    description: server address
+  - flag: -u
+    arg: user
+    description: user login
+  - flag: -p
+    arg: password
+    description: user password
+  - flag: -s
+    arg: script
+    description: script file
+  - flag: -c
+    arg: config file
+    description: 'path to default configuration [default: mirth-cli-config.properties]'
+  - flag: -h
+    arg: null
+    description: help
+  auth: server username + password (the same credentials as the Mirth Administrator client)
+command_groups:
+- group: server status and deployment
+  commands:
+  - command: status
+    description: Returns status of deployed channels
+  - command: deploy [timeout]
+    description: Deploys all Channels with optional timeout (in seconds)
+- group: channel
+  commands:
+  - command: channel list
+    description: Lists all Channels
+  - command: channel undeploy|deploy|start|stop|halt|pause|resume|stats id|"name"|*
+    description: Performs specified channel action
+  - command: channel remove|enable|disable id|"name"|*
+    description: Remove, enable or disable specified channel
+  - command: import "path" [force]
+    description: Imports channel specified by <path>. Optional 'force' overwrites existing channels.
+  - command: export id|"name"|* "path"
+    description: Exports the specified channel to <path>
+- group: configuration
+  commands:
+  - command: importcfg "path" [nodeploy] [overwriteconfigmap]
+    description: Imports configuration specified by <path>. Optional 'nodeploy' stops channels from being deployed after importing. Optional 'overwriteconfigmap' will overwrite the Configuration Map.
+  - command: exportcfg "path"
+    description: Exports the configuration to <path>
+  - command: importmap "path"
+    description: Imports configuration map specified by <path>
+  - command: exportmap "path"
+    description: Exports configuration map to <path>
+- group: alerts and scripts
+  commands:
+  - command: importalert "path" [force]
+    description: Imports alert specified by <path>. Optional 'force' overwrites existing alerts.
+  - command: exportalert id|"name"|* "path"
+    description: Exports the specified alert to <path>
+  - command: importscripts "path"
+    description: Imports global script specified by <path>
+  - command: exportscripts "path"
+    description: Exports global script to <path>
+- group: code templates
+  commands:
+  - command: codetemplate library list [includecodetemplates]
+    description: Lists all code template libraries. Optional 'includecodetemplates' additionally lists the code templates within each library.
+  - command: codetemplate list
+    description: Lists all code templates.
+  - command: codetemplate [library] import path [force]
+    description: Imports code templates or libraries (with the 'library' option).
+  - command: codetemplate library export id|name|* path
+    description: Exports all matched code template libraries to <path>.
+  - command: codetemplate export id|name path
+    description: Exports a single code template to <path>.
+  - command: codetemplate library remove id|name|*
+    description: Removes all matched code template libraries.
+  - command: codetemplate remove id|name
+    description: Removes a single code template.
+- group: messages and statistics
+  commands:
+  - command: importmessages "path" id
+    description: Imports messages specified by <path> into the channel specified by <id>
+  - command: exportmessages "path/file-pattern" id [xml|xml-attach|raw|processedraw|transformed|encoded|response] [pageSize]
+    description: Exports all messages for channel specified by <id> to <path>
+  - command: clearallmessages
+    description: Removes all messages from all Channels (running channels will be restarted)
+  - command: resetstats [lifetime]
+    description: Removes all stats from all Channels. Optional 'lifetime' includes resetting lifetime stats.
+  - command: dump stats|events "path"
+    description: Dumps stats or events to specified file
+- group: users
+  commands:
+  - command: user list
+    description: Returns a list of the current users
+  - command: user add username "password" "firstName" "lastName" "organization" "email"
+    description: Adds the specified user
+  - command: user remove id|username
+    description: Removes the specified user
+  - command: user changepw id|username "newpassword"
+    description: Changes the specified user's password
+- group: session
+  commands:
+  - command: help
+    description: Prints the command help
+  - command: quit
+    description: Quits Mirth Connect Shell
+key_flows:
+- name: Scripted channel deployment
+  steps: [import "channel.xml" force, deploy 60, status]
+- name: Configuration backup / restore
+  steps: [exportcfg "backup.xml", importcfg "backup.xml" nodeploy]
+- name: Message archival
+  steps: [exportmessages "out/msg-%d.xml" <channelId> xml 1000]
+notes:
+- The NextGen Enterprise REST API and the NextGen Enterprise / NextGen Office FHIR APIs have no
+  first-party CLI; the only NextGen-published command-line tool is this integration-engine shell.
+- Command text transcribed verbatim from the first-party help output in CommandLineInterface.java;
+  no commands were inferred or invented.
+see_also:
+  packages: packages/nextgen-healthcare-packages.yml
+  changelog: changelog/nextgen-healthcare-changelog.yml

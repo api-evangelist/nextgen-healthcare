@@ -27,4 +27,30 @@ sla:
   url: null
   uptime_target: null
 status_page: null
+status_page_probe:
+  checked: '2026-08-14'
+  result: none
+  evidence:
+  - url: https://status.nextgen.com
+    status: 0
+    note: DNS does not resolve
+  - url: https://www.nextgen.com/status
+    status: 404
+  - url: https://status.meditouchehr.com
+    status: 0
+    note: DNS does not resolve
+  - url: https://nextgen.statuspage.io
+    status: 200
+    note: >-
+      REJECTED — an unclaimed Atlassian Statuspage whose components are the stock template
+      placeholders ("API (example)", "Management Portal (example)", "Bot"). It names no company and
+      is not NextGen Healthcare's operational status page; recording it would credit NextGen with a
+      status surface it does not run.
+changelog:
+  artifact: changelog/nextgen-healthcare-changelog.yml
+  public_url: https://github.com/nextgenhealthcare/connect/releases
+  note: >-
+    Public dated release history exists only for Mirth Connect (last tagged release 4.5.2,
+    2024-09-23). API release notes for NextGen Enterprise/Office sit behind the Success Community
+    customer login.
 deprecated_operations: []

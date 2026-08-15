@@ -40,7 +40,7 @@ tags:
 - Patient Access
 - 21st Century Cures
 created: '2026-07-24'
-modified: '2026-07-24'
+modified: '2026-08-14'
 specificationVersion: '0.19'
 apis:
 - aid: nextgen-healthcare:nextgen-enterprise-patient-access-fhir-api
@@ -298,8 +298,6 @@ common:
   url: overlays/nextgen-healthcare-office-fhir-r4-overlay.yaml
 - type: Overlay
   url: overlays/nextgen-healthcare-office-bulk-fhir-r4-overlay.yaml
-- type: DomainSecurity
-  url: security/nextgen-healthcare-domain-security.yml
 - type: DeveloperPortal
   url: https://dev-cd.nextgen.com/api
 - type: DeveloperProgram
@@ -322,14 +320,21 @@ common:
   url: rate-limits/nextgen-healthcare-rate-limits.yml
 - type: FinOps
   url: finops/nextgen-healthcare-finops.yml
-- type: DomainSecurity
-  url: security/nextgen-healthcare-domain-security.yml
-- type: Plans
-  url: plans/nextgen-healthcare-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/nextgen-healthcare-rate-limits.yml
-- type: FinOps
-  url: finops/nextgen-healthcare-finops.yml
+- type: CLI
+  url: cli/nextgen-healthcare-cli.yml
+- type: ChangeLog
+  url: changelog/nextgen-healthcare-changelog.yml
+- type: Sandbox
+  url: sandbox/nextgen-healthcare-sandbox.yml
+- type: Pricing
+  url: https://www.nextgen.com/pricing
+- type: SignUp
+  url: https://developer.nextgen.com/login?returnUrl=%2F
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 3
+  pass: local-v1

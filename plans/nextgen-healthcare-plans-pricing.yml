@@ -1,11 +1,23 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.nextgen.com/developer-program
+docs:
+- https://www.nextgen.com/developer-program
+- https://www.nextgen.com/pricing
+- https://www.nextgen.com/api-on-boarding
 name: NextGen Healthcare API Plans and Pricing
 description: >
-  NextGen Healthcare offers multiple API access tiers through its Developer Program for
-  ambulatory EHR and practice management integrations. Developer program access is free
-  for development and testing; production deployment fees vary by program tier and data
-  scope. Patient Access APIs are free to develop; Enterprise API Distributor programs may
-  have associated fees based on data needs. Contact NextGen Healthcare sales for enterprise
-  licensing and production pricing.
+  NextGen Healthcare publishes three named API developer program tiers on its Developer Program
+  page, each with an explicit fee statement, but publishes NO list prices anywhere:
+  www.nextgen.com/pricing (HTTP 200, re-checked 2026-08-14) is a contact-sales page carrying a demo
+  request form, live chat, a phone number and info@nextgen.com for RFI/RFP, with no tiers, prices
+  or quotas on it. Development against every tier is explicitly free; only production distribution
+  under the API Distributor Program is said to carry fees, and those are quoted privately. Platform
+  (EHR/PM) licensing that a client organization needs before it can enable API integrations is not
+  priced publicly either. Tier names, inclusions and fee language below are quoted from NextGen's
+  own Developer Program page; no price NextGen does not publish is asserted here.
+plan_count: 3
+pricing_published: false
 specificationVersion: '0.1'
 url: https://www.nextgen.com/developer-program
 plans:
@@ -64,31 +76,27 @@ plans:
       - Business development assistance
       - Application marketplace listing eligibility
       - Commercial distribution rights
-  - name: NextGen Enterprise EHR (Platform License)
-    description: >
-      Base platform license for NextGen Enterprise EHR and practice management system
-      required for client organizations to enable API integrations. Enterprise EHR pricing
-      starts at approximately $200 per user per month for small practices and approximately
-      $150 per user per month for larger organizations with 1,000+ users. API access is
-      bundled with platform licensing for client organizations.
-    url: https://www.nextgen.com/
-    pricing: Starting at $150-$200/user/month
-    pricingModel: per-user-monthly
-    features:
-      - NextGen Enterprise EHR
-      - Practice management (PM)
-      - API access for integrated applications
-      - Patient portal and engagement tools
-      - Clinical documentation workflows
-      - Revenue cycle management
-      - Scheduling and administrative tools
+platform_license:
+  published: false
+  note: >-
+    A NextGen Enterprise EHR / practice-management license is a prerequisite for a client
+    organization to enable API integrations, but NextGen publishes no price for it. Per-user
+    figures circulating on third-party review sites are not sourced to NextGen and are deliberately
+    not recorded here.
+quoted_fee_language:
+  patient_access: '"There is no charge to develop a Patient Access app"'
+  open_access: '"There is no fee to develop or deploy an application under this program"'
+  api_distributor: '"There''s no charge to develop an API application or use our platform which includes API sandboxes. The API Distributor Program may have associated fees based on the scope of data needs and/or other requirements."'
 notes:
   - "Patient Access API development has no charge per 21st Century Cures Act compliance mandates"
   - "Open Access Developer Program is free for internal client application development"
-  - "API Distributor Program may have production fees based on data scope — contact sales"
-  - "Enterprise EHR platform license required for client organizations using the APIs"
-  - "Contact NextGen Healthcare at nextgen.com for custom enterprise and ISV pricing"
+  - "API Distributor Program may have production fees based on data scope — quoted privately"
+  - "https://www.nextgen.com/pricing returns 200 but is a contact-sales page with no published prices"
+  - "Enterprise EHR platform license required for client organizations using the APIs; price not published"
 contact:
-  sales: https://www.nextgen.com/
+  sales: https://www.nextgen.com/pricing
+  sales_email: info@nextgen.com
+  sales_phone: 1-855-510-6398
   developer: https://www.nextgen.com/api-on-boarding
   developer_portal: https://dev-cd.nextgen.com/api
+  sign_up: https://developer.nextgen.com/login?returnUrl=%2F
