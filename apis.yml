@@ -41,7 +41,7 @@ tags:
 - 21st Century Cures
 created: '2026-07-24'
 modified: '2026-08-14'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: nextgen-healthcare:nextgen-enterprise-patient-access-fhir-api
   name: NextGen Enterprise Patient Access FHIR API
