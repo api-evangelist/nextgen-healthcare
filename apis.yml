@@ -227,6 +227,12 @@ apis:
   - Integration Engine
   - Interoperability
   - Mirth Connect
+  - Open-Source
+  tags_raw:
+  - HL7
+  - Integration Engine
+  - Interoperability
+  - Mirth Connect
   - Open Source
   properties:
   - type: Documentation
