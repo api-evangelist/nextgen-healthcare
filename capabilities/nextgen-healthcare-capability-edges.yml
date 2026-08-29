@@ -11,55 +11,34 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 5
+edge_count: 3
 edges:
-- tag: MedicationAdministration
-  spec_file: nextgen-healthcare-medicationadministration-api-openapi.yml
-  capability_id: BC-2850.40
-  capability_id_l1: BC-2850
-  capability_name: Medication Administration & Reconciliation
-  confidence: 0.78
-  evidence: 'GET /fhir/r4/MedicationAdministration; schemas: MedicationAdministration, MedicationAdministrationBundled'
-  reason: The resource records medications actually administered to the patient, which maps directly to
-    medication administration and reconciliation within pharmacy and medication management.
+- tag: Specimen
+  spec_file: nextgen-healthcare-specimen-api-openapi.yml
+  capability_id: BC-2860.10
+  capability_id_l1: BC-2860
+  capability_name: Laboratory Services Management
+  confidence: 0.75
+  evidence: 'GET /fhir/r4/Specimen; schemas: Specimen, SpecimenBundled'
+  reason: The FHIR Specimen resource represents laboratory specimens and their collection details, which
+    falls under Laboratory Services Management (specimen collection). Read-only FHIR exposure limits confidence
+    somewhat.
+- tag: Export APIs
+  spec_file: nextgen-healthcare-export-apis-api-openapi.yml
+  capability_id: BC-2900.60
+  capability_id_l1: BC-2900
+  capability_name: Healthcare Interoperability Operations
+  confidence: 0.72
+  evidence: GET /bulkfhir/r4/Group/{id}/$export groupExport Group Export; GET /bulkfhir/r4/$export-poll-status
+    pollJobStatus
+  reason: Bulk FHIR ($export) population-level data export from the EHR, the classic Cures Act interoperability
+    surface; job polling is the mechanics of that exchange.
 - tag: CCDA
   spec_file: nextgen-healthcare-ccda-api-openapi.yml
   capability_id: BC-2900.60
   capability_id_l1: BC-2900
   capability_name: Healthcare Interoperability Operations
   confidence: 0.7
-  evidence: 'GET /ccda — ''Our API is coded against the US Core Specification (FHIR Version: 4.0.0)'''
-  reason: C-CDA document retrieval is the Cures Act document-exchange surface used for health information
-    exchange and provider-to-provider/patient data sharing, i.e. healthcare interoperability operations.
-    Thin context (single operation, no schemas) so confidence is moderate.
-- tag: DiagnosticReport
-  spec_file: nextgen-healthcare-diagnosticreport-api-openapi.yml
-  capability_id: BC-2860.60
-  capability_id_l1: BC-2860
-  capability_name: Diagnostic Results Management
-  confidence: 0.7
-  evidence: GET /fhir/r4/DiagnosticReport — schemas DiagnosticReport, DiagnosticReportBundled
-  reason: FHIR DiagnosticReport exposes lab and imaging report results for distribution to consuming systems,
-    matching diagnostic results management. Read-only access adds some ambiguity versus results review
-    in documentation.
-- tag: Export APIs
-  spec_file: nextgen-healthcare-export-apis-api-openapi.yml
-  capability_id: BC-2900.60
-  capability_id_l1: BC-2900
-  capability_name: Healthcare Interoperability Operations
-  confidence: 0.7
-  evidence: GET /bulkfhir/r4/Group/{id}/$export groupExport Group Export; 'This document is only for referring
-    Bulk FHIR API'
-  reason: Bulk FHIR group export with job polling is the Cures Act population-level data-sharing surface,
-    i.e. operation of FHIR endpoints for interoperability. Partly job-management plumbing, so confidence
-    is moderate.
-- tag: MedicationDispense
-  spec_file: nextgen-healthcare-medicationdispense-api-openapi.yml
-  capability_id: BC-2850
-  capability_id_l1: BC-2850
-  capability_name: Pharmacy & Medication Management
-  confidence: 0.7
-  evidence: 'GET /fhir/r4/MedicationDispense; schemas: MedicationDispense, MedicationDispenseBundled'
-  reason: MedicationDispense records pharmacy dispensing events, clearly pharmacy and medication management;
-    L2 withheld because an ambulatory EHR read endpoint does not distinguish inpatient from outpatient/specialty
-    pharmacy operations.
+  evidence: 'GET /ccda — "coded against the US Core Specification (FHIR Version: 4.0.0)"'
+  reason: C-CDA document retrieval endpoint is a Cures-Act interoperability artefact for exchanging summary
+    records with other providers/patients — healthcare interoperability operations.
