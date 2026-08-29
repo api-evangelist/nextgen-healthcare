@@ -886,6 +886,9 @@ apis:
     url: >-
       https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 common:
+- type: CapabilityMap
+  url: capabilities/nextgen-healthcare-capability-edges.yml
+  name: NextGen Healthcare Business Capability Map
 - type: DomainSecurity
   url: security/nextgen-healthcare-domain-security.yml
 - type: AgenticAccess
