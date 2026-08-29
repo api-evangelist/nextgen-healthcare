@@ -12,6 +12,18 @@ description: 'NextGen Healthcare is a United States ambulatory electronic health
   live FHIR R3/R4 and Bulk FHIR endpoints. FHIR resources are coded against the US Core / USCDIv1 implementation
   guides. Developer onboarding is gated behind an API onboarding form and app registration, which is standard
   for regulated health-data access in the US market.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: partner
