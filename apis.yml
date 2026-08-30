@@ -290,6 +290,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - C-CDA
+  tags_raw:
   - CCDA
   properties:
   - type: OpenAPI
