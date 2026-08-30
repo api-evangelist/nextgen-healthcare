@@ -1,0 +1,474 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Medication Request API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: MedicationRequest
+  description: https://hl7.org/fhir/R4/medicationrequest.html
+paths:
+  /fhir/r4/MedicationRequest/{id}:
+    get:
+      tags:
+      - MedicationRequest
+      description: "Fetches a single medication prescription record by id. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationRequest \n *\tMedications"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicationRequest'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/MedicationRequest:
+    get:
+      tags:
+      - MedicationRequest
+      description: "Fetches a bundled resource containing all the medication prescription records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationRequest \n *\tMedications"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/date'
+      - $ref: '#/components/parameters/mr_intent'
+      - $ref: '#/components/parameters/mr_status'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicationRequestBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  schemas:
+    MedicationRequest:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        status:
+          type: string
+          minLength: 1
+          description: active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown
+        intent:
+          type: string
+          minLength: 1
+          description: proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option
+        category:
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                  required:
+                  - system
+                  - code
+                  description: Code defined by a terminology system
+            required:
+            - coding
+        reportedBoolean:
+          type: boolean
+          description: Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.
+        medicationCodableConcept:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                - display
+                - code
+                - system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+          - coding
+          - text
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+          required:
+          - reference
+        encounter:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+          required:
+          - reference
+        authoredOn:
+          type: string
+          minLength: 1
+          description: When request was initially authored
+        requester:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+          required:
+          - reference
+        reasonCode:
+          type: array
+          description: Reason or indication for ordering or not ordering the medication
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Code system for diagnosis (e.g., ICD-10)
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Diagnosis code defined by system
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Full description for diagnosis code defined by system
+                  required:
+                  - system
+                  - code
+                  - display
+            required:
+            - coding
+        dosageInstruction:
+          type: array
+          description: How the medication should be taken
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                minLength: 1
+                description: Free text dosage instructions e.g. SIG
+              route:
+                type: object
+                description: How drug should enter body
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                          minLength: 1
+                          description: Symbol in syntax defined by the system
+                        code:
+                          type: string
+                          minLength: 1
+                          description: Symbol in syntax defined by the system
+                        display:
+                          type: string
+                          minLength: 1
+                          description: Representation defined by the system
+                      required:
+                      - display
+                      - code
+                      - system
+                  text:
+                    type: string
+                    minLength: 1
+                    description: Plain text representation of the concept
+                required:
+                - coding
+                - text
+              timing:
+                type: object
+                description: When medication should be administered
+                properties:
+                  code:
+                    type: object
+                    description: TimingAbbreviation defined by system (e.g. - BID | TID | QID | AM | PM | QD | QOD)
+                    properties:
+                      text:
+                        type: string
+                        minLength: 1
+                        description: Frequency of medication defined by system
+                  repeat:
+                    type: object
+                    properties:
+                      frequency:
+                        type: number
+                        minimum: 1
+                        description: Event occurs frequency times per period
+                      period:
+                        type: number
+                        minimum: 1
+                        description: Event occurs frequency times per period
+                      periodUnit:
+                        type: string
+                        minLength: 1
+                        description: Unit of time (second, minute, hour, day, week, month, year)
+              doseAndRate:
+                type: array
+                description: Amount of medication administered
+                items:
+                  type: object
+                  properties:
+                    doseQuantity:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                          minimum: 1
+                          description: Amount of medication per dose
+                        unit:
+                          type: string
+                          minLength: 1
+                          description: Unit defined by the system
+                        system:
+                          type: string
+                          minLength: 1
+                          description: Code system for the unit (e.g. http://unitsofmeasure.org)
+                        code:
+                          type: string
+                          minLength: 1
+                          description: UCUM code for the unit
+            required:
+            - text
+            - timing
+            - doseAndRate
+        dispenseRequest:
+          type: object
+          description: Medication supply authorization
+          properties:
+            numberOfRepeatsAllowed:
+              type: integer
+              minimum: 0
+              description: Number of refills authorized - non-negative repeat number
+            quantity:
+              type: object
+              description: Amount of medication to supply per dispense
+              properties:
+                value:
+                  type: number
+                  format: decimal
+                  description: Quantity value
+                unit:
+                  type: string
+                  minLength: 1
+                  description: Unit of measurement (e.g., mg, mL, unit)
+                system:
+                  type: string
+                  minLength: 1
+                  description: The system that defines the coded unit
+                code:
+                  type: string
+                  minLength: 1
+                  description: UCUM code
+              required:
+              - value
+              - unit
+              - system
+              - code
+          required:
+          - numberOfRepeatsAllowed
+          - quantity
+      required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - intent
+      - category
+      - reportedBoolean
+      - medicationCodableConcept
+      - subject
+      - encounter
+      - authoredOn
+      - reasonCode
+      - requester
+      - dosageInstruction
+      - dispenseRequest
+    MedicationRequestBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+          required:
+          - lastUpdated
+        type:
+          type: string
+          minLength: 1
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationRequests in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective observation resource in entry
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationRequest'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    mr_status:
+      description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    mr_intent:
+      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
+      name: intent
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

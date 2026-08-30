@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Practitioner API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Practitioner
+  description: https://hl7.org/fhir/R4/practitioner.html
+paths:
+  /fhir/r4/Practitioner/{id}:
+    get:
+      tags:
+      - Practitioner
+      description: "Fetches a Practitioner by id. Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.  \n \n FHIR Resource: Practitioner \n *\tPractitioner \n \n FHIR Resource: Location \n * Location \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Practitioner'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
+  schemas:
+    Practitioner:
+      type: object
+      properties:
+        responseType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        identifier:
+          description: An identifier for the person as this agent
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                minLength: 1
+                description: The namespace for the identifier value
+              value:
+                type: string
+                minLength: 1
+                description: The value that is unique
+            required:
+            - system
+            - value
+        name:
+          type: array
+          description: The name(s) associated with the practitioner
+          items:
+            type: object
+            properties:
+              family:
+                type: string
+                description: Family name (often called 'Surname')
+              given:
+                type: array
+                description: Given names (not always 'first'). Includes middle names
+                items:
+                  type: string
+            required:
+            - family
+        active:
+          type: boolean
+          description: Whether this practitioner's record is in active use
+        address:
+          type: array
+          description: Address(es) of the practitioner that are not role specific (typically home address)
+          items:
+            type: object
+            properties:
+              line:
+                type: array
+                description: Street name, number, direction & P.O. Box etc.
+                items:
+                  type: string
+              city:
+                type: string
+                description: Name of city, town etc.
+              state:
+                type: string
+                description: Sub-unit of country
+              postalCode:
+                type: string
+                description: Postal code for area
+            required:
+            - city
+            - state
+            - postalCode
+      required:
+      - responseType
+      - id
+      - meta
+      - identifier
+      - name
+      - active
+      - address
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

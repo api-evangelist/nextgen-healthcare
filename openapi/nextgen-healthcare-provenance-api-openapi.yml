@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Provenance API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Provenance
+  description: https://hl7.org/fhir/R4/provenance.html
+paths:
+  /fhir/r4/Provenance/{id}:
+    get:
+      tags:
+      - Provenance
+      description: "Fetches Provenance by id. Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource.  \n \n FHIR Resource: Provenance.recorded \n *\tAuthor Time Stamp \n \n FHIR Resource: Provenance.agent \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provenance'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  schemas:
+    Provenance:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+        target:
+          type: array
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+                minLength: 1
+                description: Target Reference with prefix value PTP with hyphen.Example PTP-123
+        recorded:
+          type: string
+          format: date-time
+        agent:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                          minLength: 1
+                          description: Symbol in syntax defined by the system
+                        code:
+                          type: string
+                          minLength: 1
+                          description: Symbol in syntax defined by the system
+                        display:
+                          type: string
+                          minLength: 1
+                          description: Representation defined by the system
+                  text:
+                    type: string
+                    minLength: 1
+                    description: Plain text representation of the concept
+              who:
+                type: object
+                properties:
+                  reference:
+                    type: string
+              onBehalfOf:
+                type: object
+                properties:
+                  reference:
+                    type: string
+      required:
+      - id
+      - resourceType
+      - meta
+      - target
+      - recorded
+      - agent
+      - type
+      - who
+      - onBehalfOf
+      - display
+      - system
+      - code
+      - coding
+      - text
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

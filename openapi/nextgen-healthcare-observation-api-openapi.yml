@@ -1,0 +1,339 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Observation API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Observation
+  description: https://hl7.org/fhir/R4/observation.html
+paths:
+  /fhir/r4/Observation/{id}:
+    get:
+      tags:
+      - Observation
+      description: "Fetches a single observation by id. \n \n FHIR Resource: Observation  \n *\tDiastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tSystolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tBody Height - Body height (FHIR Core Profile) \n *\tBody Weight - Body weight (FHIR Core Profile) \n *\tHeart Rate - Heart rate (FHIR Core Profile) \n *\tRespiratory Rate - Body temperature (FHIR Core Profile) \n *\tBody Temperature - Body temperature (FHIR Core Profile) \n *\tPulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tInhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tBMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n *\tWeight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n *\tOccipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n *   Smoking Status \n *   Sexual Orientation \n *   Occupation"
+      parameters:
+      - $ref: '#/components/parameters/observation_id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Observation'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/Observation:
+    get:
+      tags:
+      - Observation
+      description: "Fetches a bundled resource containing the observations. for the patient mentioned in the request. \n \n FHIR Resource: Observation  \n *\tDiastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tSystolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tBody Height - Body height (FHIR Core Profile) \n *\tBody Weight - Body weight (FHIR Core Profile) \n *\tHeart Rate - Heart rate (FHIR Core Profile) \n *\tRespiratory Rate - Body temperature (FHIR Core Profile) \n *\tBody Temperature - Body temperature (FHIR Core Profile) \n *\tPulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tInhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tBMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n *\tWeight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n *\tOccipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n *   Smoking Status \n *   Sexual Orientation \n *   Occupation"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/observation_code'
+      - $ref: '#/components/parameters/observation_category'
+      - $ref: '#/components/parameters/date'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  schemas:
+    Observation:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+            div:
+              type: string
+          required:
+          - text
+        status:
+          type: string
+          minLength: 1
+        category:
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Representation defined by the system
+                  required:
+                  - display
+                  - system
+                  description: Code defined by a terminology system
+              text:
+                type: string
+                minLength: 1
+                description: Plain text representation of the concept
+            required:
+            - coding
+            - text
+        code:
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Representation defined by the system
+                  required:
+                  - display
+                  - system
+                  description: Code defined by a terminology system
+              text:
+                type: string
+                minLength: 1
+                description: Plain text representation of the concept
+            required:
+            - coding
+            - text
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+          required:
+          - subject
+        effectiveDateTime:
+          type: string
+          format: date-time
+        issued:
+          type: string
+          format: date-time
+        valueCodeableConcept:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                - display
+                - system
+              description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+          - coding
+          - text
+        interpretation:
+          type: object
+          description: Codes identifying interpretations of observations. See "http://hl7.org/fhir/ValueSet/observation-interpretation"
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+      required:
+      - resourceType
+      - id
+      - meta
+      - text
+      - status
+      - category
+      - code
+      - subject
+      - effectiveDateTime
+      - issued
+      - valueCodeableConcept
+    ObservationBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+          required:
+          - meta
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of Consitions in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective observation resource in entry
+              url:
+                type: string
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective Condition resource in entry
+              resource:
+                $ref: '#/components/schemas/Observation'
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+  parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    observation_code:
+      description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
+      name: code
+      in: query
+      required: false
+      schema:
+        type: string
+    observation_category:
+      description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
+      name: category
+      in: query
+      required: false
+      schema:
+        type: string
+    observation_id:
+      description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

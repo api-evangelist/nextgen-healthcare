@@ -1,0 +1,59 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office BulK FHIR Patient Search API
+  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) \n\n https://hl7.org/fhir/us/core/STU4/ \n\n Note: This document is only for referring Bulk FHIR API."
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+  description: FHIR Base URL
+tags:
+- name: Patient Search
+paths:
+  /bulkfhir/r4/$patient-search:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Search Patients
+      operationId: searchPatients
+      tags:
+      - Patient Search
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: string
+          example: 1
+      - name: encDate
+        in: query
+        schema:
+          type: string
+          example: ge2025-01-01
+      - name: patientChartNo
+        in: query
+        schema:
+          type: string
+          example: HF12345
+      responses:
+        '200':
+          description: Successful retrieval of patients
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized operation
+        '403':
+          description: Forbidden operation
+        '404':
+          description: No patients found
+        5XX:
+          description: Unexpected error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

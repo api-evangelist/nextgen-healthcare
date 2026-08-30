@@ -1,0 +1,378 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Document Reference API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: DocumentReference
+  description: https://hl7.org/fhir/R4/documentreference.html
+paths:
+  /fhir/r4/DocumentReference/{id}:
+    get:
+      tags:
+      - DocumentReference
+      description: "Fetches a single Document Reference. A reference to a document of any kind for any purpose. Provides metadata about the document so that the document can be discovered and managed. \n \n FHIR Resource: DocumentReference \n  \n *\tConsultation Note \n *\tDischarge Summary Note \n *\tHistory & Physical \n *\tProgress Note \n  \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentReferenceBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/DocumentReference:
+    get:
+      tags:
+      - DocumentReference
+      description: "Fetches a bundled resource containing the valid Document References for the patient mentioned in the request. \n \n FHIR Resource: DocumentReference \n  \n *\tConsultation Note \n *\tDischarge Summary Note \n *\tHistory & Physical \n *\tProgress Note \n  \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note"
+      parameters:
+      - $ref: '#/components/parameters/_id'
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/doc_ref_type'
+      - $ref: '#/components/parameters/doc_ref_category'
+      - $ref: '#/components/parameters/doc_ref_date'
+      - $ref: '#/components/parameters/doc_ref_status'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentReferenceBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    doc_ref_date:
+      description: When this document reference was created.A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/search.html#date.
+      name: date
+      in: query
+      required: false
+      schema:
+        type: string
+    doc_ref_type:
+      description: Kind of document (LOINC if possible). See http://hl7.org/fhir/R4/valueset-c80-doc-typecodes.html
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    doc_ref_status:
+      description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
+    doc_ref_category:
+      description: Categorization of document. Only clinical-note category supported. See http://hl7.org/fhir/R4/valueset-document-classcodes.html
+      name: category
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    DocumentReferenceBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              minLength: 1
+        type:
+          type: string
+          minLength: 1
+        total:
+          type: integer
+          description: number of document reference record
+        link:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+          - relation
+          - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective Condition resource in entry
+              resource:
+                $ref: '#/components/schemas/DocumentReference'
+    DocumentReference:
+      type: object
+      description: A reference to a document
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        identifier:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                minLength: 1
+                description: the value that is unique
+          description: an identifier for a DocumentReference
+        status:
+          type: string
+          minLength: 1
+        type:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                - display
+                - system
+              description: Code defined by a terminology system
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+          - coding
+          - text
+        category:
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Representation defined by the system
+                  required:
+                  - display
+                  - system
+                description: Code defined by a terminology system
+              text:
+                type: string
+                minLength: 1
+                description: Plain text representation of the concept
+            required:
+            - coding
+            - text
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+            display:
+              type: string
+              minLength: 1
+              description: Text alternative for the resource
+          required:
+          - reference
+        date:
+          type: string
+          minLength: 1
+        author:
+          type: array
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+                minLength: 1
+                description: Literal reference, Relative, internal or absolute URL
+              display:
+                type: string
+                minLength: 1
+                description: Text alternative for the resource
+            required:
+            - reference
+        custodian:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+            display:
+              type: string
+              minLength: 1
+              description: Text alternative for the resource
+          required:
+          - reference
+        content:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment:
+                type: object
+                properties:
+                  contentType:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: string
+                    minLength: 0
+              format:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                    minLength: 1
+                    description: Symbol in syntax defined by the system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+              context:
+                type: object
+                properties:
+                  encounter:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        reference:
+                          type: string
+                          minLength: 1
+                          description: Literal reference, Relative, internal or absolute URL
+                        display:
+                          type: string
+                          minLength: 1
+                          description: Text alternative for the resource
+                      required:
+                      - reference
+                  period:
+                    type: object
+                    description: Time of service that is being documented
+                    properties:
+                      start:
+                        type: string
+                        minLength: 1
+                        description: Starting time with inclusive boundary
+                      end:
+                        type: string
+                        minLength: 1
+                        description: End time with inclusive boundary, if not ongoing
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

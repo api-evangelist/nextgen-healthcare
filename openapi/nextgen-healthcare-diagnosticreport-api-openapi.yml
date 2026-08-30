@@ -1,0 +1,326 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Diagnostic Report API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: DiagnosticReport
+  description: https://hl7.org/fhir/R4/diagnosticreport.html
+paths:
+  /fhir/r4/DiagnosticReport/{id}:
+    get:
+      tags:
+      - DiagnosticReport
+      description: "Fetches a single lab or radiology result by id. The observations contained in the resource.  \n \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note \n \n FHIR Resource: Observation, DiagnosticReport \n *\tTests \n *\tValues/Results \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiagnosticReport'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/DiagnosticReport:
+    get:
+      tags:
+      - DiagnosticReport
+      description: "Fetches a bundled resource containing all the lab or radiology results for the patient mentioned in the request. The observations contained in the resource.  \n \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note \n \n FHIR Resource: Observation, DiagnosticReport \n *\tTests \n *\tValues/Results \n"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/date'
+      - $ref: '#/components/parameters/dr_category'
+      - $ref: '#/components/parameters/dr_code'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiagnosticReportBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  schemas:
+    DiagnosticReportBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+          required:
+          - lastUpdated
+        type:
+          type: string
+          minLength: 1
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of DiagnosticReports in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective observation resource in entry
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/DiagnosticReport'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
+    DiagnosticReport:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+            profile:
+              type: array
+              items:
+                type: string
+                description: Profiles this resource claims to conform to
+                minLength: 1
+        status:
+          type: string
+          minLength: 1
+          description: registered | partial | preliminary | final +
+        category:
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      minLength: 1
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Symbol in syntax defined by the system
+                    display:
+                      type: string
+                      minLength: 1
+                      description: Representation defined by the system
+                  required:
+                  - display
+                  - system
+                  description: Code defined by a terminology system
+              text:
+                type: string
+                minLength: 1
+                description: Plain text representation of the concept
+            required:
+            - coding
+            - text
+        code:
+          type: object
+          description: Code that identifies the allergy or intolerance
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+        encounter:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: Literal reference, Relative, internal or absolute URL
+            display:
+              type: string
+              minLength: 1
+              description: Representation defined by the system
+          required:
+          - reference
+          - display
+        effectiveDateTime:
+          type: string
+          minLength: 1
+        issued:
+          type: string
+          minLength: 1
+          description: DateTime this version was made
+        performer:
+          type: array
+          items:
+            type: object
+            description: Responsible Diagnostic Service
+            properties:
+              reference:
+                type: string
+                minLength: 1
+                description: Literal reference, Relative, internal or absolute URL
+              display:
+                type: string
+                minLength: 1
+                description: Representation defined by the system
+            required:
+            - reference
+            - display
+        presentedForm:
+          type: array
+          items:
+            type: object
+            description: Entire report as issued
+            properties:
+              contentType:
+                type: string
+                minLength: 1
+                description: Mime type of the content, with charset etc.
+              data:
+                type: string
+                minLength: 1
+                description: Data inline, base64ed
+            required:
+            - contentType
+            - data
+      required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - category
+      - code
+      - subject
+      - encounter
+      - effectiveDateTime
+      - issued
+      - performer
+      - presentedForm
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    dr_category:
+      description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+      name: category
+      in: query
+      required: false
+      schema:
+        type: string
+    dr_code:
+      description: The code for the report, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+      name: code
+      in: query
+      required: false
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

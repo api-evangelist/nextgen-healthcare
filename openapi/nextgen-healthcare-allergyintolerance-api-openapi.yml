@@ -1,0 +1,269 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Allergy Intolerance API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: AllergyIntolerance
+  description: https://hl7.org/fhir/R4/allergyintolerance.html
+paths:
+  /fhir/r4/AllergyIntolerance/{id}:
+    get:
+      tags:
+      - AllergyIntolerance
+      description: "Fetches a single allergy/intolerance record by id. Allergy codes are mapped to RxNorm codes. \n \n FHIR Resource: AllergyIntolerance \n *\tSubstance (Drug Class) \n *\tSubstance (Medication) \n *\tReaction"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllergyIntolerance'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/AllergyIntolerance:
+    get:
+      tags:
+      - AllergyIntolerance
+      description: "Fetches a bundled resource containing the allergy/intolerance records for the patient mentioned in the request. Allergy codes are mapped to RxNorm codes.  \n \n FHIR Resource: AllergyIntolerance \n *\tSubstance (Drug Class) \n *\tSubstance (Medication) \n *\tReaction"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/date'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllergyIntoleranceBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    AllergyIntoleranceBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of allergy intolerance record in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective allergyintolerance resource in entry
+              resource:
+                $ref: '#/components/schemas/AllergyIntolerance'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+    AllergyIntolerance:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            profile:
+              type: string
+        clinicalStatus:
+          type: object
+          description: active | inactive | resolved
+          properties:
+            coding:
+              type: array
+              description: Code defined by a terminology system
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        verificationStatus:
+          type: object
+          description: unconfirmed | confirmed | refuted | entered-in-error
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        code:
+          type: object
+          description: Code that identifies the allergy or intolerance
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    description: Identity of the terminology system
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        patient:
+          type: object
+          description: Who the sensitivity is for
+          properties:
+            reference:
+              type: string
+        recordedDate:
+          type: string
+          description: Date first version of the resource instance was recorded
+        reaction:
+          type: array
+          description: Adverse Reaction Events linked to exposure to substance
+          items:
+            type: object
+            properties:
+              manifestation:
+                type: array
+                description: Clinical symptoms/signs associated with the Event
+                items:
+                  type: object
+                  properties:
+                    coding:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          system:
+                            type: string
+                            description: Identity of the terminology system
+                          code:
+                            type: string
+                          display:
+                            type: string
+                    text:
+                      type: string
+              onset:
+                type: string
+                description: Date(/time) when manifestations showed
+              severity:
+                type: string
+                description: mild | moderate | severe (of event as a whole)
+          required:
+          - manifestation
+          - severity
+      required:
+      - verificationStatus
+      - resourceType
+      - id
+      - meta
+      - clinicalStatus
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

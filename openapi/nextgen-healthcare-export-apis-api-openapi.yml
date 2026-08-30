@@ -1,0 +1,159 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office BulK FHIR Export APIs API
+  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) \n\n https://hl7.org/fhir/us/core/STU4/ \n\n Note: This document is only for referring Bulk FHIR API."
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+  description: FHIR Base URL
+tags:
+- name: Export APIs
+paths:
+  /bulkfhir/r4/Group/{id}/$export:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Group Export
+      operationId: groupExport
+      tags:
+      - Export APIs
+      description: FHIR Operation to obtain a detailed set of FHIR resources of diverse resource types pertaining to all patients in specified Group.
+      parameters:
+      - $ref: '#/components/parameters/_GroupID'
+      - in: header
+        name: Prefer
+        required: true
+        schema:
+          type: string
+          example: respond-async
+      responses:
+        '202':
+          description: Accepted
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+        '429':
+          $ref: '#/components/responses/TooManyRequests429'
+        5XX:
+          description: Unexpected error
+  /bulkfhir/r4/$export-poll-status:
+    get:
+      security:
+      - bearerAuth: []
+      summary: Poll Job Status
+      operationId: pollJobStatus
+      tags:
+      - Export APIs
+      description: After a bulk data request has been started, the client MAY poll the status URL provided in the Content-Location header.
+      parameters:
+      - $ref: '#/components/parameters/_jobId'
+      responses:
+        '200':
+          description: Export Completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkDataStatusResponse'
+        '202':
+          description: Export in Progress
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+        5XX:
+          description: Unexpected error
+    delete:
+      security:
+      - bearerAuth: []
+      summary: Delete Job
+      operationId: deleteJob
+      tags:
+      - Export APIs
+      description: After a bulk data request has been started, a client MAY send a delete request to the URL provided in the Content-Location header to cancel the request.
+      parameters:
+      - $ref: '#/components/parameters/_jobId'
+      responses:
+        '202':
+          description: Accepted
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+        5XX:
+          description: Unexpected error
+components:
+  parameters:
+    _GroupID:
+      description: The id of the group
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 09208d49-32ca-45f5-a595-b1df2412543d
+    _jobId:
+      description: The id of the resource
+      name: _jobId
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 123456
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    TooManyRequests429:
+      description: Too Many Requests
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  schemas:
+    BulkDataStatusResponse:
+      type: object
+      properties:
+        transactionTime:
+          type: string
+          minLength: 1
+        request:
+          type: string
+          minLength: 1
+          description: id of the resource
+        requiresAccessToken:
+          type: boolean
+          example: false
+        output:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                minLength: 1
+                description: The FHIR resource type that is contained in the file.
+              url:
+                type: string
+                minLength: 1
+                description: The path to the file.
+        error:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                minLength: 1
+                description: The FHIR resource type that is contained in the file.
+              url:
+                type: string
+                minLength: 1
+                description: The path to the file.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

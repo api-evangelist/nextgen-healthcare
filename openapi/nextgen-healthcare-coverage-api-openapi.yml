@@ -1,0 +1,271 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Coverage API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Coverage
+  description: https://hl7.org/fhir/R4/coverage.html
+paths:
+  /fhir/r4/Coverage/{id}:
+    get:
+      tags:
+      - Coverage
+      description: "Fetches a Coverage by id.  \n \n FHIR Resource: Coverage \n * Coverage resource represents insurance coverage details for a patient \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Coverage'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/Coverage:
+    get:
+      tags:
+      - Coverage
+      description: "Fetches a bundled resource containing Coverage data based on the provided parameters.\n\n - If `patient` is provided, a bundle containing the coverages is returned.\n\n FHIR Resource: Coverage \n * Coverage resource represents insurance coverage details for a patient \n"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoverageBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    Coverage:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: Coverage
+        id:
+          type: string
+          minLength: 1
+          description: ID of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        identifier:
+          type: array
+          description: Business identifier for the coverage
+          items:
+            type: object
+            properties:
+              type:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                        code:
+                          type: string
+              value:
+                type: string
+        status:
+          type: string
+          description: Status of the coverage (e.g., active)
+        type:
+          type: object
+          description: Type of coverage (e.g., PPO, HMO)
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        subscriberId:
+          type: string
+          description: Identifier of the subscriber
+        beneficiary:
+          type: object
+          description: Patient covered by the policy
+          properties:
+            reference:
+              type: string
+        relationship:
+          type: object
+          description: Relationship of beneficiary to subscriber
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+            text:
+              type: string
+        payor:
+          type: array
+          description: Payor responsible for the coverage
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+        class:
+          type: array
+          description: Plan or group classification
+          items:
+            type: object
+            properties:
+              type:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                        code:
+                          type: string
+              value:
+                type: string
+              name:
+                type: string
+        period:
+          type: object
+          description: Coverage period
+          properties:
+            start:
+              type: string
+            end:
+              type: string
+      required:
+      - resourceType
+      - id
+      - meta
+      - beneficiary
+      - payor
+    CoverageBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: Bundle
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          description: Type of search
+        total:
+          type: integer
+          description: Number of Coverage records in entry
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: Relation to the resource
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of the respective Coverage resource
+              resource:
+                $ref: '#/components/schemas/Coverage'
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - link
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

@@ -1,0 +1,235 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Device API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Device
+  description: https://hl7.org/fhir/R4/device.html
+paths:
+  /fhir/r4/Device/{id}:
+    get:
+      tags:
+      - Device
+      description: "Fetches a single implantable device by id.  \n \n FHIR Resource: Device \n *\tUnique Device Identifier(s) for Patients� Implantable Device(s) \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/Device:
+    get:
+      tags:
+      - Device
+      description: "Fetches a bundled resource containing all the implantable devices for the patient mentioned in the request.  \n \n FHIR Resource: Device \n *\tUnique Device Identifier(s) for Patients� Implantable Device(s) \n"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/date'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    DeviceBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        Meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of Devices in entry field
+        Link:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+              required:
+              - relation
+              - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective Device resource in entry
+              resource:
+                $ref: '#/components/schemas/Device'
+      required:
+      - resourceType
+      - id
+      - Meta
+      - type
+      - total
+      - link
+      - entry
+    Device:
+      type: object
+      properties:
+        responseType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        udiCarrier:
+          type: object
+          description: Unique Device Identifier (UDI) Barcode string
+          properties:
+            deviceIdentifier:
+              type: string
+              description: Mandatory fixed portion of UDI
+            issuer:
+              type: string
+              description: UDI Issuing Organization
+            carrierHRF:
+              type: string
+              description: UDI Human Readable Barcode String
+        status:
+          type: string
+          description: active | inactive | entered-in-error | unknown
+        distinctIdentifier:
+          type: string
+          description: The distinct identification string
+        manufacturer:
+          type: string
+          description: Name of device manufacturer
+        manufactureDate:
+          type: string
+          description: Date when the device was made
+        expirationDate:
+          type: string
+          description: Date and time of expiry of this device (if applicable)
+        lotNumber:
+          type: string
+          description: Lot number of manufacture
+        serialNumber:
+          type: string
+          description: Serial number assigned by the manufacturer
+        modelNumber:
+          type: string
+          description: The model number for the device
+        type:
+          type: object
+          description: The kind or type of device
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        version:
+          type: array
+          description: The actual design of the device or software version running on the device
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                description: The version text
+        patient:
+          type: object
+          description: Patient to whom Device is affixed
+          properties:
+            reference:
+              type: string
+      required:
+      - responseType
+      - id
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

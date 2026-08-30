@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Organization API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Organization
+  description: https://hl7.org/fhir/R4/organization.html
+paths:
+  /fhir/r4/Organization/{id}:
+    get:
+      tags:
+      - Organization
+      description: "Fetches an Organization by id. Organization is a formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  \n \n FHIR Resource: Organization \n *\tOrganization \n \n FHIR Resource: Location \n * Location \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  schemas:
+    Organization:
+      type: object
+      description: A grouping of people or organizations with a common purpose
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+        identifier:
+          type: array
+          description: Identifies this organization across multiple system
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                description: The namespace for the identifier value
+              value:
+                type: string
+                description: The value that is unique
+            required:
+            - system
+            - value
+        active:
+          type: boolean
+          description: Whether the organization's record is still in active use
+        name:
+          type: string
+          description: Name used for the organization
+        telecom:
+          type: array
+          description: A contact detail for the organization
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              use:
+                type: string
+        address:
+          type: array
+          description: An address for the organization
+          items:
+            type: object
+            properties:
+              line:
+                type: array
+                description: Street name, number, direction & P.O. Box etc.
+                items:
+                  type: string
+              city:
+                type: string
+                description: Name of city, town etc.
+              state:
+                type: string
+                description: Sub-unit of country (abbreviation)
+              postalcode:
+                type: string
+                description: Postal code for area
+              country:
+                type: string
+                description: Country (e.g. can be ISO 3166 2 or 3 letter code)
+      required:
+      - resourceType
+      - id
+      - meta
+      - identifier
+      - active
+      - name
+      - address
+      - telecom
+      - entry
+      - link
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

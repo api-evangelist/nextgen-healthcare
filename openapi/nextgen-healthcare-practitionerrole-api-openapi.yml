@@ -1,0 +1,251 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Practitioner Role API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: PractitionerRole
+  description: https://hl7.org/fhir/R4/practitionerrole.html
+paths:
+  /fhir/r4/PractitionerRole/{id}:
+    get:
+      tags:
+      - PractitionerRole
+      description: "Fetches a Practitioner Role by id.  \n \n FHIR Resource: PractitionerRole \n *\tPractitioner Role \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PractitionerRole'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/PractitionerRole:
+    get:
+      tags:
+      - PractitionerRole
+      description: "Fetches a bundled resource containing practitioner role data based on the provided parameters.\n\n - If `practitioner_id` is provided, a bundle containing a practitioner role is returned.\n\n FHIR Resource: PractitionerRole \n *\tPractitioner Role \n"
+      parameters:
+      - $ref: '#/components/parameters/practitioner_id'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PractitionerRoleBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  schemas:
+    PractitionerRole:
+      type: object
+      properties:
+        responseType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        identifier:
+          description: Business Identifiers that are specific to a role
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                minLength: 1
+                description: The namespace for the identifier value
+              value:
+                type: string
+                minLength: 1
+                description: The value that is unique
+            required:
+            - system
+            - value
+        organization:
+          type: object
+          description: Organization where the roles are available
+          properties:
+            reference:
+              type: string
+              description: Reference to Organization Resource
+            display:
+              type: string
+              description: Practice name
+        practitioner:
+          type: object
+          description: Practitioner that is able to provide the defined services for the organization
+          properties:
+            reference:
+              type: string
+              description: Reference to Practitioner Resource
+            display:
+              type: string
+              description: Practitioner name
+        location:
+          type: array
+          description: The location(s) at which this practitioner provides care
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+                description: Reference to Location Resource
+              display:
+                type: string
+                description: Location name
+        specialty:
+          type: array
+          description: Specific specialty of the practitioner
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              code:
+                type: string
+              display:
+                type: string
+        telecom:
+          type: array
+          description: Contact details that are specific to the role/location/service
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                description: phone | fax | email | pager | url | sms | other
+              value:
+                type: string
+                description: The actual contact point details
+              use:
+                type: string
+                description: home | work | temp | old | mobile - purpose of this contact point
+      required:
+      - id
+      - identifier
+      - responseType
+      - practitioner
+    PractitionerRoleBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          description: The id of the resource.
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of practitioner role in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+          required:
+          - relation
+          - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective practitioner role resource in entry
+              resource:
+                $ref: '#/components/schemas/PractitionerRole'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - total
+      - link
+      - entry
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    practitioner_id:
+      description: The id of the practitioner
+      name: practitioner
+      in: query
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

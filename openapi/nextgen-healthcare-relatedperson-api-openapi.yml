@@ -1,0 +1,253 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Related Person API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: RelatedPerson
+  description: https://hl7.org/fhir/R4/relatedperson.html
+paths:
+  /fhir/r4/RelatedPerson/{id}:
+    get:
+      tags:
+      - RelatedPerson
+      description: "Fetches a Related Person by id.  \n \n FHIR Resource: RelatedPerson \n *\tRelated Person \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatedPerson'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/RelatedPerson:
+    get:
+      tags:
+      - RelatedPerson
+      description: "Fetches a bundled resource containing RelatedPerson data based on the provided parameters.\n\n - If `patient_id` is provided, a bundle containing a related persons is returned.\n\n FHIR Resource: Related Person \n *\tRelated Person \n"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatedPersonBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  schemas:
+    RelatedPersonBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of Related Person record in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective RelatedPerson resource in entry
+              resource:
+                $ref: '#/components/schemas/RelatedPerson'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+    RelatedPerson:
+      type: object
+      properties:
+        responseType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        active:
+          type: boolean
+          description: Whether this related person's record is in active use
+        patient:
+          type: object
+          description: The patient this person is related to
+          properties:
+            reference:
+              type: string
+        relationship:
+          type: array
+          description: The nature of the relationship
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                    display:
+                      type: string
+              text:
+                type: string
+                minLength: 1
+        name:
+          type: array
+          description: A name associated with the person
+          items:
+            type: object
+            properties:
+              family:
+                type: string
+                description: Family name (often called 'Surname')
+              given:
+                type: array
+                description: Given names (not always 'first'). Includes middle names
+                items:
+                  type: string
+              use:
+                type: string
+                description: usual | official | temp | nickname | anonymous | old | maiden
+        telecom:
+          type: array
+          description: Contact details that are specific to the role/location/service
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                description: phone | fax | email | pager | url | sms | other
+              value:
+                type: string
+                description: The actual contact point details
+              use:
+                type: string
+                description: home | work | temp | old | mobile - purpose of this contact point
+        address:
+          type: array
+          description: Address where the related person can be contacted or visited
+          items:
+            type: object
+            properties:
+              line:
+                type: array
+                description: Street name, number, direction & P.O. Box etc.
+                items:
+                  type: string
+              city:
+                type: string
+                description: Name of city, town etc.
+              state:
+                type: string
+                description: Sub-unit of country
+              postalCode:
+                type: string
+                description: Postal code for area
+      required:
+      - responseType
+      - id
+      - meta
+      - active
+      - patient
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

@@ -1,0 +1,245 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Care Plan API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: CarePlan
+  description: https://hl7.org/fhir/R4/careplan.html
+paths:
+  /fhir/r4/CarePlan/{id}:
+    get:
+      tags:
+      - CarePlan
+      description: "Fetches a single plan of treatment(care plans, orders) and assessment note by id. \n \n FHIR Resource: CarePlan \n *\tAssessment and Plan of Treatment \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarePlan'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/CarePlan:
+    get:
+      tags:
+      - CarePlan
+      description: "Fetches a bundled resource containing plan of treatment(care plans, orders) and assessment notes for the patient mentioned in the request. \n \n FHIR Resource: CarePlan \n *\tAssessment and Plan of Treatment \n"
+      parameters:
+      - $ref: '#/components/parameters/patient_id'
+      - $ref: '#/components/parameters/date'
+      - $ref: '#/components/parameters/cp_category'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarePlanBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  schemas:
+    CarePlan:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: object
+                properties:
+                  profile:
+                    type: string
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+            div:
+              type: string
+        status:
+          type: string
+          description: draft | active | on-hold | revoked | completed | entered-in-error | unknown
+        intent:
+          type: string
+          description: proposal | plan | order | option
+        category:
+          type: array
+          description: describe the type of plan
+          items:
+            type: object
+            properties:
+              coding:
+                type: array
+                description: Code defined by a terminology system
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      description: Identity of the terminology system
+                    code:
+                      type: string
+                      description: Symbol in syntax defined by the system
+        subject:
+          type: object
+          description: Who the care plan is for
+          properties:
+            reference:
+              type: string
+        activity:
+          type: array
+          description: Action to occur as part of plan
+          items:
+            type: object
+            properties:
+              detail:
+                type: object
+                properties:
+                  code:
+                    type: object
+                    properties:
+                      coding:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            system:
+                              type: string
+                            code:
+                              type: string
+                            display:
+                              type: string
+                  status:
+                    type: string
+      required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - activity
+      - intent
+    CarePlanBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of careplan record in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective careplan resource in entry
+              resource:
+                $ref: '#/components/schemas/CarePlan'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    cp_category:
+      description: Type of plan. See http://hl7.org/fhir/R4/valueset-care-plan-category.html
+      name: category
+      in: query
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

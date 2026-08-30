@@ -1,0 +1,324 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Medication Administration API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: MedicationAdministration
+  description: https://hl7.org/fhir/R4/medicationadministration.html
+paths:
+  /fhir/r4/MedicationAdministration/{id}:
+    get:
+      tags:
+      - MedicationAdministration
+      description: "Fetches a single medication administration record by id. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationAdministration \n *\tMedications"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicationAdministration'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+  /fhir/r4/MedicationAdministration:
+    get:
+      tags:
+      - MedicationAdministration
+      description: "Fetches a bundled resource containing all the medication administration records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationAdministration \n *\tMedications"
+      parameters:
+      - $ref: '#/components/parameters/patient'
+      - $ref: '#/components/parameters/ma_status'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicationAdministrationBundled'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    ma_status:
+      description: Status of the medication administration. See http://hl7.org/fhir/R4/valueset-medication-admin-status.html
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    MedicationAdministration:
+      type: object
+      description: Administration of medication to a patient
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+          description: The type of the FHIR resource (should be 'MedicationAdministration')
+        id:
+          type: string
+          minLength: 1
+          description: The id of the resource
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            profile:
+              description: Profiles this resource claims to conform to
+              type: array
+              items:
+                type: string
+          required:
+          - profile
+        status:
+          type: string
+          minLength: 1
+          description: in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown
+        medicationCodeableConcept:
+          type: object
+          description: Coded form of the medication being administered (e.g., RxNorm)
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                    description: The identification of the code system (e.g., RxNorm)
+                  code:
+                    type: string
+                    minLength: 1
+                    description: The code itself from the code system
+                  display:
+                    type: string
+                    minLength: 1
+                    description: Representation defined by the system
+                required:
+                - system
+                - code
+                - display
+            text:
+              type: string
+              minLength: 1
+              description: Plain text representation of the concept
+          required:
+          - coding
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+              description: The patient to whom the medication was administered
+          required:
+          - reference
+        context:
+          type: object
+          description: Encounter associated with the administration
+          properties:
+            reference:
+              type: string
+              description: Reference to the Encounter resource
+        effectiveDateTime:
+          type: string
+          format: date-time
+          description: Start and end time of administration (may be dateTime or Period)
+        performer:
+          type: array
+          description: Who performed the administration
+          items:
+            type: object
+            properties:
+              actor:
+                type: object
+                properties:
+                  reference:
+                    type: string
+                    minLength: 1
+                    description: Reference to the performer resource (Practitioner)
+                required:
+                - reference
+            required:
+            - actor
+        request:
+          type: object
+          description: Back-reference to the originating MedicationRequest
+          properties:
+            reference:
+              type: string
+              description: Reference to the MedicationRequest resource
+        dosage:
+          type: object
+          description: Details of how medication was taken
+          properties:
+            text:
+              type: string
+              description: Free text dosage instructions e.g. SIG
+            route:
+              type: object
+              description: Path of substance into body
+              properties:
+                coding:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                        minLength: 1
+                        description: Code system for route (e.g., NCI Thesaurus)
+                      code:
+                        type: string
+                        minLength: 1
+                        description: Code for the route
+                      display:
+                        type: string
+                        minLength: 1
+                        description: Representation defined by the system
+                    required:
+                    - system
+                    - code
+                    - display
+            dose:
+              type: object
+              description: Amount of medication per dose
+              properties:
+                value:
+                  type: number
+                  description: Amount administered
+                unit:
+                  type: string
+                  minLength: 1
+                  description: Unit defined by the system
+                system:
+                  type: string
+                  minLength: 1
+                  description: Code system for the unit (e.g. http://unitsofmeasure.org)
+                code:
+                  type: string
+                  minLength: 1
+                  description: UCUM code for the unit
+              required:
+              - value
+              - unit
+              - system
+              - code
+      required:
+      - resourceType
+      - id
+      - meta
+      - status
+      - medicationCodeableConcept
+      - subject
+    MedicationAdministrationBundled:
+      type: object
+      description: A FHIR Bundle of MedicationAdministration resources
+      properties:
+        resourceType:
+          type: string
+          description: Always 'Bundle'
+        id:
+          type: string
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              description: When the bundle was last updated
+          required:
+          - lastUpdated
+        type:
+          type: string
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationAdministration in entry field
+        link:
+          type: array
+          description: Links related to this bundle
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                description: Relation type (e.g., self, next, previous)
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          description: Entries in the bundle (each is a MedicationAdministration resource)
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationAdministration'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - type
+      - entry
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

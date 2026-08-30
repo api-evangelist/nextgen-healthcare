@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office FHIR Location API
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0) https://hl7.org/fhir/us/core/CapabilityStatement-server.html'
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+security:
+- OauthSecurity:
+  - patient/*.read
+tags:
+- name: Location
+  description: https://hl7.org/fhir/R4/location.html
+paths:
+  /fhir/r4/Location/{id}:
+    get:
+      tags:
+      - Location
+      description: "Fetches Location by id. Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodated.  \n \n FHIR Resource: Location \n *\tLocation \n"
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          $ref: '#/components/responses/ResourceNotFound404'
+        '401':
+          $ref: '#/components/responses/ResourceNotAuthorized401'
+components:
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
+  schemas:
+    Location:
+      description: Details and position information for a physical place
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+        identifier:
+          type: array
+          description: Unique code or number identifying the location to its users
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                description: The namespace for the identifier value
+              value:
+                type: string
+                description: The value that is unique
+            required:
+            - system
+            - value
+        name:
+          type: string
+          description: Name of the location as used by humans
+        status:
+          type: string
+          description: active | suspended | inactive
+        managingOrganization:
+          type: object
+          description: Organization responsible for provisioning and upkeep
+          properties:
+            reference:
+              type: string
+              description: Reference to Organization Resource
+            display:
+              type: string
+              description: Practice name
+        address:
+          type: array
+          description: Physical location
+          items:
+            type: object
+            properties:
+              line:
+                type: array
+                description: Street name, number, direction & P.O. Box etc.
+                items:
+                  type: string
+              city:
+                type: string
+                description: Name of city, town etc.
+              state:
+                type: string
+                description: Sub-unit of country (abbreviations ok)
+              postalcode:
+                type: string
+                description: Postal code for area
+              country:
+                type: string
+                description: Country (e.g. can be ISO 3166 2 or 3 letter code)
+        telecom:
+          type: array
+          description: Contact details of the location
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+                description: phone | fax | email | pager | url | sms | other
+              value:
+                type: string
+                description: The actual contact point details
+              use:
+                type: string
+                description: home | work | temp | old | mobile - purpose of this contact point
+      required:
+      - resourceType
+      - id
+      - meta
+      - identifier
+      - name
+      - status
+      - managingOrganization
+      - address
+      - telecom
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            openid: Open ID scope
+            launch/patient: Used by clients to request a patient-scoped access token
+            offline_access: Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+            patient/*.read: Read access to all Patient Resources
+          authorizationUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth?aud=https://fhir.meditouchehr.com/api/fhir/r4
+          tokenUrl: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/token
+      description: Access code based oauth authentication
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office

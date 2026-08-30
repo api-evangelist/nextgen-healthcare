@@ -1,0 +1,197 @@
+openapi: 3.2.0
+info:
+  version: 1.0.0
+  title: NextGen Office BulK FHIR Group APIs API
+  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) \n\n https://hl7.org/fhir/us/core/STU4/ \n\n Note: This document is only for referring Bulk FHIR API."
+  contact:
+    email: nextgen-office-api@nextgen.com
+servers:
+- url: https://fhir.meditouchehr.com/api/
+  description: FHIR Base URL
+tags:
+- name: Group APIs
+paths:
+  /bulkfhir/r4/Group:
+    post:
+      security:
+      - bearerAuth: []
+      summary: Create Group
+      operationId: createGroup
+      tags:
+      - Group APIs
+      requestBody:
+        description: Request body for create Group API
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBulkFhirPatientGroup'
+      responses:
+        '201':
+          description: Group created successfully
+        '403':
+          description: Forbidden operation (e.g., maximum limit reached)
+        '422':
+          description: Unprocessable entity (e.g., invalid patient IDs)
+        5XX:
+          description: Unexpected error
+    get:
+      security:
+      - bearerAuth: []
+      summary: Retrieve all Groups
+      operationId: getAllGroups
+      tags:
+      - Group APIs
+      responses:
+        '200':
+          description: Groups retrieved successfully
+        '403':
+          description: Forbidden operation
+        '404':
+          description: No groups found
+        5XX:
+          description: Unexpected error
+  /bulkfhir/r4/Group/{id}:
+    put:
+      security:
+      - bearerAuth: []
+      summary: Update Group
+      operationId: updateGroup
+      tags:
+      - Group APIs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 09208d49-32ca-45f5-a595-b1df2412543d
+      requestBody:
+        description: Request body for create Group API
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBulkFhirPatientGroup'
+      responses:
+        '200':
+          description: Group updated successfully
+        '403':
+          description: Forbidden operation
+        '404':
+          description: Group not found
+        '422':
+          description: Unprocessable entity (e.g., invalid patient IDs)
+        5XX:
+          description: Unexpected error
+    delete:
+      security:
+      - bearerAuth: []
+      summary: Delete Group
+      operationId: deleteGroup
+      tags:
+      - Group APIs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 09208d49-32ca-45f5-a595-b1df2412543d
+      responses:
+        '200':
+          description: Group deleted successfully
+        '403':
+          description: Forbidden operation
+        '404':
+          description: Group not found
+        5XX:
+          description: Unexpected error
+    get:
+      security:
+      - bearerAuth: []
+      summary: Retrieve Group
+      operationId: getGroup
+      tags:
+      - Group APIs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 09208d49-32ca-45f5-a595-b1df2412543d
+      responses:
+        '200':
+          description: Group retrieved successfully
+        '401':
+          description: Unauthorized operation
+        '403':
+          description: Forbidden operation
+        '404':
+          description: Group not found
+        5XX:
+          description: Unexpected error
+components:
+  schemas:
+    UpdateBulkFhirPatientGroup:
+      type: object
+      required:
+      - resourceType
+      - id
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        patientIdsToInclude:
+          type: array
+          items:
+            type: string
+        patientIdsToExclude:
+          type: array
+          items:
+            type: string
+      example:
+        resourceType: Group
+        id: 09208d49-32ca-45f5-a595-b1df2412543d
+        name: Diabetes Patients with age greater than 50
+        patientIdsToInclude:
+        - '123457'
+        - '456789'
+        patientIdsToExclude:
+        - '878792'
+        - '885904'
+    CreateBulkFhirPatientGroup:
+      type: object
+      required:
+      - resourceType
+      - patientIds
+      properties:
+        resourceType:
+          type: string
+        name:
+          type: string
+        patientIds:
+          type: array
+          items:
+            type: string
+      example:
+        resourceType: Group
+        name: Diabetes Patients
+        patientIds:
+        - '878792'
+        - '885904'
+        - '966958'
+        - '1008774'
+        - '1023533'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Find out more about NextGen Office FHIR API
+  url: https://www.nextgen.com/products-and-services/nextgen-office
