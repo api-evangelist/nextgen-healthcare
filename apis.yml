@@ -212,54 +212,6 @@ apis:
     url: https://www.nextgen.com/solutions/interoperability/api-fhir
   - type: GitHub
     url: https://github.com/nextgenhealthcare/connect
-- aid: nextgen-healthcare:nextgen-healthcare-allergyintolerance-api
-  name: NextGen Healthcare Allergy Intolerance API
-  description: https://hl7.org/fhir/R4/allergyintolerance.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - AllergyIntolerance
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-allergyintolerance-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
-- aid: nextgen-healthcare:nextgen-healthcare-careplan-api
-  name: NextGen Healthcare Care Plan API
-  description: https://hl7.org/fhir/R4/careplan.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - CarePlan
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-careplan-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 - aid: nextgen-healthcare:nextgen-healthcare-careteam-api
   name: NextGen Healthcare Care Team API
   description: https://hl7.org/fhir/R4/careteam.html
@@ -392,30 +344,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/nextgen-healthcare-diagnosticreport-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
-- aid: nextgen-healthcare:nextgen-healthcare-documentreference-api
-  name: NextGen Healthcare Document Reference API
-  description: https://hl7.org/fhir/R4/documentreference.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - DocumentReference
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-documentreference-api-openapi.yml
   - type: CapabilityStatement
     url: fhir/nextgen-office-r4-capabilitystatement.json
   - type: SMARTConfiguration
@@ -574,30 +502,6 @@ apis:
   - type: APIReference
     url: >-
       https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
-- aid: nextgen-healthcare:nextgen-healthcare-medicationadministration-api
-  name: NextGen Healthcare Medication Administration API
-  description: https://hl7.org/fhir/R4/medicationadministration.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - MedicationAdministration
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-medicationadministration-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 - aid: nextgen-healthcare:nextgen-healthcare-medicationdispense-api
   name: NextGen Healthcare Medication Dispense API
   description: >-
@@ -609,30 +513,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/nextgen-healthcare-medicationdispense-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
-- aid: nextgen-healthcare:nextgen-healthcare-medicationrequest-api
-  name: NextGen Healthcare Medication Request API
-  description: https://hl7.org/fhir/R4/medicationrequest.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - MedicationRequest
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-medicationrequest-api-openapi.yml
   - type: CapabilityStatement
     url: fhir/nextgen-office-r4-capabilitystatement.json
   - type: SMARTConfiguration
@@ -767,30 +647,6 @@ apis:
   - type: APIReference
     url: >-
       https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
-- aid: nextgen-healthcare:nextgen-healthcare-practitionerrole-api
-  name: NextGen Healthcare Practitioner Role API
-  description: https://hl7.org/fhir/R4/practitionerrole.html
-  humanURL: https://www.nextgen.com/api/nge-fhir-r4
-  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
-  tags:
-  - PractitionerRole
-  properties:
-  - type: OpenAPI
-    url: openapi/nextgen-healthcare-practitionerrole-api-openapi.yml
-  - type: CapabilityStatement
-    url: fhir/nextgen-office-r4-capabilitystatement.json
-  - type: SMARTConfiguration
-    url: fhir/nextgen-office-r4-smart-configuration.json
-  - type: OpenIDConfiguration
-    url: fhir/nextgen-office-openid-configuration.json
-  - type: Documentation
-    url: https://www.nextgen.com/api/regulatory-ngo
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
-  - type: APIReference
-    url: >-
-      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 - aid: nextgen-healthcare:nextgen-healthcare-procedure-api
   name: NextGen Healthcare Procedure API
   description: https://hl7.org/fhir/R4/procedure.html
@@ -873,6 +729,150 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/nextgen-healthcare-specimen-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-allergy-intolerance-api
+  name: NextGen Healthcare Allergy Intolerance API
+  description: https://hl7.org/fhir/R4/allergyintolerance.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Allergy Intolerance
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-care-plan-api
+  name: NextGen Healthcare Care plan API
+  description: https://hl7.org/fhir/R4/careplan.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Care plan
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-care-plan-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-document-reference-api
+  name: NextGen Healthcare Document Reference API
+  description: https://hl7.org/fhir/R4/documentreference.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Document Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-document-reference-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-medication-administration-api
+  name: NextGen Healthcare Medication Administration API
+  description: https://hl7.org/fhir/R4/medicationadministration.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Medication Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-medication-administration-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-medication-request-api
+  name: NextGen Healthcare Medication Request API
+  description: https://hl7.org/fhir/R4/medicationrequest.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Medication Request
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-medication-request-api-openapi.yml
+  - type: CapabilityStatement
+    url: fhir/nextgen-office-r4-capabilitystatement.json
+  - type: SMARTConfiguration
+    url: fhir/nextgen-office-r4-smart-configuration.json
+  - type: OpenIDConfiguration
+    url: fhir/nextgen-office-openid-configuration.json
+  - type: Documentation
+    url: https://www.nextgen.com/api/regulatory-ngo
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+  - type: APIReference
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+- aid: nextgen-healthcare:nextgen-healthcare-practitioner-role-api
+  name: NextGen Healthcare Practitioner Role API
+  description: https://hl7.org/fhir/R4/practitionerrole.html
+  humanURL: https://www.nextgen.com/api/nge-fhir-r4
+  baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
+  tags:
+  - Practitioner Role
+  properties:
+  - type: OpenAPI
+    url: openapi/nextgen-healthcare-practitioner-role-api-openapi.yml
   - type: CapabilityStatement
     url: fhir/nextgen-office-r4-capabilitystatement.json
   - type: SMARTConfiguration
