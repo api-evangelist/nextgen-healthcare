@@ -11,8 +11,19 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 6
 edges:
+- tag: MedicationAdministration
+  spec_file: nextgen-healthcare-medication-administration-api-openapi.yml
+  capability_id: BC-2850.40
+  capability_id_l1: BC-2850
+  capability_name: Medication Administration & Reconciliation
+  confidence: 0.78
+  evidence: 'GET /fhir/r4/MedicationAdministration; schemas: MedicationAdministration, MedicationAdministrationBundled'
+  reason: The resource records medications actually administered to the patient, which maps directly to
+    medication administration and reconciliation within pharmacy and medication management.
+  recovered_from: healthcare-vertical-edges.json
+  reanchored_from: nextgen-healthcare-medicationadministration-api-openapi.yml
 - tag: Specimen
   spec_file: nextgen-healthcare-specimen-api-openapi.yml
   capability_id: BC-2860.10
@@ -42,3 +53,25 @@ edges:
   evidence: 'GET /ccda — "coded against the US Core Specification (FHIR Version: 4.0.0)"'
   reason: C-CDA document retrieval endpoint is a Cures-Act interoperability artefact for exchanging summary
     records with other providers/patients — healthcare interoperability operations.
+- tag: DiagnosticReport
+  spec_file: nextgen-healthcare-diagnosticreport-api-openapi.yml
+  capability_id: BC-2860.60
+  capability_id_l1: BC-2860
+  capability_name: Diagnostic Results Management
+  confidence: 0.7
+  evidence: GET /fhir/r4/DiagnosticReport — schemas DiagnosticReport, DiagnosticReportBundled
+  reason: FHIR DiagnosticReport exposes lab and imaging report results for distribution to consuming systems,
+    matching diagnostic results management. Read-only access adds some ambiguity versus results review
+    in documentation.
+  recovered_from: healthcare-vertical-edges.json
+- tag: MedicationDispense
+  spec_file: nextgen-healthcare-medicationdispense-api-openapi.yml
+  capability_id: BC-2850
+  capability_id_l1: BC-2850
+  capability_name: Pharmacy & Medication Management
+  confidence: 0.7
+  evidence: 'GET /fhir/r4/MedicationDispense; schemas: MedicationDispense, MedicationDispenseBundled'
+  reason: MedicationDispense records pharmacy dispensing events, clearly pharmacy and medication management;
+    L2 withheld because an ambulatory EHR read endpoint does not distinguish inpatient from outpatient/specialty
+    pharmacy operations.
+  recovered_from: healthcare-vertical-edges.json
