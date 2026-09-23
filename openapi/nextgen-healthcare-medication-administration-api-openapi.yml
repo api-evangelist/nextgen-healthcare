@@ -11,14 +11,19 @@ security:
 - OauthSecurity:
   - patient/*.read
 tags:
-- name: MedicationAdministration
+- name: Medication Administration
   description: https://hl7.org/fhir/R4/medicationadministration.html
 paths:
   /fhir/r4/MedicationAdministration/{id}:
     get:
       tags:
-      - MedicationAdministration
-      description: "Fetches a single medication administration record by id. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationAdministration \n *\tMedications"
+      - Medication Administration
+      description: 'Fetches a single medication administration record by id. Medications are mapped to RxNorm codes.
+
+
+        FHIR Resource: MedicationAdministration
+
+        * Medications'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,20 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication administration by id
+      x-summary-source: derived
+      operationId: getFhirR4MedicationAdministrationById
+      x-operation-id-source: derived
   /fhir/r4/MedicationAdministration:
     get:
       tags:
-      - MedicationAdministration
-      description: "Fetches a bundled resource containing all the medication administration records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationAdministration \n *\tMedications"
+      - Medication Administration
+      description: 'Fetches a bundled resource containing all the medication administration records for the patient mentioned in the request. Medications are mapped to RxNorm codes.
+
+
+        FHIR Resource: MedicationAdministration
+
+        * Medications'
       parameters:
       - $ref: '#/components/parameters/patient'
       - $ref: '#/components/parameters/ma_status'
@@ -51,25 +65,24 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication administration
+      x-summary-source: derived
+      operationId: getFhirR4MedicationAdministration
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
     ma_status:
       description: Status of the medication administration. See http://hl7.org/fhir/R4/valueset-medication-admin-status.html
       name: status
       in: query
       required: false
+      schema:
+        type: string
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
       schema:
         type: string
     id:
@@ -80,6 +93,67 @@ components:
       schema:
         type: string
   schemas:
+    MedicationAdministrationBundled:
+      type: object
+      description: A FHIR Bundle of MedicationAdministration resources
+      properties:
+        resourceType:
+          type: string
+          description: Always 'Bundle'
+        id:
+          type: string
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              description: When the bundle was last updated
+          required:
+          - lastUpdated
+        type:
+          type: string
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationAdministration in entry field
+        link:
+          type: array
+          description: Links related to this bundle
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                description: Relation type (e.g., self, next, previous)
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          description: Entries in the bundle (each is a MedicationAdministration resource)
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationAdministration'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - type
+      - entry
     MedicationAdministration:
       type: object
       description: Administration of medication to a patient
@@ -245,67 +319,11 @@ components:
       - status
       - medicationCodeableConcept
       - subject
-    MedicationAdministrationBundled:
-      type: object
-      description: A FHIR Bundle of MedicationAdministration resources
-      properties:
-        resourceType:
-          type: string
-          description: Always 'Bundle'
-        id:
-          type: string
-          description: Persistent identifier for the bundle
-        meta:
-          type: object
-          description: Metadata about the resource
-          properties:
-            lastUpdated:
-              type: string
-              format: date-time
-              description: When the bundle was last updated
-          required:
-          - lastUpdated
-        type:
-          type: string
-          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
-        total:
-          type: integer
-          description: Number of MedicationAdministration in entry field
-        link:
-          type: array
-          description: Links related to this bundle
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                description: Relation type (e.g., self, next, previous)
-              url:
-                type: string
-                minLength: 1
-                description: Reference details for the link
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          description: Entries in the bundle (each is a MedicationAdministration resource)
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: URI for resource (Absolute URL server address or URI for UUID/OID)
-              resource:
-                $ref: '#/components/schemas/MedicationAdministration'
-            required:
-            - fullUrl
-            - resource
-      required:
-      - resourceType
-      - type
-      - entry
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

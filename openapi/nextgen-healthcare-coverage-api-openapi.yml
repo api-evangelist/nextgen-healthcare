@@ -18,7 +18,12 @@ paths:
     get:
       tags:
       - Coverage
-      description: "Fetches a Coverage by id.  \n \n FHIR Resource: Coverage \n * Coverage resource represents insurance coverage details for a patient \n"
+      description: 'Fetches a Coverage by id.
+
+
+        FHIR Resource: Coverage
+
+        * Coverage resource represents insurance coverage details for a patient'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,23 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 coverage by id
+      x-summary-source: derived
+      operationId: getFhirR4CoverageById
+      x-operation-id-source: derived
   /fhir/r4/Coverage:
     get:
       tags:
       - Coverage
-      description: "Fetches a bundled resource containing Coverage data based on the provided parameters.\n\n - If `patient` is provided, a bundle containing the coverages is returned.\n\n FHIR Resource: Coverage \n * Coverage resource represents insurance coverage details for a patient \n"
+      description: 'Fetches a bundled resource containing Coverage data based on the provided parameters.
+
+
+        - If `patient` is provided, a bundle containing the coverages is returned.
+
+
+        FHIR Resource: Coverage
+
+        * Coverage resource represents insurance coverage details for a patient'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       responses:
@@ -50,27 +67,11 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 coverage
+      x-summary-source: derived
+      operationId: getFhirR4Coverage
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
   schemas:
     Coverage:
       type: object
@@ -253,6 +254,26 @@ components:
       - meta
       - type
       - link
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

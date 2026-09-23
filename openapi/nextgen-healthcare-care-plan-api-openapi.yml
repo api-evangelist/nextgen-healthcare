@@ -11,14 +11,19 @@ security:
 - OauthSecurity:
   - patient/*.read
 tags:
-- name: CarePlan
+- name: Care plan
   description: https://hl7.org/fhir/R4/careplan.html
 paths:
   /fhir/r4/CarePlan/{id}:
     get:
       tags:
-      - CarePlan
-      description: "Fetches a single plan of treatment(care plans, orders) and assessment note by id. \n \n FHIR Resource: CarePlan \n *\tAssessment and Plan of Treatment \n"
+      - Care plan
+      description: 'Fetches a single plan of treatment(care plans, orders) and assessment note by id.
+
+
+        FHIR Resource: CarePlan
+
+        * Assessment and Plan of Treatment'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,20 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 care plan by id
+      x-summary-source: derived
+      operationId: getFhirR4CarePlanById
+      x-operation-id-source: derived
   /fhir/r4/CarePlan:
     get:
       tags:
-      - CarePlan
-      description: "Fetches a bundled resource containing plan of treatment(care plans, orders) and assessment notes for the patient mentioned in the request. \n \n FHIR Resource: CarePlan \n *\tAssessment and Plan of Treatment \n"
+      - Care plan
+      description: 'Fetches a bundled resource containing plan of treatment(care plans, orders) and assessment notes for the patient mentioned in the request.
+
+
+        FHIR Resource: CarePlan
+
+        * Assessment and Plan of Treatment'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/date'
@@ -52,12 +66,11 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 care plan
+      x-summary-source: derived
+      operationId: getFhirR4CarePlan
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   schemas:
     CarePlan:
       type: object
@@ -200,17 +213,17 @@ components:
       - type
       - link
   parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
     id:
       description: The id of the resource
       name: id
       in: path
       required: true
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
       schema:
         type: string
     cp_category:
@@ -227,6 +240,11 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

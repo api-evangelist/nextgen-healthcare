@@ -18,7 +18,79 @@ paths:
     get:
       tags:
       - Patient
-      description: "Fetches a single Patient by patient Id \n \n FHIR Resource: Patient.name.given \n * First Name \n *\tMiddle Name \n \n FHIR Resource: Patient.name.family \n *\tLast Name \n \n FHIR Resource: Patient.name \n *\tPrevious Name \n \n FHIR Resource: Patient.name.suffix \n *\tSuffix \n \n FHIR Resource: US Core Sex Extension \n *\tSex \n  \n FHIR Resource: Patient.birthDate \n *\tDate of Birth \n  \n FHIR Resource: US Core Race Extension \n *\tRace \n  \n FHIR Resource: US Core Ethnicity Extension \n *\tEthnicity \n  \n FHIR Resource: US Core Tribal Affiliation Extension \n *\tTribal Affiliation \n  \n FHIR Resource: US Core Gender Identity Extension \n *\tGender Identity \n  \n FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime \n *   Deceased Status / Deceased Date \n \n FHIR Resource: Patient.communication \n *\tPreferred Language \n  \n FHIR Resource: Patient.address \n *\tAddress \n  \n FHIR Resource: Patient.telecom \n *\tPhone Number"
+      description: 'Fetches a single Patient by patient Id
+
+
+        FHIR Resource: Patient.name.given
+
+        * First Name
+
+        * Middle Name
+
+
+        FHIR Resource: Patient.name.family
+
+        * Last Name
+
+
+        FHIR Resource: Patient.name
+
+        * Previous Name
+
+
+        FHIR Resource: Patient.name.suffix
+
+        * Suffix
+
+
+        FHIR Resource: US Core Sex Extension
+
+        * Sex
+
+
+        FHIR Resource: Patient.birthDate
+
+        * Date of Birth
+
+
+        FHIR Resource: US Core Race Extension
+
+        * Race
+
+
+        FHIR Resource: US Core Ethnicity Extension
+
+        * Ethnicity
+
+
+        FHIR Resource: US Core Tribal Affiliation Extension
+
+        * Tribal Affiliation
+
+
+        FHIR Resource: US Core Gender Identity Extension
+
+        * Gender Identity
+
+
+        FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime
+
+        * Deceased Status / Deceased Date
+
+
+        FHIR Resource: Patient.communication
+
+        * Preferred Language
+
+
+        FHIR Resource: Patient.address
+
+        * Address
+
+
+        FHIR Resource: Patient.telecom
+
+        * Phone Number'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +104,87 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 patient by id
+      x-summary-source: derived
+      operationId: getFhirR4PatientById
+      x-operation-id-source: derived
   /fhir/r4/Patient:
     get:
       tags:
       - Patient
-      description: "Fetches a bundled resource containing the valid patients mentioned in the request parameters. \n \n FHIR Resource: Patient.name.given \n * First Name \n *\tMiddle Name \n \n FHIR Resource: Patient.name.family \n *\tLast Name \n \n FHIR Resource: Patient.name \n *\tPrevious Name \n \n FHIR Resource: Patient.name.suffix \n *\tSuffix \n \n FHIR Resource: US Core Sex Extension \n *   Sex \n  \n FHIR Resource: Patient.birthDate \n *\tDate of Birth \n  \n FHIR Resource: US Core Race Extension \n *\tRace \n  \n FHIR Resource: US Core Ethnicity Extension \n *\tEthnicity \n  \n FHIR Resource: US Core Tribal Affiliation Extension \n *\tTribal Affiliation \n  \n FHIR Resource: US Core Gender Identity Extension \n *\tGender Identity \n  \n FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime \n *\tDeceased Status / Deceased Date \n \n FHIR Resource: Patient.communication \n *\tPreferred Language \n  \n FHIR Resource: Patient.address \n *\tAddress \n  \n FHIR Resource: Patient.telecom \n *\tPhone Number"
+      description: 'Fetches a bundled resource containing the valid patients mentioned in the request parameters.
+
+
+        FHIR Resource: Patient.name.given
+
+        * First Name
+
+        * Middle Name
+
+
+        FHIR Resource: Patient.name.family
+
+        * Last Name
+
+
+        FHIR Resource: Patient.name
+
+        * Previous Name
+
+
+        FHIR Resource: Patient.name.suffix
+
+        * Suffix
+
+
+        FHIR Resource: US Core Sex Extension
+
+        * Sex
+
+
+        FHIR Resource: Patient.birthDate
+
+        * Date of Birth
+
+
+        FHIR Resource: US Core Race Extension
+
+        * Race
+
+
+        FHIR Resource: US Core Ethnicity Extension
+
+        * Ethnicity
+
+
+        FHIR Resource: US Core Tribal Affiliation Extension
+
+        * Tribal Affiliation
+
+
+        FHIR Resource: US Core Gender Identity Extension
+
+        * Gender Identity
+
+
+        FHIR Resource: Patient.deceasedBoolean / Patient.deceasedDateTime
+
+        * Deceased Status / Deceased Date
+
+
+        FHIR Resource: Patient.communication
+
+        * Preferred Language
+
+
+        FHIR Resource: Patient.address
+
+        * Address
+
+
+        FHIR Resource: Patient.telecom
+
+        * Phone Number'
       parameters:
       - $ref: '#/components/parameters/_id'
       - $ref: '#/components/parameters/patient_identifier'
@@ -54,7 +202,59 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 patient
+      x-summary-source: derived
+      operationId: getFhirR4Patient
+      x-operation-id-source: derived
 components:
+  parameters:
+    patient_birthdate:
+      description: Date of birth of the patient.The format is YYYY-MM-DD e.g. 1905-08-23.There shall be no time zone.Dates shall be valid dates. See https://www.hl7.org/fhir/R4/search.html#birthDate.
+      name: birthdate
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_name:
+      description: Name of the patient
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_gender:
+      description: Gender of the patient. Supported values male | female | undifferentiated | both. See http://hl7.org/fhir/R4/valueset-administrative-gender.html
+      name: gender
+      in: query
+      required: false
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_identifier:
+      description: A patient identifier
+      name: identifier
+      in: query
+      required: false
+      schema:
+        type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Patient:
       type: object
@@ -281,54 +481,6 @@ components:
       - type
       - total
       - link
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    patient_name:
-      description: Name of the patient
-      name: name
-      in: query
-      required: false
-      schema:
-        type: string
-    _id:
-      description: The id of the resource
-      name: _id
-      in: query
-      required: false
-      schema:
-        type: string
-    patient_gender:
-      description: Gender of the patient. Supported values male | female | undifferentiated | both. See http://hl7.org/fhir/R4/valueset-administrative-gender.html
-      name: gender
-      in: query
-      required: false
-      schema:
-        type: string
-    patient_birthdate:
-      description: Date of birth of the patient.The format is YYYY-MM-DD e.g. 1905-08-23.There shall be no time zone.Dates shall be valid dates. See https://www.hl7.org/fhir/R4/search.html#birthDate.
-      name: birthdate
-      in: query
-      required: false
-      schema:
-        type: string
-    patient_identifier:
-      description: A patient identifier
-      name: identifier
-      in: query
-      required: false
-      schema:
-        type: string
   securitySchemes:
     OauthSecurity:
       type: oauth2

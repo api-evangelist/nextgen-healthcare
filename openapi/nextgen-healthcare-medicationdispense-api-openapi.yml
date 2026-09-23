@@ -17,7 +17,12 @@ paths:
     get:
       tags:
       - MedicationDispense
-      description: "Fetches a single medication dispense record by id. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationDispense \n *\tMedications"
+      description: 'Fetches a single medication dispense record by id. Medications are mapped to RxNorm codes.
+
+
+        FHIR Resource: MedicationDispense
+
+        * Medications'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -31,6 +36,10 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication dispense by id
+      x-summary-source: derived
+      operationId: getFhirR4MedicationDispenseById
+      x-operation-id-source: derived
   /fhir/r4/MedicationDispense:
     get:
       tags:
@@ -50,7 +59,33 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication dispense
+      x-summary-source: derived
+      operationId: getFhirR4MedicationDispense
+      x-operation-id-source: derived
 components:
+  parameters:
+    status:
+      description: Status of the medication dispense
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     MedicationDispenseBundled:
       type: object
@@ -339,32 +374,10 @@ components:
       - whenHandedOver
       - dosageInstruction
   responses:
-    ResourceNotFound404:
-      description: Resource not found
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
-  parameters:
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    status:
-      description: Status of the medication dispense
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

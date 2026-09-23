@@ -11,14 +11,23 @@ security:
 - OauthSecurity:
   - patient/*.read
 tags:
-- name: AllergyIntolerance
+- name: Allergy Intolerance
   description: https://hl7.org/fhir/R4/allergyintolerance.html
 paths:
   /fhir/r4/AllergyIntolerance/{id}:
     get:
       tags:
-      - AllergyIntolerance
-      description: "Fetches a single allergy/intolerance record by id. Allergy codes are mapped to RxNorm codes. \n \n FHIR Resource: AllergyIntolerance \n *\tSubstance (Drug Class) \n *\tSubstance (Medication) \n *\tReaction"
+      - Allergy Intolerance
+      description: 'Fetches a single allergy/intolerance record by id. Allergy codes are mapped to RxNorm codes.
+
+
+        FHIR Resource: AllergyIntolerance
+
+        * Substance (Drug Class)
+
+        * Substance (Medication)
+
+        * Reaction'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +41,24 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 allergy intolerance by id
+      x-summary-source: derived
+      operationId: getFhirR4AllergyIntoleranceById
+      x-operation-id-source: derived
   /fhir/r4/AllergyIntolerance:
     get:
       tags:
-      - AllergyIntolerance
-      description: "Fetches a bundled resource containing the allergy/intolerance records for the patient mentioned in the request. Allergy codes are mapped to RxNorm codes.  \n \n FHIR Resource: AllergyIntolerance \n *\tSubstance (Drug Class) \n *\tSubstance (Medication) \n *\tReaction"
+      - Allergy Intolerance
+      description: 'Fetches a bundled resource containing the allergy/intolerance records for the patient mentioned in the request. Allergy codes are mapped to RxNorm codes.
+
+
+        FHIR Resource: AllergyIntolerance
+
+        * Substance (Drug Class)
+
+        * Substance (Medication)
+
+        * Reaction'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/date'
@@ -51,87 +73,12 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 allergy intolerance
+      x-summary-source: derived
+      operationId: getFhirR4AllergyIntolerance
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
   schemas:
-    AllergyIntoleranceBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-        id:
-          type: string
-        meta:
-          type: object
-          properties:
-            lastUpdated:
-              type: string
-              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
-        type:
-          type: string
-          minLength: 1
-          description: Type of Search
-        total:
-          type: integer
-          description: Number of allergy intolerance record in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: relation of the resource with link provided in url
-              url:
-                type: string
-                minLength: 1
-                description: FHIR URI of the request
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective allergyintolerance resource in entry
-              resource:
-                $ref: '#/components/schemas/AllergyIntolerance'
-      required:
-      - id
-      - resourceType
-      - meta
-      - type
-      - link
     AllergyIntolerance:
       type: object
       properties:
@@ -251,6 +198,85 @@ components:
       - id
       - meta
       - clinicalStatus
+    AllergyIntoleranceBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of allergy intolerance record in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective allergyintolerance resource in entry
+              resource:
+                $ref: '#/components/schemas/AllergyIntolerance'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
+  parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

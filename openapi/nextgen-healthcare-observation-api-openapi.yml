@@ -18,7 +18,40 @@ paths:
     get:
       tags:
       - Observation
-      description: "Fetches a single observation by id. \n \n FHIR Resource: Observation  \n *\tDiastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tSystolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tBody Height - Body height (FHIR Core Profile) \n *\tBody Weight - Body weight (FHIR Core Profile) \n *\tHeart Rate - Heart rate (FHIR Core Profile) \n *\tRespiratory Rate - Body temperature (FHIR Core Profile) \n *\tBody Temperature - Body temperature (FHIR Core Profile) \n *\tPulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tInhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tBMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n *\tWeight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n *\tOccipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n *   Smoking Status \n *   Sexual Orientation \n *   Occupation"
+      description: 'Fetches a single observation by id.
+
+
+        FHIR Resource: Observation
+
+        * Diastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile)
+
+        * Systolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile)
+
+        * Body Height - Body height (FHIR Core Profile)
+
+        * Body Weight - Body weight (FHIR Core Profile)
+
+        * Heart Rate - Heart rate (FHIR Core Profile)
+
+        * Respiratory Rate - Body temperature (FHIR Core Profile)
+
+        * Body Temperature - Body temperature (FHIR Core Profile)
+
+        * Pulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile)
+
+        * Inhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile)
+
+        * BMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile)
+
+        * Weight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile)
+
+        * Occipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile)
+
+        * Smoking Status
+
+        * Sexual Orientation
+
+        * Occupation'
       parameters:
       - $ref: '#/components/parameters/observation_id'
       responses:
@@ -32,11 +65,48 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 observation by id
+      x-summary-source: derived
+      operationId: getFhirR4ObservationById
+      x-operation-id-source: derived
   /fhir/r4/Observation:
     get:
       tags:
       - Observation
-      description: "Fetches a bundled resource containing the observations. for the patient mentioned in the request. \n \n FHIR Resource: Observation  \n *\tDiastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tSystolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile) \n *\tBody Height - Body height (FHIR Core Profile) \n *\tBody Weight - Body weight (FHIR Core Profile) \n *\tHeart Rate - Heart rate (FHIR Core Profile) \n *\tRespiratory Rate - Body temperature (FHIR Core Profile) \n *\tBody Temperature - Body temperature (FHIR Core Profile) \n *\tPulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tInhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile) \n *\tBMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile) \n *\tWeight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile) \n *\tOccipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile) \n *   Smoking Status \n *   Sexual Orientation \n *   Occupation"
+      description: 'Fetches a bundled resource containing the observations. for the patient mentioned in the request.
+
+
+        FHIR Resource: Observation
+
+        * Diastolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile)
+
+        * Systolic Blood Pressure - Blood pressure systolic and diastolic (FHIR Core Profile)
+
+        * Body Height - Body height (FHIR Core Profile)
+
+        * Body Weight - Body weight (FHIR Core Profile)
+
+        * Heart Rate - Heart rate (FHIR Core Profile)
+
+        * Respiratory Rate - Body temperature (FHIR Core Profile)
+
+        * Body Temperature - Body temperature (FHIR Core Profile)
+
+        * Pulse Oximetry - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile)
+
+        * Inhaled Oxygen Concentration - US Core Pulse Oximetry Profile (Builds on FHIR Core Profile)
+
+        * BMI Percentile (2-20 years old) - US Core Pediatric BMI for Age Observation Profile (Builds on FHIR Core Profile)
+
+        * Weight-for-Length Percentile (Birth-36 months) - US Core Pediatric Weight for Height Observation Profile (Builds on FHIR Core Profile)
+
+        * Occipital-frontal Head Circumference Percentile (Birth-36 months) - US Core Pediatric Head Occipital Frontal Circumference Observation Profile (Builds on FHIR Core Profile)
+
+        * Smoking Status
+
+        * Sexual Orientation
+
+        * Occupation'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/observation_code'
@@ -53,12 +123,51 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 observation
+      x-summary-source: derived
+      operationId: getFhirR4Observation
+      x-operation-id-source: derived
 components:
+  parameters:
+    observation_code:
+      description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
+      name: code
+      in: query
+      required: false
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    observation_category:
+      description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
+      name: category
+      in: query
+      required: false
+      schema:
+        type: string
+    observation_id:
+      description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
-    ResourceNotFound404:
-      description: Resource not found
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Observation:
       type: object
@@ -286,41 +395,6 @@ components:
       - total
       - link
       - entry
-  parameters:
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    observation_code:
-      description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
-      name: code
-      in: query
-      required: false
-      schema:
-        type: string
-    observation_category:
-      description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
-      name: category
-      in: query
-      required: false
-      schema:
-        type: string
-    observation_id:
-      description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
   securitySchemes:
     OauthSecurity:
       type: oauth2

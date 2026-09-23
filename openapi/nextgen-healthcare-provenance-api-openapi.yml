@@ -18,7 +18,15 @@ paths:
     get:
       tags:
       - Provenance
-      description: "Fetches Provenance by id. Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource.  \n \n FHIR Resource: Provenance.recorded \n *\tAuthor Time Stamp \n \n FHIR Resource: Provenance.agent \n"
+      description: 'Fetches Provenance by id. Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource.
+
+
+        FHIR Resource: Provenance.recorded
+
+        * Author Time Stamp
+
+
+        FHIR Resource: Provenance.agent'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,7 +40,16 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 provenance by id
+      x-summary-source: derived
+      operationId: getFhirR4ProvenanceById
+      x-operation-id-source: derived
 components:
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Provenance:
       type: object
@@ -124,11 +141,6 @@ components:
       - code
       - coding
       - text
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   parameters:
     id:
       description: The id of the resource

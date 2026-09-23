@@ -2,7 +2,13 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: NextGen Office BulK FHIR Export APIs API
-  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) \n\n https://hl7.org/fhir/us/core/STU4/ \n\n Note: This document is only for referring Bulk FHIR API."
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0)
+
+
+    https://hl7.org/fhir/us/core/STU4/
+
+
+    Note: This document is only for referring Bulk FHIR API.'
   contact:
     email: nextgen-office-api@nextgen.com
 servers:
@@ -102,13 +108,6 @@ components:
       schema:
         type: string
         example: 123456
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    TooManyRequests429:
-      description: Too Many Requests
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   schemas:
     BulkDataStatusResponse:
       type: object
@@ -149,6 +148,13 @@ components:
                 type: string
                 minLength: 1
                 description: The path to the file.
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    TooManyRequests429:
+      description: Too Many Requests
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     bearerAuth:
       type: http

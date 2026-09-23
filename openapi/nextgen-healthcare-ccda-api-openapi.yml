@@ -28,14 +28,11 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get ccda
+      x-summary-source: derived
+      operationId: getCcda
+      x-operation-id-source: derived
 components:
-  responses:
-    Success200:
-      description: Success
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
     date:
       description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
@@ -50,6 +47,13 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    Success200:
+      description: Success
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

@@ -1,0 +1,30 @@
+# Front Door AI Index — nextgen-healthcare — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: nextgen-healthcare
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.nextgen.com
+  final_host: www.nextgen.com
+  ownership: own
+  owner: nextgen-healthcare
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 25
+  host_score: 25
+  density: 6.85
+  words: 3650
+  tiers:
+    agentic: 0
+    core: 25
+    model: 0
+  ambiguous: 12
+  top_terms:
+    AI: 22
+    intelligence: 5
+    automation: 4
+    artificial intelligence: 3
+    smart: 2
+    agent: 1

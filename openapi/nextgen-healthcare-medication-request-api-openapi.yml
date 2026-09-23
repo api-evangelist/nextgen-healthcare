@@ -11,14 +11,19 @@ security:
 - OauthSecurity:
   - patient/*.read
 tags:
-- name: MedicationRequest
+- name: Medication Request
   description: https://hl7.org/fhir/R4/medicationrequest.html
 paths:
   /fhir/r4/MedicationRequest/{id}:
     get:
       tags:
-      - MedicationRequest
-      description: "Fetches a single medication prescription record by id. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationRequest \n *\tMedications"
+      - Medication Request
+      description: 'Fetches a single medication prescription record by id. Medications are mapped to RxNorm codes.
+
+
+        FHIR Resource: MedicationRequest
+
+        * Medications'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,20 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication request by id
+      x-summary-source: derived
+      operationId: getFhirR4MedicationRequestById
+      x-operation-id-source: derived
   /fhir/r4/MedicationRequest:
     get:
       tags:
-      - MedicationRequest
-      description: "Fetches a bundled resource containing all the medication prescription records for the patient mentioned in the request. Medications are mapped to RxNorm codes. \n \n FHIR Resource: MedicationRequest \n *\tMedications"
+      - Medication Request
+      description: 'Fetches a bundled resource containing all the medication prescription records for the patient mentioned in the request. Medications are mapped to RxNorm codes.
+
+
+        FHIR Resource: MedicationRequest
+
+        * Medications'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/date'
@@ -53,8 +67,76 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 medication request
+      x-summary-source: derived
+      operationId: getFhirR4MedicationRequest
+      x-operation-id-source: derived
 components:
   schemas:
+    MedicationRequestBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+          required:
+          - lastUpdated
+        type:
+          type: string
+          minLength: 1
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationRequests in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective observation resource in entry
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationRequest'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
     MedicationRequest:
       type: object
       properties:
@@ -352,76 +434,20 @@ components:
       - requester
       - dosageInstruction
       - dispenseRequest
-    MedicationRequestBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          minLength: 1
-          description: Persistent identifier for the bundle
-        meta:
-          type: object
-          description: Metadata about the resource
-          properties:
-            lastUpdated:
-              type: string
-              format: date-time
-          required:
-          - lastUpdated
-        type:
-          type: string
-          minLength: 1
-          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
-        total:
-          type: integer
-          description: Number of MedicationRequests in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective observation resource in entry
-              url:
-                type: string
-                minLength: 1
-                description: Reference details for the link
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: URI for resource (Absolute URL server address or URI for UUID/OID)
-              resource:
-                $ref: '#/components/schemas/MedicationRequest'
-            required:
-            - fullUrl
-            - resource
-      required:
-      - resourceType
-      - id
-      - meta
-      - type
-      - total
-      - link
-      - entry
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    mr_intent:
+      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
+      name: intent
+      in: query
+      required: false
+      schema:
+        type: string
     id:
       description: The id of the resource
       name: id
@@ -436,19 +462,6 @@ components:
       required: false
       schema:
         type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    mr_intent:
-      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
-      name: intent
-      in: query
-      required: false
-      schema:
-        type: string
     patient_id:
       description: The id of the patient
       name: patient
@@ -456,6 +469,11 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

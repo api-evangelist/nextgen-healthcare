@@ -18,7 +18,25 @@ paths:
     get:
       tags:
       - DiagnosticReport
-      description: "Fetches a single lab or radiology result by id. The observations contained in the resource.  \n \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note \n \n FHIR Resource: Observation, DiagnosticReport \n *\tTests \n *\tValues/Results \n"
+      description: 'Fetches a single lab or radiology result by id. The observations contained in the resource.
+
+
+        FHIR Resource: DocumentReference, DiagnosticReport
+
+        * Imaging Narrative
+
+        * Laboratory Report Narrative
+
+        * Pathology Report Narrative
+
+        * Procedure Note
+
+
+        FHIR Resource: Observation, DiagnosticReport
+
+        * Tests
+
+        * Values/Results'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +50,33 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 diagnostic report by id
+      x-summary-source: derived
+      operationId: getFhirR4DiagnosticReportById
+      x-operation-id-source: derived
   /fhir/r4/DiagnosticReport:
     get:
       tags:
       - DiagnosticReport
-      description: "Fetches a bundled resource containing all the lab or radiology results for the patient mentioned in the request. The observations contained in the resource.  \n \n FHIR Resource: DocumentReference, DiagnosticReport \n *\tImaging Narrative \n *\tLaboratory Report Narrative \n *\tPathology Report Narrative \n *\tProcedure Note \n \n FHIR Resource: Observation, DiagnosticReport \n *\tTests \n *\tValues/Results \n"
+      description: 'Fetches a bundled resource containing all the lab or radiology results for the patient mentioned in the request. The observations contained in the resource.
+
+
+        FHIR Resource: DocumentReference, DiagnosticReport
+
+        * Imaging Narrative
+
+        * Laboratory Report Narrative
+
+        * Pathology Report Narrative
+
+        * Procedure Note
+
+
+        FHIR Resource: Observation, DiagnosticReport
+
+        * Tests
+
+        * Values/Results'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/date'
@@ -53,6 +93,10 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 diagnostic report
+      x-summary-source: derived
+      operationId: getFhirR4DiagnosticReport
+      x-operation-id-source: derived
 components:
   schemas:
     DiagnosticReportBundled:
@@ -268,17 +312,12 @@ components:
       - issued
       - performer
       - presentedForm
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
+    dr_category:
+      description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+      name: category
+      in: query
+      required: false
       schema:
         type: string
     date:
@@ -287,18 +326,11 @@ components:
       in: query
       schema:
         type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
+    id:
+      description: The id of the resource
+      name: id
+      in: path
       required: true
-      schema:
-        type: string
-    dr_category:
-      description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
-      name: category
-      in: query
-      required: false
       schema:
         type: string
     dr_code:
@@ -308,6 +340,18 @@ components:
       required: false
       schema:
         type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

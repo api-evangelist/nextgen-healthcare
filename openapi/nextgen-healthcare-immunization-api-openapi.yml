@@ -18,7 +18,12 @@ paths:
     get:
       tags:
       - Immunization
-      description: "Fetches a single immunization record by id. \n \n FHIR Resource: Immunization \n *\tImmunization"
+      description: 'Fetches a single immunization record by id.
+
+
+        FHIR Resource: Immunization
+
+        * Immunization'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,20 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 immunization by id
+      x-summary-source: derived
+      operationId: getFhirR4ImmunizationById
+      x-operation-id-source: derived
   /fhir/r4/Immunization:
     get:
       tags:
       - Immunization
-      description: "Fetches a bundled resource containing the immunization records for the patient mentioned in the request. All immunizations contain cvx code mapping\n \n FHIR Resource: Immunization \n *\tImmunization"
+      description: 'Fetches a bundled resource containing the immunization records for the patient mentioned in the request. All immunizations contain cvx code mapping
+
+
+        FHIR Resource: Immunization
+
+        * Immunization'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/date'
@@ -51,64 +65,38 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 immunization
+      x-summary-source: derived
+      operationId: getFhirR4Immunization
+      x-operation-id-source: derived
 components:
+  parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
-    ImmunizationBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          minLength: 1
-        meta:
-          type: object
-          properties:
-            lastUpdated:
-              type: string
-              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
-        type:
-          type: string
-          minLength: 1
-          description: Type of Search
-        total:
-          type: integer
-          description: Number of immunization in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: relation of the resource with link provided in url
-              url:
-                type: string
-                minLength: 1
-                description: FHIR URI of the request
-          required:
-          - relation
-          - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective Immunization resource in entry
-              resource:
-                $ref: '#/components/schemas/Immunization'
-      required:
-      - id
-      - resourceType
-      - meta
-      - entry
-      - link
-      - total
     Immunization:
       type: object
       properties:
@@ -181,32 +169,62 @@ components:
       - status
       - vaccineCode
       - occurrenceDateTime
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
+    ImmunizationBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of immunization in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+          required:
+          - relation
+          - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective Immunization resource in entry
+              resource:
+                $ref: '#/components/schemas/Immunization'
+      required:
+      - id
+      - resourceType
+      - meta
+      - entry
+      - link
+      - total
   securitySchemes:
     OauthSecurity:
       type: oauth2

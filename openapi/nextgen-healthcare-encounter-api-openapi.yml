@@ -18,7 +18,17 @@ paths:
     get:
       tags:
       - Encounter
-      description: "Fetches a single Encounter. An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.  \n \n FHIR Resource: Encounter \n *\tEncounters \n \n FHIR Resource: Location \n * Location \n"
+      description: 'Fetches a single Encounter. An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient.
+
+
+        FHIR Resource: Encounter
+
+        * Encounters
+
+
+        FHIR Resource: Location
+
+        * Location'
       parameters:
       - $ref: '#/components/parameters/encounter_id'
       responses:
@@ -32,11 +42,34 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 encounter by id
+      x-summary-source: derived
+      operationId: getFhirR4EncounterById
+      x-operation-id-source: derived
   /fhir/r4/Encounter:
     get:
       tags:
       - Encounter
-      description: "Fetches a bundled resource containing encounter data based on the provided parameters.\n\n - If only `_id` is provided, a bundle containing a single encounter is returned.\n - If only `patient_id` is provided, multiple encounters for the patient may be returned.\n - If `patient_id` and `date` are provided, encounters matching the patient and date range are returned.\n - Requests containing both `_id` and `patient_id`, `_id` and `date`, only `date`, all three parameters together or providing no parameters will result in a `400 Bad Request`.\n\n FHIR Resource: Encounter \n *\tEncounters \n \n FHIR Resource: Location \n * Location \n"
+      description: 'Fetches a bundled resource containing encounter data based on the provided parameters.
+
+
+        - If only `_id` is provided, a bundle containing a single encounter is returned.
+
+        - If only `patient_id` is provided, multiple encounters for the patient may be returned.
+
+        - If `patient_id` and `date` are provided, encounters matching the patient and date range are returned.
+
+        - Requests containing both `_id` and `patient_id`, `_id` and `date`, only `date`, all three parameters together or providing no parameters will result in a `400 Bad Request`.
+
+
+        FHIR Resource: Encounter
+
+        * Encounters
+
+
+        FHIR Resource: Location
+
+        * Location'
       parameters:
       - $ref: '#/components/parameters/optional_patient_id'
       - $ref: '#/components/parameters/date'
@@ -54,12 +87,44 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 encounter
+      x-summary-source: derived
+      operationId: getFhirR4Encounter
+      x-operation-id-source: derived
 components:
+  parameters:
+    encounter_id:
+      description: The id of the resource with prefix values PT with hyphen.Example PT-123
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    optional_patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: false
+      schema:
+        type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
   responses:
-    ResourceNotFound404:
-      description: Resource not found
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Encounter:
       type: object
@@ -279,34 +344,6 @@ components:
       - resourceType
       - meta
       - type
-  parameters:
-    optional_patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: false
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    _id:
-      description: The id of the resource
-      name: _id
-      in: query
-      required: false
-      schema:
-        type: string
-    encounter_id:
-      description: The id of the resource with prefix values PT with hyphen.Example PT-123
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     OauthSecurity:
       type: oauth2

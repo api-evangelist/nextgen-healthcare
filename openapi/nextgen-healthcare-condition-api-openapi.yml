@@ -18,7 +18,16 @@ paths:
     get:
       tags:
       - Condition
-      description: "Fetches a bundled resource containing the condition/problem associated with the provided resource id.  \n \n FHIR Resource: Condition \n *\tHealth Concerns \n * Problems \n * Encounter Diagnosis \n"
+      description: 'Fetches a bundled resource containing the condition/problem associated with the provided resource id.
+
+
+        FHIR Resource: Condition
+
+        * Health Concerns
+
+        * Problems
+
+        * Encounter Diagnosis'
       parameters:
       - $ref: '#/components/parameters/condition_id'
       responses:
@@ -32,11 +41,24 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 condition by id
+      x-summary-source: derived
+      operationId: getFhirR4ConditionById
+      x-operation-id-source: derived
   /fhir/r4/Condition:
     get:
       tags:
       - Condition
-      description: "Fetches a bundled resource containing the conditions/problems for the patient mentioned in the request. All conditions are mapped to SNOMED codes.  \n \n FHIR Resource: Condition \n *\tHealth Concerns \n * Problems \n * Encounter Diagnosis \n"
+      description: 'Fetches a bundled resource containing the conditions/problems for the patient mentioned in the request. All conditions are mapped to SNOMED codes.
+
+
+        FHIR Resource: Condition
+
+        * Health Concerns
+
+        * Problems
+
+        * Encounter Diagnosis'
       parameters:
       - $ref: '#/components/parameters/patient_id'
       - $ref: '#/components/parameters/condition_category'
@@ -52,24 +74,16 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 condition
+      x-summary-source: derived
+      operationId: getFhirR4Condition
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
     date:
       description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
       name: date
       in: query
-      schema:
-        type: string
-    condition_category:
-      description: The category of the condition. See http://hl7.org/fhir/R4/valueset-condition-category.html
-      name: category
-      in: query
-      required: false
       schema:
         type: string
     condition_id:
@@ -84,6 +98,13 @@ components:
       name: patient
       in: query
       required: true
+      schema:
+        type: string
+    condition_category:
+      description: The category of the condition. See http://hl7.org/fhir/R4/valueset-condition-category.html
+      name: category
+      in: query
+      required: false
       schema:
         type: string
   schemas:
@@ -335,6 +356,11 @@ components:
       - code
       - subject
       - onsetDateTime
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

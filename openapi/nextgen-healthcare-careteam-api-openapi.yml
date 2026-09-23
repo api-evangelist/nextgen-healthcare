@@ -18,7 +18,12 @@ paths:
     get:
       tags:
       - CareTeam
-      description: "Fetches a single Care Team member by id.  \n \n FHIR Resource: CareTeam \n *\tCare Team \n"
+      description: 'Fetches a single Care Team member by id.
+
+
+        FHIR Resource: CareTeam
+
+        * Care Team'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,30 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 care team by id
+      x-summary-source: derived
+      operationId: getFhirR4CareTeamById
+      x-operation-id-source: derived
   /fhir/r4/CareTeam:
     get:
       tags:
       - CareTeam
-      description: "Fetches a bundled resource containing details of the Care Team members for the patient or care team ID mentioned in the request.  \n \n FHIR Resource: CareTeam \n \n - If only `patient_id` is provided, care team for the patient may be returned.\n - If only `_id` is provided, care team for the care team ID may be returned.\n - If `patient_id` and `status` are provided, care team members matching the patient and status are returned.\n - Requests containing both `_id` and `patient_id`, `_id` and `status`, `status` alone or all three parameters together or providing no parameters will result in a `400 Bad Request`.\n\n *\tCare Team \n"
+      description: 'Fetches a bundled resource containing details of the Care Team members for the patient or care team ID mentioned in the request.
+
+
+        FHIR Resource: CareTeam
+
+
+        - If only `patient_id` is provided, care team for the patient may be returned.
+
+        - If only `_id` is provided, care team for the care team ID may be returned.
+
+        - If `patient_id` and `status` are provided, care team members matching the patient and status are returned.
+
+        - Requests containing both `_id` and `patient_id`, `_id` and `status`, `status` alone or all three parameters together or providing no parameters will result in a `400 Bad Request`.
+
+
+        * Care Team'
       parameters:
       - $ref: '#/components/parameters/optional_patient_id'
       - $ref: '#/components/parameters/ct_status'
@@ -54,6 +78,10 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 care team
+      x-summary-source: derived
+      operationId: getFhirR4CareTeam
+      x-operation-id-source: derived
 components:
   schemas:
     CareTeam:
@@ -172,11 +200,6 @@ components:
       - meta
       - type
       - link
-  responses:
-    ResourceNotFound404:
-      description: Resource not found
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
   parameters:
     id:
       description: The id of the resource
@@ -192,13 +215,6 @@ components:
       required: false
       schema:
         type: string
-    _id:
-      description: The id of the resource
-      name: _id
-      in: query
-      required: false
-      schema:
-        type: string
     ct_status:
       description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
       name: status
@@ -206,6 +222,18 @@ components:
       required: false
       schema:
         type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

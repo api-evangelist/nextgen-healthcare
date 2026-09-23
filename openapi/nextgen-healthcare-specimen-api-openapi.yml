@@ -21,11 +21,9 @@ paths:
       description: 'Fetches a single Specimen by ID.
 
 
-        FHIR Resource: [Specimen](http://hl7.org/fhir/R4/specimen.html)
+        FHIR Resource: Specimen
 
-        * Retrieves a specific Specimen resource by its logical ID.
-
-        '
+        * Retrieves a specific Specimen resource by its logical ID.'
       parameters:
       - name: id
         in: path
@@ -44,6 +42,10 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 specimen by id
+      x-summary-source: derived
+      operationId: getFhirR4SpecimenById
+      x-operation-id-source: derived
   /fhir/r4/Specimen:
     get:
       tags:
@@ -54,9 +56,7 @@ paths:
         Supports filtering by patient or _id. If neither parameter is provided, the server will return a 400 Bad Request.
 
 
-        FHIR Resource: [Specimen](http://hl7.org/fhir/R4/specimen.html)
-
-        '
+        FHIR Resource: Specimen'
       parameters:
       - name: _id
         in: query
@@ -90,27 +90,12 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 specimen
+      x-summary-source: derived
+      operationId: getFhirR4Specimen
+      x-operation-id-source: derived
 components:
   schemas:
-    Specimen:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          example: Specimen
-        id:
-          type: string
-        status:
-          type: string
-        type:
-          type: object
-        subject:
-          type: object
-        collection:
-          type: object
-      required:
-      - resourceType
-      - id
     SpecimenBundled:
       type: object
       description: A FHIR Bundle of Specimen resources
@@ -134,6 +119,25 @@ components:
                 example: http://example.com/fhir/r4/Specimen/123
               resource:
                 $ref: '#/components/schemas/Specimen'
+    Specimen:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: Specimen
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: object
+        subject:
+          type: object
+        collection:
+          type: object
+      required:
+      - resourceType
+      - id
   responses:
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user

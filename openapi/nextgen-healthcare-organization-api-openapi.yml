@@ -18,7 +18,17 @@ paths:
     get:
       tags:
       - Organization
-      description: "Fetches an Organization by id. Organization is a formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  \n \n FHIR Resource: Organization \n *\tOrganization \n \n FHIR Resource: Location \n * Location \n"
+      description: 'Fetches an Organization by id. Organization is a formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.
+
+
+        FHIR Resource: Organization
+
+        * Organization
+
+
+        FHIR Resource: Location
+
+        * Location'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,7 +42,16 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 organization by id
+      x-summary-source: derived
+      operationId: getFhirR4OrganizationById
+      x-operation-id-source: derived
 components:
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Organization:
       type: object
@@ -116,11 +135,6 @@ components:
       - telecom
       - entry
       - link
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   parameters:
     id:
       description: The id of the resource

@@ -18,7 +18,17 @@ paths:
     get:
       tags:
       - Practitioner
-      description: "Fetches a Practitioner by id. Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.  \n \n FHIR Resource: Practitioner \n *\tPractitioner \n \n FHIR Resource: Location \n * Location \n"
+      description: 'Fetches a Practitioner by id. Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.
+
+
+        FHIR Resource: Practitioner
+
+        * Practitioner
+
+
+        FHIR Resource: Location
+
+        * Location'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,12 +42,11 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 practitioner by id
+      x-summary-source: derived
+      operationId: getFhirR4PractitionerById
+      x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   schemas:
     Practitioner:
       type: object
@@ -130,6 +139,11 @@ components:
       - name
       - active
       - address
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   parameters:
     id:
       description: The id of the resource

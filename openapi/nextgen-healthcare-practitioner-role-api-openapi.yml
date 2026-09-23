@@ -11,14 +11,19 @@ security:
 - OauthSecurity:
   - patient/*.read
 tags:
-- name: PractitionerRole
+- name: Practitioner Role
   description: https://hl7.org/fhir/R4/practitionerrole.html
 paths:
   /fhir/r4/PractitionerRole/{id}:
     get:
       tags:
-      - PractitionerRole
-      description: "Fetches a Practitioner Role by id.  \n \n FHIR Resource: PractitionerRole \n *\tPractitioner Role \n"
+      - Practitioner Role
+      description: 'Fetches a Practitioner Role by id.
+
+
+        FHIR Resource: PractitionerRole
+
+        * Practitioner Role'
       parameters:
       - $ref: '#/components/parameters/id'
       responses:
@@ -32,11 +37,23 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 practitioner role by id
+      x-summary-source: derived
+      operationId: getFhirR4PractitionerRoleById
+      x-operation-id-source: derived
   /fhir/r4/PractitionerRole:
     get:
       tags:
-      - PractitionerRole
-      description: "Fetches a bundled resource containing practitioner role data based on the provided parameters.\n\n - If `practitioner_id` is provided, a bundle containing a practitioner role is returned.\n\n FHIR Resource: PractitionerRole \n *\tPractitioner Role \n"
+      - Practitioner Role
+      description: 'Fetches a bundled resource containing practitioner role data based on the provided parameters.
+
+
+        - If `practitioner_id` is provided, a bundle containing a practitioner role is returned.
+
+
+        FHIR Resource: PractitionerRole
+
+        * Practitioner Role'
       parameters:
       - $ref: '#/components/parameters/practitioner_id'
       responses:
@@ -50,8 +67,84 @@ paths:
           $ref: '#/components/responses/ResourceNotFound404'
         '401':
           $ref: '#/components/responses/ResourceNotAuthorized401'
+      summary: Get fhir r4 practitioner role
+      x-summary-source: derived
+      operationId: getFhirR4PractitionerRole
+      x-operation-id-source: derived
 components:
+  parameters:
+    practitioner_id:
+      description: The id of the practitioner
+      name: practitioner
+      in: query
+      required: true
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    PractitionerRoleBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          description: The id of the resource.
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of practitioner role in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+          required:
+          - relation
+          - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective practitioner role resource in entry
+              resource:
+                $ref: '#/components/schemas/PractitionerRole'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - total
+      - link
+      - entry
     PractitionerRole:
       type: object
       properties:
@@ -156,83 +249,11 @@ components:
       - identifier
       - responseType
       - practitioner
-    PractitionerRoleBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          description: The id of the resource.
-        meta:
-          type: object
-          properties:
-            lastUpdated:
-              type: string
-              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
-        type:
-          type: string
-          minLength: 1
-          description: Type of Search
-        total:
-          type: integer
-          description: Number of practitioner role in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: relation of the resource with link provided in url
-              url:
-                type: string
-                minLength: 1
-                description: FHIR URI of the request
-          required:
-          - relation
-          - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective practitioner role resource in entry
-              resource:
-                $ref: '#/components/schemas/PractitionerRole'
-      required:
-      - id
-      - resourceType
-      - meta
-      - type
-      - total
-      - link
-      - entry
   responses:
-    ResourceNotFound404:
-      description: Resource not found
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    practitioner_id:
-      description: The id of the practitioner
-      name: practitioner
-      in: query
-      required: true
-      schema:
-        type: string
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

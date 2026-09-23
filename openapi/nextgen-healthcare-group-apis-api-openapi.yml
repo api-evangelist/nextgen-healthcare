@@ -2,7 +2,13 @@ openapi: 3.2.0
 info:
   version: 1.0.0
   title: NextGen Office BulK FHIR Group APIs API
-  description: "Our API is coded against the US Core Specification (FHIR Version: 4.0.0) \n\n https://hl7.org/fhir/us/core/STU4/ \n\n Note: This document is only for referring Bulk FHIR API."
+  description: 'Our API is coded against the US Core Specification (FHIR Version: 4.0.0)
+
+
+    https://hl7.org/fhir/us/core/STU4/
+
+
+    Note: This document is only for referring Bulk FHIR API.'
   contact:
     email: nextgen-office-api@nextgen.com
 servers:
@@ -134,6 +140,29 @@ paths:
           description: Unexpected error
 components:
   schemas:
+    CreateBulkFhirPatientGroup:
+      type: object
+      required:
+      - resourceType
+      - patientIds
+      properties:
+        resourceType:
+          type: string
+        name:
+          type: string
+        patientIds:
+          type: array
+          items:
+            type: string
+      example:
+        resourceType: Group
+        name: Diabetes Patients
+        patientIds:
+        - '878792'
+        - '885904'
+        - '966958'
+        - '1008774'
+        - '1023533'
     UpdateBulkFhirPatientGroup:
       type: object
       required:
@@ -164,29 +193,6 @@ components:
         patientIdsToExclude:
         - '878792'
         - '885904'
-    CreateBulkFhirPatientGroup:
-      type: object
-      required:
-      - resourceType
-      - patientIds
-      properties:
-        resourceType:
-          type: string
-        name:
-          type: string
-        patientIds:
-          type: array
-          items:
-            type: string
-      example:
-        resourceType: Group
-        name: Diabetes Patients
-        patientIds:
-        - '878792'
-        - '885904'
-        - '966958'
-        - '1008774'
-        - '1023533'
   securitySchemes:
     bearerAuth:
       type: http
