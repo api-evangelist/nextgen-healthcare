@@ -78,13 +78,6 @@ components:
       required: false
       schema:
         type: string
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
     id:
       description: The id of the resource
       name: id
@@ -92,6 +85,18 @@ components:
       required: true
       schema:
         type: string
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     MedicationAdministrationBundled:
       type: object
@@ -319,11 +324,6 @@ components:
       - status
       - medicationCodeableConcept
       - subject
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

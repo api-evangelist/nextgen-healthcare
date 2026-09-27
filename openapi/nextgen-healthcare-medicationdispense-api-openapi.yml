@@ -64,90 +64,7 @@ paths:
       operationId: getFhirR4MedicationDispense
       x-operation-id-source: derived
 components:
-  parameters:
-    status:
-      description: Status of the medication dispense
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    MedicationDispenseBundled:
-      type: object
-      description: A FHIR Bundle of MedicationDispense resources
-      properties:
-        resourceType:
-          type: string
-          description: Always 'Bundle'
-        id:
-          type: string
-          description: Persistent identifier for the bundle
-        meta:
-          type: object
-          description: Metadata about the resource
-          properties:
-            lastUpdated:
-              type: string
-              format: date-time
-              description: When the bundle was last updated
-          required:
-          - lastUpdated
-        type:
-          type: string
-          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
-        total:
-          type: integer
-          description: Number of MedicationDispense in entry field
-        link:
-          type: array
-          description: Links related to this bundle
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                description: Relation type (e.g., self, next, previous)
-              url:
-                type: string
-                minLength: 1
-                description: Reference details for the link
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          description: Entries in the bundle (each is a MedicationDispense resource)
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: URI for resource (Absolute URL server address or URI for UUID/OID)
-              resource:
-                $ref: '#/components/schemas/MedicationDispense'
-            required:
-            - fullUrl
-            - resource
-      required:
-      - resourceType
-      - type
-      - entry
     MedicationDispense:
       type: object
       description: Dispensing a medication to a named patient
@@ -373,11 +290,94 @@ components:
       - quantity
       - whenHandedOver
       - dosageInstruction
+    MedicationDispenseBundled:
+      type: object
+      description: A FHIR Bundle of MedicationDispense resources
+      properties:
+        resourceType:
+          type: string
+          description: Always 'Bundle'
+        id:
+          type: string
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              description: When the bundle was last updated
+          required:
+          - lastUpdated
+        type:
+          type: string
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationDispense in entry field
+        link:
+          type: array
+          description: Links related to this bundle
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                description: Relation type (e.g., self, next, previous)
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          description: Entries in the bundle (each is a MedicationDispense resource)
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationDispense'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - type
+      - entry
   responses:
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
     ResourceNotFound404:
       description: Resource not found
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    status:
+      description: Status of the medication dispense
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
   securitySchemes:
     OauthSecurity:
       type: oauth2

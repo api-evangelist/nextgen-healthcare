@@ -208,6 +208,13 @@ components:
       required: true
       schema:
         type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
     optional_patient_id:
       description: The id of the patient
       name: patient
@@ -218,13 +225,6 @@ components:
     ct_status:
       description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
       name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    _id:
-      description: The id of the resource
-      name: _id
       in: query
       required: false
       schema:

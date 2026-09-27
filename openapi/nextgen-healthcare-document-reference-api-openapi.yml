@@ -111,16 +111,9 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    doc_ref_type:
-      description: Kind of document (LOINC if possible). See http://hl7.org/fhir/R4/valueset-c80-doc-typecodes.html
-      name: type
-      in: query
-      required: false
-      schema:
-        type: string
-    doc_ref_category:
-      description: Categorization of document. Only clinical-note category supported. See http://hl7.org/fhir/R4/valueset-document-classcodes.html
-      name: category
+    doc_ref_status:
+      description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
+      name: status
       in: query
       required: false
       schema:
@@ -132,9 +125,16 @@ components:
       required: true
       schema:
         type: string
-    doc_ref_status:
-      description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
-      name: status
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    _id:
+      description: The id of the resource
+      name: _id
       in: query
       required: false
       schema:
@@ -146,72 +146,21 @@ components:
       required: false
       schema:
         type: string
-    _id:
-      description: The id of the resource
-      name: _id
+    doc_ref_category:
+      description: Categorization of document. Only clinical-note category supported. See http://hl7.org/fhir/R4/valueset-document-classcodes.html
+      name: category
       in: query
       required: false
       schema:
         type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
+    doc_ref_type:
+      description: Kind of document (LOINC if possible). See http://hl7.org/fhir/R4/valueset-c80-doc-typecodes.html
+      name: type
       in: query
-      required: true
+      required: false
       schema:
         type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   schemas:
-    DocumentReferenceBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          minLength: 1
-        meta:
-          type: object
-          properties:
-            lastUpdated:
-              type: string
-              minLength: 1
-        type:
-          type: string
-          minLength: 1
-        total:
-          type: integer
-          description: number of document reference record
-        link:
-          type: object
-          properties:
-            relation:
-              type: string
-              minLength: 1
-              description: relation of the resource with link provided in url
-            url:
-              type: string
-              minLength: 1
-              description: FHIR URI of the request
-          required:
-          - relation
-          - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective Condition resource in entry
-              resource:
-                $ref: '#/components/schemas/DocumentReference'
     DocumentReference:
       type: object
       description: A reference to a document
@@ -414,6 +363,57 @@ components:
                         type: string
                         minLength: 1
                         description: End time with inclusive boundary, if not ongoing
+    DocumentReferenceBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              minLength: 1
+        type:
+          type: string
+          minLength: 1
+        total:
+          type: integer
+          description: number of document reference record
+        link:
+          type: object
+          properties:
+            relation:
+              type: string
+              minLength: 1
+              description: relation of the resource with link provided in url
+            url:
+              type: string
+              minLength: 1
+              description: FHIR URI of the request
+          required:
+          - relation
+          - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective Condition resource in entry
+              resource:
+                $ref: '#/components/schemas/DocumentReference'
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

@@ -128,46 +128,6 @@ paths:
       operationId: getFhirR4Observation
       x-operation-id-source: derived
 components:
-  parameters:
-    observation_code:
-      description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
-      name: code
-      in: query
-      required: false
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
-    observation_category:
-      description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
-      name: category
-      in: query
-      required: false
-      schema:
-        type: string
-    observation_id:
-      description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   schemas:
     Observation:
       type: object
@@ -395,6 +355,46 @@ components:
       - total
       - link
       - entry
+  parameters:
+    observation_category:
+      description: The category of the observation. See http://hl7.org/fhir/R4/valueset-observation-category.html
+      name: category
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    observation_code:
+      description: The LOINC code of the observation. The only supported code at this time is "72166-2" which is for smoking status. See http://hl7.org/fhir/R4/valueset-observation-codes.html
+      name: code
+      in: query
+      required: false
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    observation_id:
+      description: The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

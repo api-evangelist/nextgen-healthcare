@@ -72,71 +72,47 @@ paths:
       operationId: getFhirR4MedicationRequest
       x-operation-id-source: derived
 components:
+  parameters:
+    mr_intent:
+      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
+      name: intent
+      in: query
+      required: false
+      schema:
+        type: string
+    mr_status:
+      description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
-    MedicationRequestBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          minLength: 1
-          description: Persistent identifier for the bundle
-        meta:
-          type: object
-          description: Metadata about the resource
-          properties:
-            lastUpdated:
-              type: string
-              format: date-time
-          required:
-          - lastUpdated
-        type:
-          type: string
-          minLength: 1
-          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
-        total:
-          type: integer
-          description: Number of MedicationRequests in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective observation resource in entry
-              url:
-                type: string
-                minLength: 1
-                description: Reference details for the link
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: URI for resource (Absolute URL server address or URI for UUID/OID)
-              resource:
-                $ref: '#/components/schemas/MedicationRequest'
-            required:
-            - fullUrl
-            - resource
-      required:
-      - resourceType
-      - id
-      - meta
-      - type
-      - total
-      - link
-      - entry
     MedicationRequest:
       type: object
       properties:
@@ -434,46 +410,70 @@ components:
       - requester
       - dosageInstruction
       - dispenseRequest
-  parameters:
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    mr_intent:
-      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
-      name: intent
-      in: query
-      required: false
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    mr_status:
-      description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
+    MedicationRequestBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+          required:
+          - lastUpdated
+        type:
+          type: string
+          minLength: 1
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationRequests in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective observation resource in entry
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationRequest'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - id
+      - meta
+      - type
+      - total
+      - link
+      - entry
   securitySchemes:
     OauthSecurity:
       type: oauth2
