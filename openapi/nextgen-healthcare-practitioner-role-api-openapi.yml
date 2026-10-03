@@ -72,6 +72,26 @@ paths:
       operationId: getFhirR4PractitionerRole
       x-operation-id-source: derived
 components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    practitioner_id:
+      description: The id of the practitioner
+      name: practitioner
+      in: query
+      required: true
+      schema:
+        type: string
   schemas:
     PractitionerRole:
       type: object
@@ -234,26 +254,6 @@ components:
       - total
       - link
       - entry
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
-  parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    practitioner_id:
-      description: The id of the practitioner
-      name: practitioner
-      in: query
-      required: true
-      schema:
-        type: string
   securitySchemes:
     OauthSecurity:
       type: oauth2

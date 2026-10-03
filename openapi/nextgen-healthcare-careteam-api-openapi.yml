@@ -84,6 +84,60 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CareTeamBundled:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+        type:
+          type: string
+          minLength: 1
+          description: Type of Search
+        total:
+          type: integer
+          description: Number of CareTeam record in entry field
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                minLength: 1
+                description: relation of the resource with link provided in url
+              url:
+                type: string
+                minLength: 1
+                description: FHIR URI of the request
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: FHIR URI of respective CareTeam resource in entry
+              resource:
+                $ref: '#/components/schemas/CareTeam'
+      required:
+      - id
+      - resourceType
+      - meta
+      - type
+      - link
     CareTeam:
       type: object
       properties:
@@ -146,68 +200,7 @@ components:
                 - reference
       required:
       - status
-    CareTeamBundled:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-        meta:
-          type: object
-          properties:
-            lastUpdated:
-              type: string
-              description: Date in format - YYYY-MM-DDThh:mm:ss+zz
-        type:
-          type: string
-          minLength: 1
-          description: Type of Search
-        total:
-          type: integer
-          description: Number of CareTeam record in entry field
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                minLength: 1
-                description: relation of the resource with link provided in url
-              url:
-                type: string
-                minLength: 1
-                description: FHIR URI of the request
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: FHIR URI of respective CareTeam resource in entry
-              resource:
-                $ref: '#/components/schemas/CareTeam'
-      required:
-      - id
-      - resourceType
-      - meta
-      - type
-      - link
   parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
     _id:
       description: The id of the resource
       name: _id
@@ -215,16 +208,23 @@ components:
       required: false
       schema:
         type: string
-    optional_patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: false
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
       schema:
         type: string
     ct_status:
       description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
       name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    optional_patient_id:
+      description: The id of the patient
+      name: patient
       in: query
       required: false
       schema:

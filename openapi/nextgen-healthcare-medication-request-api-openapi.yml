@@ -73,25 +73,10 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    mr_intent:
-      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
-      name: intent
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
       in: query
-      required: false
-      schema:
-        type: string
-    mr_status:
-      description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
       schema:
         type: string
     patient_id:
@@ -101,17 +86,27 @@ components:
       required: true
       schema:
         type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
       schema:
         type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
+    mr_status:
+      description: Status of the prescription. See http://hl7.org/fhir/CodeSystem/medicationrequest-status
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    mr_intent:
+      description: Returns prescriptions with different intents. See http://hl7.org/fhir/R4/valueset-medicationrequest-intent.html
+      name: intent
+      in: query
+      required: false
+      schema:
+        type: string
   schemas:
     MedicationRequest:
       type: object
@@ -474,6 +469,11 @@ components:
       - total
       - link
       - entry
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

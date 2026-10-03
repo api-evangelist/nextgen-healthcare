@@ -92,11 +92,34 @@ paths:
       operationId: getFhirR4Encounter
       x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
+  parameters:
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
+    encounter_id:
+      description: The id of the resource with prefix values PT with hyphen.Example PT-123
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    optional_patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: false
+      schema:
+        type: string
   schemas:
     Encounter:
       type: object
@@ -316,34 +339,11 @@ components:
       - resourceType
       - meta
       - type
-  parameters:
-    encounter_id:
-      description: The id of the resource with prefix values PT with hyphen.Example PT-123
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    _id:
-      description: The id of the resource
-      name: _id
-      in: query
-      required: false
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    optional_patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: false
-      schema:
-        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

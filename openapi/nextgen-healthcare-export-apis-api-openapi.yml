@@ -92,29 +92,12 @@ paths:
           description: Unexpected error
 components:
   responses:
-    TooManyRequests429:
-      description: Too Many Requests
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
     ResourceNotFound404:
       description: Resource not found
-  parameters:
-    _jobId:
-      description: The id of the resource
-      name: _jobId
-      in: query
-      required: true
-      schema:
-        type: string
-        example: 123456
-    _GroupID:
-      description: The id of the group
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-        example: 09208d49-32ca-45f5-a595-b1df2412543d
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    TooManyRequests429:
+      description: Too Many Requests
   schemas:
     BulkDataStatusResponse:
       type: object
@@ -155,6 +138,23 @@ components:
                 type: string
                 minLength: 1
                 description: The path to the file.
+  parameters:
+    _GroupID:
+      description: The id of the group
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 09208d49-32ca-45f5-a595-b1df2412543d
+    _jobId:
+      description: The id of the resource
+      name: _jobId
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 123456
   securitySchemes:
     bearerAuth:
       type: http

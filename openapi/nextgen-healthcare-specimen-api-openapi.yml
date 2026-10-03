@@ -95,7 +95,31 @@ paths:
       operationId: getFhirR4Specimen
       x-operation-id-source: derived
 components:
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
   schemas:
+    Specimen:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: Specimen
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: object
+        subject:
+          type: object
+        collection:
+          type: object
+      required:
+      - resourceType
+      - id
     SpecimenBundled:
       type: object
       description: A FHIR Bundle of Specimen resources
@@ -119,30 +143,6 @@ components:
                 example: http://example.com/fhir/r4/Specimen/123
               resource:
                 $ref: '#/components/schemas/Specimen'
-    Specimen:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          example: Specimen
-        id:
-          type: string
-        status:
-          type: string
-        type:
-          type: object
-        subject:
-          type: object
-        collection:
-          type: object
-      required:
-      - resourceType
-      - id
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

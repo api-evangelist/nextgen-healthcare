@@ -111,9 +111,16 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    doc_ref_status:
-      description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
-      name: status
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    doc_ref_date:
+      description: When this document reference was created.A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/search.html#date.
+      name: date
       in: query
       required: false
       schema:
@@ -125,23 +132,9 @@ components:
       required: true
       schema:
         type: string
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
     _id:
       description: The id of the resource
       name: _id
-      in: query
-      required: false
-      schema:
-        type: string
-    doc_ref_date:
-      description: When this document reference was created.A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/search.html#date.
-      name: date
       in: query
       required: false
       schema:
@@ -156,6 +149,13 @@ components:
     doc_ref_type:
       description: Kind of document (LOINC if possible). See http://hl7.org/fhir/R4/valueset-c80-doc-typecodes.html
       name: type
+      in: query
+      required: false
+      schema:
+        type: string
+    doc_ref_status:
+      description: Supported values current | superseded | entered-in-error. See http://hl7.org/fhir/R4/valueset-document-reference-status.html
+      name: status
       in: query
       required: false
       schema:

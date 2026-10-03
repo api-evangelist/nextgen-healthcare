@@ -98,17 +98,12 @@ paths:
       operationId: getFhirR4DiagnosticReport
       x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
+    dr_category:
+      description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
+      name: category
+      in: query
+      required: false
       schema:
         type: string
     patient_id:
@@ -124,11 +119,11 @@ components:
       in: query
       schema:
         type: string
-    dr_category:
-      description: Which diagnostic discipline/department created the report. See http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html
-      name: category
-      in: query
-      required: false
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
       schema:
         type: string
     dr_code:
@@ -352,6 +347,11 @@ components:
       - issued
       - performer
       - presentedForm
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

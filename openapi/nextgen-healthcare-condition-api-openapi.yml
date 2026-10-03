@@ -80,11 +80,10 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    condition_id:
-      description: The id of the resource with prefix values PL | HC | ED with hyphen.Example PL-123
-      name: id
-      in: path
-      required: true
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
       schema:
         type: string
     patient_id:
@@ -94,10 +93,11 @@ components:
       required: true
       schema:
         type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
+    condition_id:
+      description: The id of the resource with prefix values PL | HC | ED with hyphen.Example PL-123
+      name: id
+      in: path
+      required: true
       schema:
         type: string
     condition_category:

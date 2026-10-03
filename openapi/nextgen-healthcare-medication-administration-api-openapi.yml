@@ -92,73 +92,7 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   schemas:
-    MedicationAdministrationBundled:
-      type: object
-      description: A FHIR Bundle of MedicationAdministration resources
-      properties:
-        resourceType:
-          type: string
-          description: Always 'Bundle'
-        id:
-          type: string
-          description: Persistent identifier for the bundle
-        meta:
-          type: object
-          description: Metadata about the resource
-          properties:
-            lastUpdated:
-              type: string
-              format: date-time
-              description: When the bundle was last updated
-          required:
-          - lastUpdated
-        type:
-          type: string
-          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
-        total:
-          type: integer
-          description: Number of MedicationAdministration in entry field
-        link:
-          type: array
-          description: Links related to this bundle
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                description: Relation type (e.g., self, next, previous)
-              url:
-                type: string
-                minLength: 1
-                description: Reference details for the link
-            required:
-            - relation
-            - url
-        entry:
-          type: array
-          description: Entries in the bundle (each is a MedicationAdministration resource)
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                minLength: 1
-                description: URI for resource (Absolute URL server address or URI for UUID/OID)
-              resource:
-                $ref: '#/components/schemas/MedicationAdministration'
-            required:
-            - fullUrl
-            - resource
-      required:
-      - resourceType
-      - type
-      - entry
     MedicationAdministration:
       type: object
       description: Administration of medication to a patient
@@ -324,6 +258,72 @@ components:
       - status
       - medicationCodeableConcept
       - subject
+    MedicationAdministrationBundled:
+      type: object
+      description: A FHIR Bundle of MedicationAdministration resources
+      properties:
+        resourceType:
+          type: string
+          description: Always 'Bundle'
+        id:
+          type: string
+          description: Persistent identifier for the bundle
+        meta:
+          type: object
+          description: Metadata about the resource
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              description: When the bundle was last updated
+          required:
+          - lastUpdated
+        type:
+          type: string
+          description: document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
+        total:
+          type: integer
+          description: Number of MedicationAdministration in entry field
+        link:
+          type: array
+          description: Links related to this bundle
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                description: Relation type (e.g., self, next, previous)
+              url:
+                type: string
+                minLength: 1
+                description: Reference details for the link
+            required:
+            - relation
+            - url
+        entry:
+          type: array
+          description: Entries in the bundle (each is a MedicationAdministration resource)
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                minLength: 1
+                description: URI for resource (Absolute URL server address or URI for UUID/OID)
+              resource:
+                $ref: '#/components/schemas/MedicationAdministration'
+            required:
+            - fullUrl
+            - resource
+      required:
+      - resourceType
+      - type
+      - entry
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2
