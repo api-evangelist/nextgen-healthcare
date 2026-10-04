@@ -71,6 +71,13 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
     ma_status:
       description: Status of the medication administration. See http://hl7.org/fhir/R4/valueset-medication-admin-status.html
       name: status
@@ -85,13 +92,11 @@ components:
       required: true
       schema:
         type: string
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     MedicationAdministration:
       type: object
@@ -319,11 +324,6 @@ components:
       - resourceType
       - type
       - entry
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

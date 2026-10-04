@@ -352,10 +352,10 @@ components:
       - type
       - entry
   parameters:
-    id:
-      description: The id of the resource
-      name: id
-      in: path
+    patient:
+      description: The id of the patient
+      name: patient
+      in: query
       required: true
       schema:
         type: string
@@ -366,10 +366,10 @@ components:
       required: false
       schema:
         type: string
-    patient:
-      description: The id of the patient
-      name: patient
-      in: query
+    id:
+      description: The id of the resource
+      name: id
+      in: path
       required: true
       schema:
         type: string

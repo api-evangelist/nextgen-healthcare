@@ -48,10 +48,10 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
-    ResourceNotFound404:
-      description: Resource not found
     ResourceNotAuthorized401:
       description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     Organization:
       type: object

@@ -73,12 +73,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
     patient_id:
       description: The id of the patient
       name: patient
@@ -86,11 +80,10 @@ components:
       required: true
       schema:
         type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
       schema:
         type: string
     mr_status:
@@ -107,6 +100,18 @@ components:
       required: false
       schema:
         type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     MedicationRequest:
       type: object
@@ -469,11 +474,6 @@ components:
       - total
       - link
       - entry
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

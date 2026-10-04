@@ -83,6 +83,40 @@ paths:
       operationId: getFhirR4CareTeam
       x-operation-id-source: derived
 components:
+  parameters:
+    _id:
+      description: The id of the resource
+      name: _id
+      in: query
+      required: false
+      schema:
+        type: string
+    ct_status:
+      description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    optional_patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: false
+      schema:
+        type: string
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     CareTeamBundled:
       type: object
@@ -200,40 +234,6 @@ components:
                 - reference
       required:
       - status
-  parameters:
-    _id:
-      description: The id of the resource
-      name: _id
-      in: query
-      required: false
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    ct_status:
-      description: Supported Values proposed | active | suspended | inactive | entered-in-error. See http://hl7.org/fhir/R4/valueset-care-team-status.html
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    optional_patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: false
-      schema:
-        type: string
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2
