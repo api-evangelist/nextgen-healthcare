@@ -100,3 +100,29 @@ contact:
   developer: https://www.nextgen.com/api-on-boarding
   developer_portal: https://dev-cd.nextgen.com/api
   sign_up: https://developer.nextgen.com/login?returnUrl=%2F
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Patient Access API (Free Developer)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Open Access Developer Program (Free)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: API Distributor Program
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
