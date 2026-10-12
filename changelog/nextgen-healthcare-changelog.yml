@@ -1,25 +1,20 @@
 generated: '2026-08-14'
 method: searched
 source: https://github.com/nextgenhealthcare/connect/releases
-docs:
-- https://github.com/nextgenhealthcare/connect/releases
-- https://github.com/nextgenhealthcare/connect/wiki
-description: >-
-  The only dated, publicly readable NextGen Healthcare release channel is the GitHub Releases feed
-  for Mirth Connect (NextGen Connect), the open-source integration engine. Each release carries a
-  semantic version, a publication date, and links to a "What's New", "Upgrade Guide" and
-  "Release Notes" wiki page. The NextGen Enterprise, NextGen Office, FHIR Patient Access and Bulk
-  FHIR API surfaces publish no public changelog: their release notes sit behind the NextGen Success
-  Community login (community.nextgen.com), so API consumers cannot read version history without a
-  customer account. FHIR version movement is instead expressed as new service base URLs
-  (fhir/dstu2 -> fhir/ (STU3) -> fhir/r4).
+docs: https://github.com/nextgenhealthcare/connect/releases
+description: 'The only dated, publicly readable NextGen Healthcare release channel is the GitHub Releases feed for
+  Mirth Connect (NextGen Connect), the open-source integration engine. Each release carries a semantic version,
+  a publication date, and links to a "What''s New", "Upgrade Guide" and "Release Notes" wiki page. The NextGen Enterprise,
+  NextGen Office, FHIR Patient Access and Bulk FHIR API surfaces publish no public changelog: their release notes
+  sit behind the NextGen Success Community login (community.nextgen.com), so API consumers cannot read version history
+  without a customer account. FHIR version movement is instead expressed as new service base URLs (fhir/dstu2 ->
+  fhir/ (STU3) -> fhir/r4).'
 scheme: semver
 current_version: 4.5.2
 current_version_date: '2024-09-23'
-staleness_note: >-
-  The most recent Mirth Connect release is 4.5.2 (2024-09-23); the official Docker images were last
-  rebuilt 2024-10-28. As of this pass that is roughly 23 months without a tagged release on the
-  company's flagship open-source product.
+staleness_note: The most recent Mirth Connect release is 4.5.2 (2024-09-23); the official Docker images were last
+  rebuilt 2024-10-28. As of this pass that is roughly 23 months without a tagged release on the company's flagship
+  open-source product.
 entries:
 - version: 4.5.2
   date: '2024-09-23'
@@ -84,12 +79,14 @@ entries:
   - Streamlined listener-port selection; usernames surfaced in the UI
   url: https://github.com/nextgenhealthcare/connect/releases/tag/4.2.0
 coverage:
-  covered_products: [Mirth Connect / NextGen Connect]
+  covered_products:
+  - Mirth Connect / NextGen Connect
   uncovered_products:
   - NextGen Enterprise API
   - NextGen Enterprise Patient Access FHIR API
   - NextGen Office FHIR R4 / R3 API
   - NextGen Office Bulk FHIR R4 API
-  uncovered_reason: >-
-    Release notes for the EHR and FHIR API surfaces are published only in the NextGen Success
-    Community (community.nextgen.com), which requires a customer login.
+  uncovered_reason: Release notes for the EHR and FHIR API surfaces are published only in the NextGen Success Community
+    (community.nextgen.com), which requires a customer login.
+docs_additional:
+- https://github.com/nextgenhealthcare/connect/wiki

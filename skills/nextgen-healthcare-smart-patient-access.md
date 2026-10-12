@@ -1,8 +1,8 @@
 ---
-name: Read patient records via SMART-on-FHIR patient access
+name: smart-patient-access
 description: Authorize a patient-facing app with SMART App Launch, obtain a patient-scoped token, and read USCDI clinical resources from the NextGen FHIR R4 Patient Access API.
 api: openapi/nextgen-office-fhir-r4-openapi.yaml
-operations: ['GET /fhir/r4/Patient/{id}', 'GET /fhir/r4/Condition', 'GET /fhir/r4/Observation', 'GET /fhir/r4/AllergyIntolerance', 'GET /fhir/r4/MedicationRequest']
+operations: [getFhirR4PatientById, getFhirR4Condition, getFhirR4Observation, getFhirR4AllergyIntolerance, getFhirR4MedicationRequest]
 auth: SMART-on-FHIR OAuth2 (authorization_code + PKCE)
 ---
 

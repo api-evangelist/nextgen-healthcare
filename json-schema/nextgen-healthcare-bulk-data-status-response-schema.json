@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-bulk-data-status-response-schema.json",
+  "title": "BulkDataStatusResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-export-apis-api-openapi.yml#/components/schemas/BulkDataStatusResponse",
+  "type": "object",
+  "properties": {
+    "transactionTime": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "requiresAccessToken": {
+      "type": "boolean"
+    },
+    "output": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The FHIR resource type that is contained in the file."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The path to the file."
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The FHIR resource type that is contained in the file."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The path to the file."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 8
+  own: 4
+  other_domain: 1
+  platform: 3
+  roles:
+  - identity
+  - other
+  - portal
+  - source
+  - website
+hosts:
+- host: dev-cd.nextgen.com
+  found_by:
+  - pointer
+  types:
+  - DeveloperPortal
+  serves: []
+  registrable_domain: nextgen.com
+  role: portal
+  relation: own
+- host: developer.nextgen.com
+  found_by:
+  - pointer
+  types:
+  - Portal
+  - SignUp
+  serves: []
+  registrable_domain: nextgen.com
+  role: identity
+  relation: own
+- host: fhir.meditouchehr.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: meditouchehr.com
+  role: other
+  relation: other-domain
+- host: fhir.nextgen.com
+  found_by:
+  - apis[]
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - api-gateway
+  - cdn
+  vendor: kong
+  registrable_domain: nextgen.com
+  role: other
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - GitHubOrganization
+  - GitHub
+  serves:
+  - api
+  - hosting
+  vendor: github-pages
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: twitter.com
+  found_by:
+  - pointer
+  types:
+  - X
+  serves: []
+  registrable_domain: twitter.com
+  role: other
+  relation: platform
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.nextgen.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Leadership
+  - Website
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  - Marketplace
+  - Blog
+  - Support
+  - TermsOfService
+  - PrivacyPolicy
+  - TrustCenter
+  - Compliance
+  - DeveloperProgram
+  - Newsroom
+  - Interoperability
+  - Pricing
+  serves:
+  - docs
+  - api
+  registrable_domain: nextgen.com
+  role: website
+  relation: own

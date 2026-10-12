@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-location-schema.json",
+  "title": "Location",
+  "description": "Details and position information for a physical place",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-location-api-openapi.yml#/components/schemas/Location",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "identifier": {
+      "type": "array",
+      "description": "Unique code or number identifying the location to its users",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "The namespace for the identifier value"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value that is unique"
+          }
+        },
+        "required": [
+          "system",
+          "value"
+        ]
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the location as used by humans"
+    },
+    "status": {
+      "type": "string",
+      "description": "active | suspended | inactive"
+    },
+    "managingOrganization": {
+      "type": "object",
+      "description": "Organization responsible for provisioning and upkeep",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "Reference to Organization Resource"
+        },
+        "display": {
+          "type": "string",
+          "description": "Practice name"
+        }
+      }
+    },
+    "address": {
+      "type": "array",
+      "description": "Physical location",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "type": "array",
+            "description": "Street name, number, direction & P.O. Box etc.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "city": {
+            "type": "string",
+            "description": "Name of city, town etc."
+          },
+          "state": {
+            "type": "string",
+            "description": "Sub-unit of country (abbreviations ok)"
+          },
+          "postalcode": {
+            "type": "string",
+            "description": "Postal code for area"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country (e.g. can be ISO 3166 2 or 3 letter code)"
+          }
+        }
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "description": "Contact details of the location",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "phone | fax | email | pager | url | sms | other"
+          },
+          "value": {
+            "type": "string",
+            "description": "The actual contact point details"
+          },
+          "use": {
+            "type": "string",
+            "description": "home | work | temp | old | mobile - purpose of this contact point"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "identifier",
+    "name",
+    "status",
+    "managingOrganization",
+    "address",
+    "telecom"
+  ]
+}

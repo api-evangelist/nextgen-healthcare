@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-care-team-bundled-schema.json",
+  "title": "CareTeamBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-careteam-api-openapi.yml#/components/schemas/CareTeamBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of CareTeam record in entry field"
+    },
+    "link": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "minLength": 1,
+            "description": "relation of the resource with link provided in url"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of the request"
+          }
+        },
+        "required": [
+          "relation",
+          "url"
+        ]
+      }
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective CareTeam resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/CareTeam"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "resourceType",
+    "meta",
+    "type",
+    "link"
+  ],
+  "$defs": {
+    "CareTeam": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1,
+          "description": "proposed | active | suspended | inactive | entered-in-error"
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            }
+          }
+        },
+        "participant": {
+          "type": "array",
+          "description": "Members of the team",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "array",
+                "description": "Type of involvement",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "coding": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "system": {
+                            "type": "string",
+                            "description": "Identity of the terminology system"
+                          },
+                          "code": {
+                            "type": "string"
+                          },
+                          "display": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "member": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Literal reference, Relative, internal or absolute URL"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Text alternative for the resource"
+                  }
+                },
+                "required": [
+                  "reference"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "status"
+      ]
+    }
+  }
+}

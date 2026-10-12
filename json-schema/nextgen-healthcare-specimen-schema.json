@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-specimen-schema.json",
+  "title": "Specimen",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-specimen-api-openapi.yml#/components/schemas/Specimen",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "object"
+    },
+    "subject": {
+      "type": "object"
+    },
+    "collection": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "resourceType",
+    "id"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-provenance-schema.json",
+  "title": "Provenance",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-provenance-api-openapi.yml#/components/schemas/Provenance",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "versionId": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profile": {
+          "description": "Profiles this resource claims to conform to",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Target Reference with prefix value PTP with hyphen.Example PTP-123"
+          }
+        }
+      }
+    },
+    "recorded": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "agent": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Representation defined by the system"
+                    }
+                  }
+                }
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Plain text representation of the concept"
+              }
+            }
+          },
+          "who": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string"
+              }
+            }
+          },
+          "onBehalfOf": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "resourceType",
+    "meta",
+    "target",
+    "recorded",
+    "agent",
+    "type",
+    "who",
+    "onBehalfOf",
+    "display",
+    "system",
+    "code",
+    "coding",
+    "text"
+  ]
+}

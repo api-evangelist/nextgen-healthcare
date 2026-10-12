@@ -1,10 +1,8 @@
 generated: '2026-07-24'
 method: searched
-description: >-
-  Standards conformance for the NextGen Healthcare FHIR and Enterprise API surface. Derived
-  from the live CapabilityStatements, SMART configuration / OpenID discovery documents, and the
-  published Swagger/OpenAPI, and cross-checked against NextGen's regulatory (21st Century Cures)
-  API pages and the corporate Trust Center certifications.
+description: Standards conformance for the NextGen Healthcare FHIR and Enterprise API surface. Derived from the live CapabilityStatements, SMART
+  configuration / OpenID discovery documents, and the published Swagger/OpenAPI, and cross-checked against NextGen's regulatory (21st Century
+  Cures) API pages and the corporate Trust Center certifications.
 source:
 - fhir/nextgen-enterprise-r4-capabilitystatement.json
 - fhir/nextgen-office-r4-capabilitystatement.json
@@ -81,3 +79,15 @@ standards:
   name: FAPI (Financial-grade API)
   conforms: false
   evidence: no FAPI security profile advertised
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take page

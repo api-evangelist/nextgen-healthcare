@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-procedure-bundled-schema.json",
+  "title": "ProcedureBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-procedure-api-openapi.yml#/components/schemas/ProcedureBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "description": "The id of the resource."
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of procedure in entry field"
+    },
+    "link": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "minLength": 1,
+            "description": "relation of the resource with link provided in url"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of the request"
+          }
+        }
+      },
+      "required": [
+        "relation",
+        "url"
+      ]
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective Condition resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/Procedure"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "type",
+    "total",
+    "link",
+    "entry"
+  ],
+  "$defs": {
+    "Procedure": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "description": "The id of the resource."
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "profile": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown"
+        },
+        "code": {
+          "type": "object",
+          "description": "Identification of the procedure",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "system": {
+                    "type": "string"
+                  },
+                  "display": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "description": "Who the procedure was performed on.",
+          "properties": {
+            "reference": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "performedDateTime": {
+          "type": "string",
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        }
+      },
+      "required": [
+        "status",
+        "id",
+        "resourceType",
+        "meta",
+        "subject"
+      ]
+    }
+  }
+}

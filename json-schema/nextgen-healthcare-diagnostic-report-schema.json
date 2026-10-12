@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-diagnostic-report-schema.json",
+  "title": "DiagnosticReport",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-diagnosticreport-api-openapi.yml#/components/schemas/DiagnosticReport",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        },
+        "profile": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Profiles this resource claims to conform to",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "description": "registered | partial | preliminary | final +"
+    },
+    "category": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "coding": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "system": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Identity of the terminology system"
+                },
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Symbol in syntax defined by the system"
+                },
+                "display": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Representation defined by the system"
+                }
+              },
+              "required": [
+                "display",
+                "system"
+              ],
+              "description": "Code defined by a terminology system"
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Plain text representation of the concept"
+          }
+        },
+        "required": [
+          "coding",
+          "text"
+        ]
+      }
+    },
+    "code": {
+      "type": "object",
+      "description": "Code that identifies the allergy or intolerance",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string",
+                "description": "Identity of the terminology system"
+              },
+              "code": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Literal reference, Relative, internal or absolute URL"
+        }
+      }
+    },
+    "encounter": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Literal reference, Relative, internal or absolute URL"
+        },
+        "display": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Representation defined by the system"
+        }
+      },
+      "required": [
+        "reference",
+        "display"
+      ]
+    },
+    "effectiveDateTime": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issued": {
+      "type": "string",
+      "minLength": 1,
+      "description": "DateTime this version was made"
+    },
+    "performer": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Responsible Diagnostic Service",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Literal reference, Relative, internal or absolute URL"
+          },
+          "display": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Representation defined by the system"
+          }
+        },
+        "required": [
+          "reference",
+          "display"
+        ]
+      }
+    },
+    "presentedForm": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Entire report as issued",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Mime type of the content, with charset etc."
+          },
+          "data": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Data inline, base64ed"
+          }
+        },
+        "required": [
+          "contentType",
+          "data"
+        ]
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "status",
+    "category",
+    "code",
+    "subject",
+    "encounter",
+    "effectiveDateTime",
+    "issued",
+    "performer",
+    "presentedForm"
+  ]
+}

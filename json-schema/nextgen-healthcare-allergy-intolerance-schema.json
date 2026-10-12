@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-allergy-intolerance-schema.json",
+  "title": "AllergyIntolerance",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml#/components/schemas/AllergyIntolerance",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "string"
+        }
+      }
+    },
+    "clinicalStatus": {
+      "type": "object",
+      "description": "active | inactive | resolved",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "description": "Code defined by a terminology system",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string",
+                "description": "Identity of the terminology system"
+              },
+              "code": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "verificationStatus": {
+      "type": "object",
+      "description": "unconfirmed | confirmed | refuted | entered-in-error",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string",
+                "description": "Identity of the terminology system"
+              },
+              "code": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "code": {
+      "type": "object",
+      "description": "Code that identifies the allergy or intolerance",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string",
+                "description": "Identity of the terminology system"
+              },
+              "code": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "patient": {
+      "type": "object",
+      "description": "Who the sensitivity is for",
+      "properties": {
+        "reference": {
+          "type": "string"
+        }
+      }
+    },
+    "recordedDate": {
+      "type": "string",
+      "description": "Date first version of the resource instance was recorded"
+    },
+    "reaction": {
+      "type": "array",
+      "description": "Adverse Reaction Events linked to exposure to substance",
+      "items": {
+        "type": "object",
+        "properties": {
+          "manifestation": {
+            "type": "array",
+            "description": "Clinical symptoms/signs associated with the Event",
+            "items": {
+              "type": "object",
+              "properties": {
+                "coding": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "system": {
+                        "type": "string",
+                        "description": "Identity of the terminology system"
+                      },
+                      "code": {
+                        "type": "string"
+                      },
+                      "display": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "onset": {
+            "type": "string",
+            "description": "Date(/time) when manifestations showed"
+          },
+          "severity": {
+            "type": "string",
+            "description": "mild | moderate | severe (of event as a whole)"
+          }
+        }
+      },
+      "required": [
+        "manifestation",
+        "severity"
+      ]
+    }
+  },
+  "required": [
+    "verificationStatus",
+    "resourceType",
+    "id",
+    "meta",
+    "clinicalStatus"
+  ]
+}

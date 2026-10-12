@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-patient-bundled-schema.json",
+  "title": "PatientBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-patient-api-openapi.yml#/components/schemas/PatientBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "Meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "lastUpdated": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of Consitions in entry field"
+    },
+    "Link": {
+      "type": "object",
+      "properties": {
+        "relation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "relation of the resource with link provided in url"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "FHIR URI of the request",
+          "required": [
+            "relation",
+            "url"
+          ]
+        },
+        "entry": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fullUrl": {
+                "type": "string",
+                "minLength": 1,
+                "description": "FHIR URI of respective Condition resource in entry"
+              },
+              "resource": {
+                "$ref": "#/$defs/Patient"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "type",
+    "total",
+    "link"
+  ],
+  "$defs": {
+    "Patient": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "id of the resource"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether this patient's record is in active use."
+        },
+        "identifier": {
+          "type": "array",
+          "description": "An identifier for the patient",
+          "items": {
+            "type": "object",
+            "properties": {
+              "use": {
+                "type": "string"
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "coding": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "system": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "display": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "system",
+                        "code",
+                        "display"
+                      ]
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              },
+              "System": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string",
+                "required": [
+                  "use",
+                  "type",
+                  "System",
+                  "Value"
+                ]
+              }
+            }
+          }
+        },
+        "telcom": {
+          "type": "array",
+          "description": "contact detail for the individual",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string"
+              },
+              "use": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "name": {
+          "type": "array",
+          "description": "name associated with the patient",
+          "items": {
+            "type": "object",
+            "properties": {
+              "use": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "family": {
+                "type": "string"
+              },
+              "given": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "givenElement": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "address": {
+          "type": "array",
+          "description": "address of the patient",
+          "items": {
+            "type": "object",
+            "properties": {
+              "line": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "city": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "postalCode": {
+                "type": "string"
+              },
+              "period": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "end": {
+                    "format": "date-time",
+                    "type": "string"
+                  }
+                }
+              },
+              "use": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "birthdate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "extension": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "display": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "communication": {
+          "description": "language used to communicate with the patient",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "type": "object",
+                "properties": {
+                  "coding": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "system": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "display": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deceasedBoolean": {
+          "type": "boolean",
+          "description": "Indicates if the patient is deceased but date of death is not known. Mutually exclusive with 'deceasedDateTime'."
+        },
+        "deceasedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time when the patient died. Only present if patient is deceased and a date of death is known. Mutually exclusive with 'deceasedBoolean'."
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "active",
+        "identifier",
+        "telcom",
+        "name",
+        "address",
+        "birthDate",
+        "extension",
+        "communication"
+      ]
+    }
+  }
+}

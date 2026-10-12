@@ -3,13 +3,11 @@ method: searched
 source:
 - https://github.com/nextgenhealthcare/connect/blob/development/command/src/com/mirth/connect/cli/CommandLineInterface.java
 - https://github.com/nextgenhealthcare/connect
-description: >-
-  NextGen Healthcare ships one first-party command-line tool: the Mirth Connect Command Line
-  Interface ("Mirth Connect Shell", launched as mccommand), bundled with every Mirth Connect /
-  NextGen Connect integration-engine distribution. It is an administrative client for a running
-  Mirth Connect server, not a client for the FHIR or NextGen Enterprise REST APIs — those two
-  API families ship no CLI. The command surface below is transcribed verbatim from the help text
-  in the first-party source (command/src/com/mirth/connect/cli/CommandLineInterface.java).
+description: 'NextGen Healthcare ships one first-party command-line tool: the Mirth Connect Command Line Interface
+  ("Mirth Connect Shell", launched as mccommand), bundled with every Mirth Connect / NextGen Connect integration-engine
+  distribution. It is an administrative client for a running Mirth Connect server, not a client for the FHIR or
+  NextGen Enterprise REST APIs — those two API families ship no CLI. The command surface below is transcribed verbatim
+  from the help text in the first-party source (command/src/com/mirth/connect/cli/CommandLineInterface.java).'
 name: Mirth Connect Shell
 binary: mccommand
 official: true
@@ -43,7 +41,7 @@ invocation:
     arg: null
     description: help
   auth: server username + password (the same credentials as the Mirth Administrator client)
-command_groups:
+command_groups: &id001
 - group: server status and deployment
   commands:
   - command: status
@@ -65,7 +63,8 @@ command_groups:
 - group: configuration
   commands:
   - command: importcfg "path" [nodeploy] [overwriteconfigmap]
-    description: Imports configuration specified by <path>. Optional 'nodeploy' stops channels from being deployed after importing. Optional 'overwriteconfigmap' will overwrite the Configuration Map.
+    description: Imports configuration specified by <path>. Optional 'nodeploy' stops channels from being deployed
+      after importing. Optional 'overwriteconfigmap' will overwrite the Configuration Map.
   - command: exportcfg "path"
     description: Exports the configuration to <path>
   - command: importmap "path"
@@ -85,7 +84,8 @@ command_groups:
 - group: code templates
   commands:
   - command: codetemplate library list [includecodetemplates]
-    description: Lists all code template libraries. Optional 'includecodetemplates' additionally lists the code templates within each library.
+    description: Lists all code template libraries. Optional 'includecodetemplates' additionally lists the code
+      templates within each library.
   - command: codetemplate list
     description: Lists all code templates.
   - command: codetemplate [library] import path [force]
@@ -102,7 +102,8 @@ command_groups:
   commands:
   - command: importmessages "path" id
     description: Imports messages specified by <path> into the channel specified by <id>
-  - command: exportmessages "path/file-pattern" id [xml|xml-attach|raw|processedraw|transformed|encoded|response] [pageSize]
+  - command: exportmessages "path/file-pattern" id [xml|xml-attach|raw|processedraw|transformed|encoded|response]
+      [pageSize]
     description: Exports all messages for channel specified by <id> to <path>
   - command: clearallmessages
     description: Removes all messages from all Channels (running channels will be restarted)
@@ -128,16 +129,23 @@ command_groups:
     description: Quits Mirth Connect Shell
 key_flows:
 - name: Scripted channel deployment
-  steps: [import "channel.xml" force, deploy 60, status]
+  steps:
+  - import "channel.xml" force
+  - deploy 60
+  - status
 - name: Configuration backup / restore
-  steps: [exportcfg "backup.xml", importcfg "backup.xml" nodeploy]
+  steps:
+  - exportcfg "backup.xml"
+  - importcfg "backup.xml" nodeploy
 - name: Message archival
-  steps: [exportmessages "out/msg-%d.xml" <channelId> xml 1000]
+  steps:
+  - exportmessages "out/msg-%d.xml" <channelId> xml 1000
 notes:
-- The NextGen Enterprise REST API and the NextGen Enterprise / NextGen Office FHIR APIs have no
-  first-party CLI; the only NextGen-published command-line tool is this integration-engine shell.
-- Command text transcribed verbatim from the first-party help output in CommandLineInterface.java;
-  no commands were inferred or invented.
+- The NextGen Enterprise REST API and the NextGen Enterprise / NextGen Office FHIR APIs have no first-party CLI;
+  the only NextGen-published command-line tool is this integration-engine shell.
+- Command text transcribed verbatim from the first-party help output in CommandLineInterface.java; no commands were
+  inferred or invented.
 see_also:
   packages: packages/nextgen-healthcare-packages.yml
   changelog: changelog/nextgen-healthcare-changelog.yml
+commands: *id001

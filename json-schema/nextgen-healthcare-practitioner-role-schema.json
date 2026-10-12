@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-practitioner-role-schema.json",
+  "title": "PractitionerRole",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-practitioner-role-api-openapi.yml#/components/schemas/PractitionerRole",
+  "type": "object",
+  "properties": {
+    "responseType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "profile": {
+          "description": "Profiles this resource claims to conform to",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "profile"
+      ]
+    },
+    "identifier": {
+      "description": "Business Identifiers that are specific to a role",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The namespace for the identifier value"
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The value that is unique"
+          }
+        },
+        "required": [
+          "system",
+          "value"
+        ]
+      }
+    },
+    "organization": {
+      "type": "object",
+      "description": "Organization where the roles are available",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "Reference to Organization Resource"
+        },
+        "display": {
+          "type": "string",
+          "description": "Practice name"
+        }
+      }
+    },
+    "practitioner": {
+      "type": "object",
+      "description": "Practitioner that is able to provide the defined services for the organization",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "Reference to Practitioner Resource"
+        },
+        "display": {
+          "type": "string",
+          "description": "Practitioner name"
+        }
+      }
+    },
+    "location": {
+      "type": "array",
+      "description": "The location(s) at which this practitioner provides care",
+      "items": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "Reference to Location Resource"
+          },
+          "display": {
+            "type": "string",
+            "description": "Location name"
+          }
+        }
+      }
+    },
+    "specialty": {
+      "type": "array",
+      "description": "Specific specialty of the practitioner",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "description": "Contact details that are specific to the role/location/service",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "phone | fax | email | pager | url | sms | other"
+          },
+          "value": {
+            "type": "string",
+            "description": "The actual contact point details"
+          },
+          "use": {
+            "type": "string",
+            "description": "home | work | temp | old | mobile - purpose of this contact point"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "identifier",
+    "responseType",
+    "practitioner"
+  ]
+}

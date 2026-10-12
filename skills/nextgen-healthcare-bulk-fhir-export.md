@@ -1,5 +1,5 @@
 ---
-name: Run a NextGen Office Bulk FHIR export
+name: nextgen-office-bulk-fhir-export
 description: Create a patient Group and run an asynchronous Bulk FHIR ($export) job to pull USCDIv1 data for a population, then poll for and download the output.
 api: openapi/nextgen-office-bulk-fhir-r4-openapi.yml
 operations: [createGroup, getGroup, groupExport, pollJobStatus, deleteJob]

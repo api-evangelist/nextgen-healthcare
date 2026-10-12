@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-organization-schema.json",
+  "title": "Organization",
+  "description": "A grouping of people or organizations with a common purpose",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-organization-api-openapi.yml#/components/schemas/Organization",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "identifier": {
+      "type": "array",
+      "description": "Identifies this organization across multiple system",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "The namespace for the identifier value"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value that is unique"
+          }
+        },
+        "required": [
+          "system",
+          "value"
+        ]
+      }
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the organization's record is still in active use"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name used for the organization"
+    },
+    "telecom": {
+      "type": "array",
+      "description": "A contact detail for the organization",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string"
+          },
+          "use": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "address": {
+      "type": "array",
+      "description": "An address for the organization",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "type": "array",
+            "description": "Street name, number, direction & P.O. Box etc.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "city": {
+            "type": "string",
+            "description": "Name of city, town etc."
+          },
+          "state": {
+            "type": "string",
+            "description": "Sub-unit of country (abbreviation)"
+          },
+          "postalcode": {
+            "type": "string",
+            "description": "Postal code for area"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country (e.g. can be ISO 3166 2 or 3 letter code)"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "identifier",
+    "active",
+    "name",
+    "address",
+    "telecom",
+    "entry",
+    "link"
+  ]
+}

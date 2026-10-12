@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-related-person-schema.json",
+  "title": "RelatedPerson",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-relatedperson-api-openapi.yml#/components/schemas/RelatedPerson",
+  "type": "object",
+  "properties": {
+    "responseType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "profile": {
+          "description": "Profiles this resource claims to conform to",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "profile"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether this related person's record is in active use"
+    },
+    "patient": {
+      "type": "object",
+      "description": "The patient this person is related to",
+      "properties": {
+        "reference": {
+          "type": "string"
+        }
+      }
+    },
+    "relationship": {
+      "type": "array",
+      "description": "The nature of the relationship",
+      "items": {
+        "type": "object",
+        "properties": {
+          "coding": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "system": {
+                  "type": "string",
+                  "description": "Identity of the terminology system"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "display": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "name": {
+      "type": "array",
+      "description": "A name associated with the person",
+      "items": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string",
+            "description": "Family name (often called 'Surname')"
+          },
+          "given": {
+            "type": "array",
+            "description": "Given names (not always 'first'). Includes middle names",
+            "items": {
+              "type": "string"
+            }
+          },
+          "use": {
+            "type": "string",
+            "description": "usual | official | temp | nickname | anonymous | old | maiden"
+          }
+        }
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "description": "Contact details that are specific to the role/location/service",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "phone | fax | email | pager | url | sms | other"
+          },
+          "value": {
+            "type": "string",
+            "description": "The actual contact point details"
+          },
+          "use": {
+            "type": "string",
+            "description": "home | work | temp | old | mobile - purpose of this contact point"
+          }
+        }
+      }
+    },
+    "address": {
+      "type": "array",
+      "description": "Address where the related person can be contacted or visited",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "type": "array",
+            "description": "Street name, number, direction & P.O. Box etc.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "city": {
+            "type": "string",
+            "description": "Name of city, town etc."
+          },
+          "state": {
+            "type": "string",
+            "description": "Sub-unit of country"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Postal code for area"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "responseType",
+    "id",
+    "meta",
+    "active",
+    "patient"
+  ]
+}

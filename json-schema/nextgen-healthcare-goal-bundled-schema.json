@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-goal-bundled-schema.json",
+  "title": "GoalBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-goal-api-openapi.yml#/components/schemas/GoalBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "Meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "lastUpdated": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of Goals in entry field"
+    },
+    "Link": {
+      "type": "object",
+      "properties": {
+        "relation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "relation of the resource with link provided in url"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "FHIR URI of the request",
+          "required": [
+            "relation",
+            "url"
+          ]
+        }
+      }
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective Goal resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/Goal"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "Meta",
+    "type",
+    "total",
+    "link",
+    "entry"
+  ],
+  "$defs": {
+    "Goal": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "profile": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "profile"
+          ]
+        },
+        "lifecyclestatus": {
+          "type": "string",
+          "description": "describe the status"
+        },
+        "description": {
+          "type": "object",
+          "description": "describe the status.",
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string"
+            }
+          }
+        },
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "due date": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "meta",
+        "lifecyclestatus",
+        "description",
+        "subject",
+        "target"
+      ]
+    }
+  }
+}

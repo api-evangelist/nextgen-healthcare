@@ -1,0 +1,283 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml
+- openapi/nextgen-healthcare-care-plan-api-openapi.yml
+- openapi/nextgen-healthcare-careteam-api-openapi.yml
+- openapi/nextgen-healthcare-ccda-api-openapi.yml
+- openapi/nextgen-healthcare-condition-api-openapi.yml
+vocabulary:
+  name: NextGen Healthcare Domain Vocabulary
+  description: 'Terms declared by NextGen Healthcare''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: Allergy Intolerance
+    definition: https://hl7.org/fhir/R4/allergyintolerance.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml
+  - term: Care plan
+    definition: https://hl7.org/fhir/R4/careplan.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-care-plan-api-openapi.yml
+  - term: CareTeam
+    definition: https://hl7.org/fhir/R4/careteam.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-careteam-api-openapi.yml
+  - term: Condition
+    definition: https://hl7.org/fhir/R4/condition.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-condition-api-openapi.yml
+  - term: Coverage
+    definition: https://hl7.org/fhir/R4/coverage.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-coverage-api-openapi.yml
+  - term: Device
+    definition: https://hl7.org/fhir/R4/device.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-device-api-openapi.yml
+  - term: DiagnosticReport
+    definition: https://hl7.org/fhir/R4/diagnosticreport.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-diagnosticreport-api-openapi.yml
+  - term: Document Reference
+    definition: https://hl7.org/fhir/R4/documentreference.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-document-reference-api-openapi.yml
+  - term: Encounter
+    definition: https://hl7.org/fhir/R4/encounter.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-encounter-api-openapi.yml
+  - term: Goal
+    definition: https://hl7.org/fhir/R4/goal.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-goal-api-openapi.yml
+  - term: Immunization
+    definition: https://hl7.org/fhir/R4/immunization.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-immunization-api-openapi.yml
+  - term: Location
+    definition: https://hl7.org/fhir/R4/location.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-location-api-openapi.yml
+  - term: Medication Administration
+    definition: https://hl7.org/fhir/R4/medicationadministration.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-medication-administration-api-openapi.yml
+  - term: Medication Request
+    definition: https://hl7.org/fhir/R4/medicationrequest.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-medication-request-api-openapi.yml
+  - term: Observation
+    definition: https://hl7.org/fhir/R4/observation.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-observation-api-openapi.yml
+  - term: Organization
+    definition: https://hl7.org/fhir/R4/organization.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-organization-api-openapi.yml
+  - term: Patient
+    definition: https://hl7.org/fhir/R4/patient.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-patient-api-openapi.yml
+  - term: Practitioner
+    definition: https://hl7.org/fhir/R4/practitioner.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-practitioner-api-openapi.yml
+  - term: Practitioner Role
+    definition: https://hl7.org/fhir/R4/practitionerrole.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-practitioner-role-api-openapi.yml
+  - term: Procedure
+    definition: https://hl7.org/fhir/R4/procedure.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-procedure-api-openapi.yml
+  - term: Provenance
+    definition: https://hl7.org/fhir/R4/provenance.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-provenance-api-openapi.yml
+  - term: RelatedPerson
+    definition: https://hl7.org/fhir/R4/relatedperson.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-relatedperson-api-openapi.yml
+  - term: Specimen
+    definition: https://hl7.org/fhir/R4/specimen.html
+    tags:
+    - Resource Group
+    source: openapi/nextgen-healthcare-specimen-api-openapi.yml
+  - term: AllergyIntolerance
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, clinicalStatus, verificationStatus, code, patient, recordedDate,
+      reaction.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml#/components/schemas/AllergyIntolerance
+  - term: AllergyIntoleranceBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-allergy-intolerance-api-openapi.yml#/components/schemas/AllergyIntoleranceBundled
+  - term: CarePlanBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-care-plan-api-openapi.yml#/components/schemas/CarePlanBundled
+  - term: CarePlan
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, text, status, intent, category, subject, activity.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-care-plan-api-openapi.yml#/components/schemas/CarePlan
+  - term: CareTeamBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-careteam-api-openapi.yml#/components/schemas/CareTeamBundled
+  - term: ConditionBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-condition-api-openapi.yml#/components/schemas/ConditionBundled
+  - term: CoverageBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-coverage-api-openapi.yml#/components/schemas/CoverageBundled
+  - term: DeviceBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, Meta, type, total, Link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-device-api-openapi.yml#/components/schemas/DeviceBundled
+  - term: DiagnosticReportBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-diagnosticreport-api-openapi.yml#/components/schemas/DiagnosticReportBundled
+  - term: DocumentReference
+    definition: A reference to a document
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-document-reference-api-openapi.yml#/components/schemas/DocumentReference
+  - term: DocumentReferenceBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-document-reference-api-openapi.yml#/components/schemas/DocumentReferenceBundled
+  - term: EncounterBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-encounter-api-openapi.yml#/components/schemas/EncounterBundled
+  - term: BulkDataStatusResponse
+    definition: 'Object declared by the contract with fields: transactionTime, request, requiresAccessToken, output, error.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-export-apis-api-openapi.yml#/components/schemas/BulkDataStatusResponse
+  - term: GoalBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, Meta, type, total, Link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-goal-api-openapi.yml#/components/schemas/GoalBundled
+  - term: CreateBulkFhirPatientGroup
+    definition: 'Object declared by the contract with fields: resourceType, name, patientIds.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-group-apis-api-openapi.yml#/components/schemas/CreateBulkFhirPatientGroup
+  - term: UpdateBulkFhirPatientGroup
+    definition: 'Object declared by the contract with fields: resourceType, id, name, patientIdsToInclude, patientIdsToExclude.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-group-apis-api-openapi.yml#/components/schemas/UpdateBulkFhirPatientGroup
+  - term: ImmunizationBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-immunization-api-openapi.yml#/components/schemas/ImmunizationBundled
+  - term: MedicationAdministration
+    definition: Administration of medication to a patient
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medication-administration-api-openapi.yml#/components/schemas/MedicationAdministration
+  - term: MedicationAdministrationBundled
+    definition: A FHIR Bundle of MedicationAdministration resources
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medication-administration-api-openapi.yml#/components/schemas/MedicationAdministrationBundled
+  - term: MedicationRequest
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, status, intent, category, reportedBoolean, medicationCodableConcept,
+      subject, encounter, authoredOn, requester. (3 more)'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medication-request-api-openapi.yml#/components/schemas/MedicationRequest
+  - term: MedicationRequestBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medication-request-api-openapi.yml#/components/schemas/MedicationRequestBundled
+  - term: MedicationDispense
+    definition: Dispensing a medication to a named patient
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medicationdispense-api-openapi.yml#/components/schemas/MedicationDispense
+  - term: MedicationDispenseBundled
+    definition: A FHIR Bundle of MedicationDispense resources
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-medicationdispense-api-openapi.yml#/components/schemas/MedicationDispenseBundled
+  - term: ObservationBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-observation-api-openapi.yml#/components/schemas/ObservationBundled
+  - term: PatientBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, Meta, type, total, Link.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-patient-api-openapi.yml#/components/schemas/PatientBundled
+  - term: PractitionerRoleBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-practitioner-role-api-openapi.yml#/components/schemas/PractitionerRoleBundled
+  - term: PractitionerRole
+    definition: 'Object declared by the contract with fields: responseType, id, meta, identifier, organization, practitioner, location, specialty,
+      telecom.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-practitioner-role-api-openapi.yml#/components/schemas/PractitionerRole
+  - term: ProcedureBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-procedure-api-openapi.yml#/components/schemas/ProcedureBundled
+  - term: RelatedPersonBundled
+    definition: 'Object declared by the contract with fields: resourceType, id, meta, type, total, link, entry.'
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-relatedperson-api-openapi.yml#/components/schemas/RelatedPersonBundled
+  - term: SpecimenBundled
+    definition: A FHIR Bundle of Specimen resources
+    tags:
+    - Object
+    source: openapi/nextgen-healthcare-specimen-api-openapi.yml#/components/schemas/SpecimenBundled

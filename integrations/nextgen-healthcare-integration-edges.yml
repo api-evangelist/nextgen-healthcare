@@ -1,0 +1,478 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://www.nextgen.com/solutions/marketplace
+- https://zapier.com/apps/nextgen-healthcare/integrations
+checked:
+- https://composio.dev/toolkits/nextgen-healthcare
+- https://monid.ai/tools/nextgen-healthcare
+- https://n8n.io/integrations/nextgen-healthcare/
+- https://www.nextgen.com/solutions/marketplace
+- https://zapier.com/apps/nextgen-healthcare/integrations
+summary: NextGen runs its own partner marketplace at nextgen.com/solutions/marketplace listing 96 partner solutions;
+  first 50 recorded as partner-built edges.
+marketplace_apps:
+- marketplace: own
+  url: https://www.nextgen.com/solutions/marketplace
+  app_count: 96
+  app_count_note: count of distinct partner listing links on the marketplace page (2026-10-12); the page states
+    no total
+  categories: []
+  app: nextgen-healthcare
+- marketplace: zapier
+  channel: ipaas-listing
+  app: nextgen-healthcare
+  url: https://zapier.com/apps/nextgen-healthcare/integrations
+  external_url: http://www.nextgen.com/
+  partner_tier: null
+  triggers: []
+  actions: []
+  searches: []
+edges:
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/vytalize
+  partner_name: Vytalize Health Accountable Care Organization By specializing in Medicare value-based care programs,
+    we provide an all-in-one solution for primary care practice
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/actx
+  partner_name: ActX, Inc. ActX Genomic Decision Support ActX integrates genomic decision support seamlessly into
+    NextGen EHR.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/insighthealth
+  partner_name: Insight Health AI, Inc. AI Fax, Referral Management, and Prior Authorization AI automates faxes,
+    referrals, prior authorization, phone, and texting workflows fo
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/aimedica
+  partner_name: AI Medica, INC AI Medica Platform Evidence-based EHR automation to improve reimbursement accuracy,
+    care quality, HCC recapture, and documentation burnout.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/proteainnovation
+  partner_name: Protea Innovation AMRA Prescription Refill Safe and efficient prescription refill management.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/archermedicalsystems
+  partner_name: Archer Medical Systems AMSHub Industry-leading inventory management, business analytics and patient
+    engagement tools designed specifically for outpatient facili
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/bekhealth
+  partner_name: 'BEKHealth Corporation BEKHealth Platform The BEKHealth Platform is a unified EMR data processing,
+    trial feasibility, patient recruitment and analytics solution '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/bitfount
+  partner_name: Bitfount Bitfount On-premise AI analysis of EMR and imaging data to accelerate and automate clinical
+    trial patient identification, study feasibility and more.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/clinify
+  partner_name: 'Clinify CareTrax CareTrax, by Clinify Health, is an advanced SaaS platform designed for Federally
+    Qualified Health Centers (FQHCs) and safety-net providers. It '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/casectrl
+  partner_name: CaseCTRL CaseCTRL Surgical scheduling and coordination tool designed to help clinics plan surgeries
+    with less administrative burden.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/clinicallyspeaking
+  partner_name: 'Clinically Speaking Clinical Note Exchange Clinical Note Exchange + Dragon Copilot: Effortless
+    AI-powered EHR documentation'
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/commure
+  partner_name: 'Commure Commure Commure: Ambient AI medical documentation fully integrated with NextGen Enterprise.'
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/connectivitywise
+  partner_name: ConnectivityWise, LLC ConnectivityWise ConnectivityWise automates point-of-care result upload to
+    improve patient flow, eliminate errors, free up staff, and ensu
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/appliedresearchworks
+  partner_name: Applied Research Works, Inc. Cozeva Achieve point-of-care visibility to patients’ Quality and Risk
+    care opportunities and automatically close care gaps via Coze
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/dhrpro
+  partner_name: DHRpro, LLC DHRpro See all patient clinical and financial data in one simple and actionable dashboard.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/docology
+  partner_name: docology, LLC docology docology automates the fax & document intake into NextGen, then generates
+    patient summaries and clinical timelines to give providers visi
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/documo
+  partner_name: Documo Documo Modern cloud fax meets intelligent document processing. We enable you to put your
+    faxes straight into your patients’ charts, quickly and securely.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/geminihealth
+  partner_name: 'Gemini Health DSR-E: Patient Drugs and Savings Reports Drugs & Savings Reports (DSRs) deliver lower
+    cost, dose-equivalent alternatives, based on the patient''s b'
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/ehrbarcodereader
+  partner_name: Keena Healthcare Technology EHR Barcode Reader Quickly and easily capture vaccine and medication
+    data directly into NextGen Enterprise
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/innovaccer
+  partner_name: 'Innovaccer Inc. Innovaccer Population Health Management Solution Innovaccer activates the flow
+    of healthcare data, empowering providers, payers, and government '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/lucemhealth
+  partner_name: Lucem Health, Inc. Lucem Health Reveal Accelerated disease detection that meets you where you are.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/opisafe
+  partner_name: RxAssurance Corp. OpiSafe OpiSafe is a comprehensive platform to bring automation into your opioid
+    stewardship program.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/medivu
+  partner_name: MediVu Payer Connect Payer Connect brings the clinician, the patient, and the payer together with
+    direct access to external patient data within the EHR workflow
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/physiotec
+  partner_name: Physiotec Physiotec Improve your rehab exercise programs with the number one Physical Therapy Software.
+    100% customizable, patient engagement HEP app.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/playbackhealth
+  partner_name: 'Playback Health Playback Health Pro Playback Health Pro provides an AI-based platform to transform
+    how healthcare providers capture, manage, and share clinical '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/referralpoint
+  partner_name: ReferralPoint, LLC ReferralPoint ReferralPoint utilizes Specialist scoring and automation to streamline
+    your patient referrals within your EHR to achieve both y
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/relaymed
+  partner_name: Relaymed Relaymed Relaymed seamlessly connects your POC testing devices to NextGen and automatically
+    matches results to orders.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/remetrichealth
+  partner_name: RemetricHealth RemetricHealth RemetricHealth is a trusted remote patient monitoring partner to help
+    you deliver virtual care.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/medsien
+  partner_name: Medsien Remote Care Simplified Hundreds of organizations trust Medsien�s unparalleled technology
+    to implement exceptional remote care management programs.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/squadhealth
+  partner_name: Squad Health Squad Health Thousands of providers use Squad to automate benefits, prior auths, and
+    patient assistance for specialty medications—end to end, insid
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/surgimate
+  partner_name: Surgimate Surgimate Practice Surgimate’s all-in-one surgical coordination solution empowers NextGen
+    customers to boost surgical volume, decrease surgery cancela
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/timedoc
+  partner_name: TimeDoc Health TimeDoc Health TimeDoc makes it easy to support chronic patients between visits with
+    tech-enabled care coordination for RPM and CCM.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/weinfuse
+  partner_name: WeInfuse, LLC WeInfuse Purpose built for the infusion center, WeInfuse can increase efficiency and
+    profitability by streamlining the complicated infusion workfl
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/datavant
+  partner_name: Datavant Site Connect Datavant boosts ROI with autonomous coding, release of information, Life Science
+    and VBC solutions that deliver cost savings across care s
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/labcorp
+  partner_name: Labcorp Labcorp Diagnostic Assistant Providing seamless physician access to Labcorp's clinical decision
+    support content, PDF lab reports, and outside lab result
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/novelvox
+  partner_name: NovelVox Agent Accelerator Execute compliant patient workflows across NextGen, CCaaS, and other
+    business systems. Partners with Zoom, NICE, Five9, Dialpad, Cisc
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/clearwave
+  partner_name: Clearwave AI Patient Engagement Platform Clearwave’s AI Patient Engagement Platform automates the
+    healthcare journey from the first call to the final payment.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/assorthealth
+  partner_name: 'Assort Health Assort Health Voice AI AI voice agents for the full patient journey: referrals, scheduling,
+    intake, & follow-up. Trained on 22+ specialties using '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/birdeye
+  partner_name: Birdeye Birdeye Reviews BirdEye helps thousands of healthcare professionals get more visibility
+    online, outshine local competitors, and get more patients -- wit
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/blockit
+  partner_name: Blockit Blockit Seamlessly navigate and schedule patients across your network regardless of EMR,
+    all within one common experience.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/keonahealth
+  partner_name: Keona Health CareDesk Keona Health's AI-powered healthcare CRM simplifies complex workflows and
+    empowers call center agents and nurses to deliver exceptional pa
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/claritytechnologies
+  partner_name: Clarity Technologies Clarity Practice Performance Clarity education, delivered the right way, from
+    the right source, at the right time has profound impact on pa
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/closedloop
+  partner_name: ClosedLoop.ai ClosedLoop ClosedLoop combines an AI/ML platform and robust healthcare content library
+    to rapidly deliver the most accurate and explainable predic
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/connectoncall
+  partner_name: ConnectOnCall ConnectOnCall ConnectOnCall integrates with NextGen to provide enhanced after-hours,
+    daytime, and patient communication solutions.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/demandforce
+  partner_name: Demandforce Demandforce Demandforce helps medical practices to automate front office tasks and streamline
+    communications with an all-in-one solution. From autom
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/healthhere
+  partner_name: Health Here Health Here Health Here’s Clinic Q streamlines intake and patient-reported outcomes,
+    increases patient payments, and automates estimates and episodi
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/healthipass
+  partner_name: Health iPASS, a Sphere Company Health iPASS Health iPASS helps eliminate patient debt with a digital-first
+    approach to price transparency and e-billing solution
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/koreai
+  partner_name: Kore.ai HealthAssist HealthAssist is a conversational AI healthcare virtual assistant enabling interactions
+    between a patient and their healthcare information.
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/caresimple
+  partner_name: 'CareSimple Hospital in the Home, Remote Patient Monitoring & Chronic Care Management Senior-friendly
+    remote patient monitoring for hypertension, heart failure, '
+- type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  partner: null
+  evidence: https://www.nextgen.com/solutions/marketplace/housecallspro
+  partner_name: Intrado HouseCalls Pro EHR-integrated digital workflow solutions that bridge the communication gaps
+    in healthcare, helping patients stay engaged and on the path
+templates: []

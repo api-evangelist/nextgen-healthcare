@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-document-reference-bundled-schema.json",
+  "title": "DocumentReferenceBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-document-reference-api-openapi.yml#/components/schemas/DocumentReferenceBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "total": {
+      "type": "integer",
+      "description": "number of document reference record"
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "relation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "relation of the resource with link provided in url"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "FHIR URI of the request"
+        }
+      },
+      "required": [
+        "relation",
+        "url"
+      ]
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective Condition resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/DocumentReference"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "DocumentReference": {
+      "type": "object",
+      "description": "A reference to a document",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "id of the resource"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Metadata about the resource",
+          "properties": {
+            "profile": {
+              "description": "Profiles this resource claims to conform to",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "profile"
+          ]
+        },
+        "identifier": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "description": "the value that is unique"
+              }
+            }
+          },
+          "description": "an identifier for a DocumentReference"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                },
+                "required": [
+                  "display",
+                  "system"
+                ]
+              },
+              "description": "Code defined by a terminology system"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Plain text representation of the concept"
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Representation defined by the system"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "system"
+                  ]
+                },
+                "description": "Code defined by a terminology system"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Plain text representation of the concept"
+              }
+            },
+            "required": [
+              "coding",
+              "text"
+            ]
+          }
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            },
+            "display": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Text alternative for the resource"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "author": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Literal reference, Relative, internal or absolute URL"
+              },
+              "display": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Text alternative for the resource"
+              }
+            },
+            "required": [
+              "reference"
+            ]
+          }
+        },
+        "custodian": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            },
+            "display": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Text alternative for the resource"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "attachment": {
+                "type": "object",
+                "properties": {
+                  "contentType": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "data": {
+                    "type": "string",
+                    "minLength": 0
+                  }
+                }
+              },
+              "format": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Identity of the terminology system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                }
+              },
+              "context": {
+                "type": "object",
+                "properties": {
+                  "encounter": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "reference": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Literal reference, Relative, internal or absolute URL"
+                        },
+                        "display": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Text alternative for the resource"
+                        }
+                      },
+                      "required": [
+                        "reference"
+                      ]
+                    }
+                  },
+                  "period": {
+                    "type": "object",
+                    "description": "Time of service that is being documented",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Starting time with inclusive boundary"
+                      },
+                      "end": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "End time with inclusive boundary, if not ongoing"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,497 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-medication-request-bundled-schema.json",
+  "title": "MedicationRequestBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-medication-request-api-openapi.yml#/components/schemas/MedicationRequestBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Persistent identifier for the bundle"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "lastUpdated"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of MedicationRequests in entry field"
+    },
+    "link": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective observation resource in entry"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Reference details for the link"
+          }
+        },
+        "required": [
+          "relation",
+          "url"
+        ]
+      }
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "URI for resource (Absolute URL server address or URI for UUID/OID)"
+          },
+          "resource": {
+            "$ref": "#/$defs/MedicationRequest"
+          }
+        },
+        "required": [
+          "fullUrl",
+          "resource"
+        ]
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "type",
+    "total",
+    "link",
+    "entry"
+  ],
+  "$defs": {
+    "MedicationRequest": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The id of the resource with prefix values HX | VS | LR with hyphen.Example HX-123"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Metadata about the resource",
+          "properties": {
+            "profile": {
+              "description": "Profiles this resource claims to conform to",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "profile"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1,
+          "description": "active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown"
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1,
+          "description": "proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option"
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Identity of the terminology system"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    }
+                  },
+                  "required": [
+                    "system",
+                    "code"
+                  ],
+                  "description": "Code defined by a terminology system"
+                }
+              }
+            },
+            "required": [
+              "coding"
+            ]
+          }
+        },
+        "reportedBoolean": {
+          "type": "boolean",
+          "description": "Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report."
+        },
+        "medicationCodableConcept": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                },
+                "required": [
+                  "display",
+                  "code",
+                  "system"
+                ]
+              }
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Plain text representation of the concept"
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "encounter": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "authoredOn": {
+          "type": "string",
+          "minLength": 1,
+          "description": "When request was initially authored"
+        },
+        "requester": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "reasonCode": {
+          "type": "array",
+          "description": "Reason or indication for ordering or not ordering the medication",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Code system for diagnosis (e.g., ICD-10)"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Diagnosis code defined by system"
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Full description for diagnosis code defined by system"
+                    }
+                  },
+                  "required": [
+                    "system",
+                    "code",
+                    "display"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "coding"
+            ]
+          }
+        },
+        "dosageInstruction": {
+          "type": "array",
+          "description": "How the medication should be taken",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Free text dosage instructions e.g. SIG"
+              },
+              "route": {
+                "type": "object",
+                "description": "How drug should enter body",
+                "properties": {
+                  "coding": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "system": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Symbol in syntax defined by the system"
+                        },
+                        "code": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Symbol in syntax defined by the system"
+                        },
+                        "display": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Representation defined by the system"
+                        }
+                      },
+                      "required": [
+                        "display",
+                        "code",
+                        "system"
+                      ]
+                    }
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Plain text representation of the concept"
+                  }
+                },
+                "required": [
+                  "coding",
+                  "text"
+                ]
+              },
+              "timing": {
+                "type": "object",
+                "description": "When medication should be administered",
+                "properties": {
+                  "code": {
+                    "type": "object",
+                    "description": "TimingAbbreviation defined by system (e.g. - BID | TID | QID | AM | PM | QD | QOD)",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Frequency of medication defined by system"
+                      }
+                    }
+                  },
+                  "repeat": {
+                    "type": "object",
+                    "properties": {
+                      "frequency": {
+                        "type": "number",
+                        "minimum": 1,
+                        "description": "Event occurs frequency times per period"
+                      },
+                      "period": {
+                        "type": "number",
+                        "minimum": 1,
+                        "description": "Event occurs frequency times per period"
+                      },
+                      "periodUnit": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Unit of time (second, minute, hour, day, week, month, year)"
+                      }
+                    }
+                  }
+                }
+              },
+              "doseAndRate": {
+                "type": "array",
+                "description": "Amount of medication administered",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "doseQuantity": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "number",
+                          "minimum": 1,
+                          "description": "Amount of medication per dose"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Unit defined by the system"
+                        },
+                        "system": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Code system for the unit (e.g. http://unitsofmeasure.org)"
+                        },
+                        "code": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "UCUM code for the unit"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "text",
+              "timing",
+              "doseAndRate"
+            ]
+          }
+        },
+        "dispenseRequest": {
+          "type": "object",
+          "description": "Medication supply authorization",
+          "properties": {
+            "numberOfRepeatsAllowed": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of refills authorized - non-negative repeat number"
+            },
+            "quantity": {
+              "type": "object",
+              "description": "Amount of medication to supply per dispense",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "format": "decimal",
+                  "description": "Quantity value"
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Unit of measurement (e.g., mg, mL, unit)"
+                },
+                "system": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The system that defines the coded unit"
+                },
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "UCUM code"
+                }
+              },
+              "required": [
+                "value",
+                "unit",
+                "system",
+                "code"
+              ]
+            }
+          },
+          "required": [
+            "numberOfRepeatsAllowed",
+            "quantity"
+          ]
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "meta",
+        "status",
+        "intent",
+        "category",
+        "reportedBoolean",
+        "medicationCodableConcept",
+        "subject",
+        "encounter",
+        "authoredOn",
+        "reasonCode",
+        "requester",
+        "dosageInstruction",
+        "dispenseRequest"
+      ]
+    }
+  }
+}

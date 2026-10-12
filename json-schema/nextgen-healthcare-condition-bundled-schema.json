@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-condition-bundled-schema.json",
+  "title": "ConditionBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-condition-api-openapi.yml#/components/schemas/ConditionBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resource",
+      "properties": {
+        "profile": {
+          "description": "Profiles this resource claims to conform to",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "profile"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of Consitions in entry field"
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "relation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "relation of the resource with link provided in url"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "FHIR URI of the request"
+        }
+      },
+      "required": [
+        "relation",
+        "url"
+      ]
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective Condition resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/Condition"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "resourceType",
+    "id",
+    "meta",
+    "type",
+    "total",
+    "link",
+    "entry"
+  ],
+  "$defs": {
+    "Condition": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "id of the resource"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Metadata about the resource",
+          "properties": {
+            "profile": {
+              "description": "Profiles this resource claims to conform to",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "profile"
+          ]
+        },
+        "clinicalStatus": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                },
+                "required": [
+                  "display",
+                  "system"
+                ]
+              },
+              "description": "Code defined by a terminology system"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Plain text representation of the concept"
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "verificationStatus": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                },
+                "required": [
+                  "display",
+                  "system"
+                ]
+              },
+              "description": "Code defined by a terminology system"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Plain text representation of the concept"
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Symbol in syntax defined by the system"
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Representation defined by the system"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "system"
+                  ]
+                },
+                "description": "Code defined by a terminology system"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Plain text representation of the concept"
+              }
+            },
+            "required": [
+              "coding",
+              "text"
+            ]
+          }
+        },
+        "code": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Symbol in syntax defined by the system"
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Representation defined by the system"
+                  }
+                },
+                "required": [
+                  "display",
+                  "system"
+                ]
+              },
+              "description": "Code defined by a terminology system"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Plain text representation of the concept"
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            },
+            "display": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Text alternative for the resource"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "encounter": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Literal reference, Relative, internal or absolute URL"
+            },
+            "display": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Text alternative for the resource"
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "onsetDateTime": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "meta",
+        "clinicalStatus",
+        "verificationStatus",
+        "category",
+        "code",
+        "subject",
+        "onsetDateTime"
+      ]
+    }
+  }
+}

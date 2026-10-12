@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-care-plan-bundled-schema.json",
+  "title": "CarePlanBundled",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-care-plan-api-openapi.yml#/components/schemas/CarePlanBundled",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "description": "Date in format - YYYY-MM-DDThh:mm:ss+zz"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Type of Search"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Number of careplan record in entry field"
+    },
+    "link": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "minLength": 1,
+            "description": "relation of the resource with link provided in url"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of the request"
+          }
+        },
+        "required": [
+          "relation",
+          "url"
+        ]
+      }
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fullUrl": {
+            "type": "string",
+            "minLength": 1,
+            "description": "FHIR URI of respective careplan resource in entry"
+          },
+          "resource": {
+            "$ref": "#/$defs/CarePlan"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "resourceType",
+    "meta",
+    "type",
+    "link"
+  ],
+  "$defs": {
+    "CarePlan": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "profile": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "profile": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "div": {
+              "type": "string"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "draft | active | on-hold | revoked | completed | entered-in-error | unknown"
+        },
+        "intent": {
+          "type": "string",
+          "description": "proposal | plan | order | option"
+        },
+        "category": {
+          "type": "array",
+          "description": "describe the type of plan",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "description": "Code defined by a terminology system",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "description": "Identity of the terminology system"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Symbol in syntax defined by the system"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "description": "Who the care plan is for",
+          "properties": {
+            "reference": {
+              "type": "string"
+            }
+          }
+        },
+        "activity": {
+          "type": "array",
+          "description": "Action to occur as part of plan",
+          "items": {
+            "type": "object",
+            "properties": {
+              "detail": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "object",
+                    "properties": {
+                      "coding": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "system": {
+                              "type": "string"
+                            },
+                            "code": {
+                              "type": "string"
+                            },
+                            "display": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "meta",
+        "status",
+        "activity",
+        "intent"
+      ]
+    }
+  }
+}

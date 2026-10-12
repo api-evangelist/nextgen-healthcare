@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nextgen-healthcare/main/json-schema/nextgen-healthcare-device-schema.json",
+  "title": "Device",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/nextgen-healthcare-device-api-openapi.yml#/components/schemas/Device",
+  "type": "object",
+  "properties": {
+    "responseType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "id of the resource"
+    },
+    "udiCarrier": {
+      "type": "object",
+      "description": "Unique Device Identifier (UDI) Barcode string",
+      "properties": {
+        "deviceIdentifier": {
+          "type": "string",
+          "description": "Mandatory fixed portion of UDI"
+        },
+        "issuer": {
+          "type": "string",
+          "description": "UDI Issuing Organization"
+        },
+        "carrierHRF": {
+          "type": "string",
+          "description": "UDI Human Readable Barcode String"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "active | inactive | entered-in-error | unknown"
+    },
+    "distinctIdentifier": {
+      "type": "string",
+      "description": "The distinct identification string"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Name of device manufacturer"
+    },
+    "manufactureDate": {
+      "type": "string",
+      "description": "Date when the device was made"
+    },
+    "expirationDate": {
+      "type": "string",
+      "description": "Date and time of expiry of this device (if applicable)"
+    },
+    "lotNumber": {
+      "type": "string",
+      "description": "Lot number of manufacture"
+    },
+    "serialNumber": {
+      "type": "string",
+      "description": "Serial number assigned by the manufacturer"
+    },
+    "modelNumber": {
+      "type": "string",
+      "description": "The model number for the device"
+    },
+    "type": {
+      "type": "object",
+      "description": "The kind or type of device",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string"
+              },
+              "code": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "type": "array",
+      "description": "The actual design of the device or software version running on the device",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The version text"
+          }
+        }
+      }
+    },
+    "patient": {
+      "type": "object",
+      "description": "Patient to whom Device is affixed",
+      "properties": {
+        "reference": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "responseType",
+    "id"
+  ]
+}
