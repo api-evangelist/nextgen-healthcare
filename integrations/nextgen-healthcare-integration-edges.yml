@@ -8,6 +8,7 @@ checked:
 - https://monid.ai/tools/nextgen-healthcare
 - https://n8n.io/integrations/nextgen-healthcare/
 - https://www.nextgen.com/solutions/marketplace
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/nextgen-healthcare/integrations
 summary: NextGen runs its own partner marketplace at nextgen.com/solutions/marketplace listing 96 partner solutions;
   first 50 recorded as partner-built edges.
@@ -475,4 +476,29 @@ edges:
   evidence: https://www.nextgen.com/solutions/marketplace/housecallspro
   partner_name: Intrado HouseCalls Pro EHR-integrated digital workflow solutions that bridge the communication gaps
     in healthcare, helping patients stay engaged and on the path
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/nextgen-healthcare/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Nextgen Healthcare
+    matched_domain: nextgen.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: nextgen-healthcare
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates: []
