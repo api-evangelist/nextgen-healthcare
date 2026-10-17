@@ -192,9 +192,11 @@ common:
 apis:
 - aid: nextgen-healthcare:nextgen-enterprise-patient-access-fhir-api
   name: NextGen Enterprise Patient Access FHIR API
-  description: HL7 FHIR API for the NextGen Enterprise EHR, certified under the 21st Century Cures Act Patient Access criteria, exposing USCDI
-    data to patient-facing apps. Available in FHIR R4 (4.0.1) and legacy DSTU2, authenticated with SMART-on-FHIR OAuth2 authorization-code flow.
-    The live R4 CapabilityStatement advertises 28 US Core resource types.
+  description: >-
+    HL7 FHIR API for the NextGen Enterprise EHR, certified under the 21st Century Cures Act Patient Access
+    criteria, exposing USCDI data to patient-facing apps. Available in FHIR R4 (4.0.1) and legacy DSTU2,
+    authenticated with SMART-on-FHIR OAuth2 authorization-code flow. The live R4 CapabilityStatement advertises
+    28 US Core resource types.
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
@@ -217,9 +219,11 @@ apis:
     url: https://fhir.nextgen.com/nge/prod/patient-oauth/authorize
 - aid: nextgen-healthcare:nextgen-enterprise-api
   name: NextGen Enterprise API
-  description: An extensive collection of JSON-based RESTful APIs (800+ routes) that power apps used by provider organizations on the NextGen
-    Enterprise platform (v5.9.0+), covering clinical and practice-management data. Authenticated with OAuth2 and Global Service Account (GSA)
-    auth. Route-level documentation and sandbox access are gated behind the NextGen API onboarding form.
+  description: >-
+    An extensive collection of JSON-based RESTful APIs (800+ routes) that power apps used by provider
+    organizations on the NextGen Enterprise platform (v5.9.0+), covering clinical and practice-management
+    data. Authenticated with OAuth2 and Global Service Account (GSA) auth. Route-level documentation and
+    sandbox access are gated behind the NextGen API onboarding form.
   humanURL: https://www.nextgen.com/api/enterprise-uscdi-documentation
   baseURL: https://www.nextgen.com/api
   tags:
@@ -237,8 +241,9 @@ apis:
     url: https://www.nextgen.com/api-on-boarding
 - aid: nextgen-healthcare:nextgen-office-fhir-r3-api
   name: NextGen Office FHIR R3 API
-  description: HL7 FHIR STU3 (R3) API for the NextGen Office EHR with C-CDA support, authenticated with SMART App Launch / OpenID Connect OAuth2
-    via Keycloak. Predecessor surface to the R4 Patient Access API.
+  description: >-
+    HL7 FHIR STU3 (R3) API for the NextGen Office EHR with C-CDA support, authenticated with SMART App
+    Launch / OpenID Connect OAuth2 via Keycloak. Predecessor surface to the R4 Patient Access API.
   humanURL: https://www.nextgen.com/api/regulatory-ngo
   baseURL: https://fhir.meditouchehr.com/api/fhir/
   tags:
@@ -249,16 +254,18 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: Authentication
-    url: https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
+    url: >-
+      https://idp-prod.prod.ngo.nextgenaws.net/auth/realms/nextgen/protocol/openid-connect/auth
 - name: NextGen Office Patient FHIR API
-  description: 'FHIR R4-based Patient Access API for NextGen Office (formerly MediTouch) ambulatory practices. Enables patients and authorized
-    apps to access personal health information via the YourHealthFile patient access platform. Implements HL7 FHIR R4 and DSTU2 standards. Compliant
-    with 21st Century Cures Act interoperability requirements and supports USCDI v1 data elements including clinical notes, lab results, medications,
-    allergies, immunizations, and patient demographics.
-
-    '
+  description: >
+    FHIR R4-based Patient Access API for NextGen Office (formerly MediTouch) ambulatory practices. Enables
+    patients and authorized apps to access personal health information via the YourHealthFile patient
+    access platform. Implements HL7 FHIR R4 and DSTU2 standards. Compliant with 21st Century Cures Act
+    interoperability requirements and supports USCDI v1 data elements including clinical notes, lab results,
+    medications, allergies, immunizations, and patient demographics.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-patient-api-developer-guide
+  humanURL: >-
+    https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-patient-api-developer-guide
   baseURL: https://fhir.meditouchehr.com
   tags:
   - FHIR
@@ -274,17 +281,19 @@ apis:
   - 21st Century Cures
   properties:
   - type: Documentation
-    url: https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-patient-api-developer-guide
+    url: >-
+      https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-patient-api-developer-guide
   aid: nextgen-healthcare:nextgen-office-patient-fhir-api
 - name: NextGen Office SMART App Launch FHIR API
-  description: 'SMART on FHIR App Launch API for NextGen Office enabling vendor applications to obtain USCDIv1 clinical data for a single patient.
-    Compliant with 21st Century Cures Act requirements. Supports HL7 SMART App Launch framework for EHR-integrated application launches with OAuth
-    2.0 authorization code flow. Enables clinical decision support apps, patient-facing applications, and provider workflow tools to securely
-    access patient data within the NextGen Office context.
-
-    '
+  description: >
+    SMART on FHIR App Launch API for NextGen Office enabling vendor applications to obtain USCDIv1 clinical
+    data for a single patient. Compliant with 21st Century Cures Act requirements. Supports HL7 SMART
+    App Launch framework for EHR-integrated application launches with OAuth 2.0 authorization code flow.
+    Enables clinical decision support apps, patient-facing applications, and provider workflow tools to
+    securely access patient data within the NextGen Office context.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-r4-smart-app-launch-api-developer-guide
+  humanURL: >-
+    https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-r4-smart-app-launch-api-developer-guide
   baseURL: https://fhir.meditouchehr.com
   tags:
   - SMART on FHIR
@@ -300,17 +309,20 @@ apis:
   - Single Patient
   properties:
   - type: Documentation
-    url: https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-r4-smart-app-launch-api-developer-guide
+    url: >-
+      https://www.nextgen.com/api/-/media/files/ngo/nextgen-office-fhir-r4-smart-app-launch-api-developer-guide
   aid: nextgen-healthcare:nextgen-office-smart-app-launch-fhir-api
 - name: NextGen Office Bulk FHIR API
-  description: 'Bulk FHIR API for NextGen Office enabling authorized vendors to obtain USCDIv1 data for multiple patients in a group using the
-    HL7 FHIR Bulk Data Access specification. Compliant with 21st Century Cures Act requirements. Supports asynchronous bulk export patterns with
-    kick-off, status polling, and download steps. Base URL is https://fhir.meditouchehr.com/api/bulkfhir/r4. Includes Patient Search API for identifying
-    active patients to include in export groups. Uses SMART Backend Services authorization for system-to-system authentication.
-
-    '
+  description: >
+    Bulk FHIR API for NextGen Office enabling authorized vendors to obtain USCDIv1 data for multiple patients
+    in a group using the HL7 FHIR Bulk Data Access specification. Compliant with 21st Century Cures Act
+    requirements. Supports asynchronous bulk export patterns with kick-off, status polling, and download
+    steps. Base URL is https://fhir.meditouchehr.com/api/bulkfhir/r4. Includes Patient Search API for
+    identifying active patients to include in export groups. Uses SMART Backend Services authorization
+    for system-to-system authentication.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.nextgen.com/-/media/files/ngo/NextGen-Office-FHIR-R4-Bulk-FHIR-API-Developer-Guide
+  humanURL: >-
+    https://www.nextgen.com/-/media/files/ngo/NextGen-Office-FHIR-R4-Bulk-FHIR-API-Developer-Guide
   baseURL: https://fhir.meditouchehr.com/api/bulkfhir/r4
   tags:
   - Bulk FHIR
@@ -326,15 +338,16 @@ apis:
   - USCDI
   properties:
   - type: Documentation
-    url: https://www.nextgen.com/-/media/files/ngo/NextGen-Office-FHIR-R4-Bulk-FHIR-API-Developer-Guide
+    url: >-
+      https://www.nextgen.com/-/media/files/ngo/NextGen-Office-FHIR-R4-Bulk-FHIR-API-Developer-Guide
   aid: nextgen-healthcare:nextgen-office-bulk-fhir-api
 - name: NextGen Mirth Connect Integration Engine API
-  description: 'API for NextGen Mirth Connect, an open-source healthcare integration engine supporting HL7 v2, FHIR, and other healthcare data
-    standards for interoperability between clinical systems. Enables message transformation, routing, and exchange across disparate healthcare
-    IT systems. Available as self-hosted open-source software via GitHub or as Mirth Fully Managed, a cloud-native SaaS platform for healthcare
+  description: >
+    API for NextGen Mirth Connect, an open-source healthcare integration engine supporting HL7 v2, FHIR,
+    and other healthcare data standards for interoperability between clinical systems. Enables message
+    transformation, routing, and exchange across disparate healthcare IT systems. Available as self-hosted
+    open-source software via GitHub or as Mirth Fully Managed, a cloud-native SaaS platform for healthcare
     data exchange.
-
-    '
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.nextgen.com/solutions/interoperability/api-fhir
   baseURL: https://github.com/nextgenhealthcare/connect
@@ -376,9 +389,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-care-team-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-ccda-api
@@ -402,9 +417,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 - aid: nextgen-healthcare:nextgen-healthcare-condition-api
   name: NextGen Healthcare Condition API
   description: https://hl7.org/fhir/R4/condition.html
@@ -424,9 +441,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-condition-schema.json
   - type: JSONSchema
@@ -450,9 +469,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-coverage-schema.json
   - type: JSONSchema
@@ -476,9 +497,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-device-schema.json
   - type: JSONSchema
@@ -502,9 +525,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-diagnostic-report-schema.json
   - type: JSONSchema
@@ -528,9 +553,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-encounter-schema.json
   - type: JSONSchema
@@ -554,9 +581,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-bulk-data-status-response-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-goal-api
@@ -578,9 +607,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-goal-bundled-schema.json
   - type: JSONSchema
@@ -604,9 +635,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-update-bulk-fhir-patient-group-schema.json
   - type: JSONSchema
@@ -630,9 +663,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-immunization-schema.json
   - type: JSONSchema
@@ -656,14 +691,17 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-location-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-medicationdispense-api
   name: NextGen Healthcare Medication Dispense API
-  description: The MedicationDispense API from NextGen Healthcare — 2 operation(s) for medicationdispense.
+  description: >-
+    The MedicationDispense API from NextGen Healthcare — 2 operation(s) for medicationdispense.
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
@@ -680,9 +718,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-medication-dispense-schema.json
   - type: JSONSchema
@@ -706,9 +746,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-observation-schema.json
   - type: JSONSchema
@@ -732,9 +774,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-organization-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-patient-api
@@ -758,9 +802,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-patient-schema.json
   - type: JSONSchema
@@ -784,9 +830,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
 - aid: nextgen-healthcare:nextgen-healthcare-practitioner-api
   name: NextGen Healthcare Practitioner API
   description: https://hl7.org/fhir/R4/practitioner.html
@@ -806,9 +854,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-practitioner-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-procedure-api
@@ -830,9 +880,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-procedure-bundled-schema.json
   - type: JSONSchema
@@ -856,9 +908,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-provenance-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-relatedperson-api
@@ -880,9 +934,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-related-person-schema.json
   - type: JSONSchema
@@ -906,9 +962,11 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-specimen-bundled-schema.json
   - type: JSONSchema
@@ -932,13 +990,33 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-care-plan-api
   name: NextGen Healthcare Care plan API
   description: https://hl7.org/fhir/R4/careplan.html
@@ -958,13 +1036,33 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-care-plan-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-document-reference-api
   name: NextGen Healthcare Document Reference API
   description: https://hl7.org/fhir/R4/documentreference.html
@@ -984,11 +1082,33 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-medication-administration-api
   name: NextGen Healthcare Medication Administration API
   description: https://hl7.org/fhir/R4/medicationadministration.html
@@ -1008,13 +1128,33 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-medication-administration-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-medication-request-api
   name: NextGen Healthcare Medication Request API
   description: https://hl7.org/fhir/R4/medicationrequest.html
@@ -1034,13 +1174,33 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-medication-request-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json
 - aid: nextgen-healthcare:nextgen-healthcare-practitioner-role-api
   name: NextGen Healthcare Practitioner Role API
   description: https://hl7.org/fhir/R4/practitionerrole.html
@@ -1060,9 +1220,29 @@ apis:
   - type: Documentation
     url: https://www.nextgen.com/api/regulatory-ngo
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/swaggerR4.yaml
   - type: APIReference
-    url: https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+    url: >-
+      https://petstore.swagger.io/?url=https://hfstatic.s3.amazonaws.com/swagger/Bulk-API-R4-Swagger.yml
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-care-plan-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-document-reference-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-administration-bundled-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-schema.json
+  - type: JSONSchema
+    url: json-schema/nextgen-healthcare-medication-request-bundled-schema.json
   - type: JSONSchema
     url: json-schema/nextgen-healthcare-practitioner-role-schema.json
   - type: JSONSchema

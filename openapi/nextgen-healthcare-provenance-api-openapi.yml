@@ -45,11 +45,6 @@ paths:
       operationId: getFhirR4ProvenanceById
       x-operation-id-source: derived
 components:
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   schemas:
     Provenance:
       type: object
@@ -141,6 +136,11 @@ components:
       - code
       - coding
       - text
+  responses:
+    ResourceNotFound404:
+      description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
   parameters:
     id:
       description: The id of the resource

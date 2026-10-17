@@ -208,9 +208,30 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_gender:
+      description: Gender of the patient. Supported values male | female | undifferentiated | both. See http://hl7.org/fhir/R4/valueset-administrative-gender.html
+      name: gender
+      in: query
+      required: false
+      schema:
+        type: string
     patient_name:
       description: Name of the patient
       name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    patient_identifier:
+      description: A patient identifier
+      name: identifier
       in: query
       required: false
       schema:
@@ -229,27 +250,11 @@ components:
       required: false
       schema:
         type: string
-    patient_gender:
-      description: Gender of the patient. Supported values male | female | undifferentiated | both. See http://hl7.org/fhir/R4/valueset-administrative-gender.html
-      name: gender
-      in: query
-      required: false
-      schema:
-        type: string
-    patient_identifier:
-      description: A patient identifier
-      name: identifier
-      in: query
-      required: false
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
+  responses:
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
+    ResourceNotFound404:
+      description: Resource not found
   schemas:
     PatientBundled:
       type: object
@@ -476,11 +481,6 @@ components:
       - birthDate
       - extension
       - communication
-  responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    ResourceNotFound404:
-      description: Resource not found
   securitySchemes:
     OauthSecurity:
       type: oauth2

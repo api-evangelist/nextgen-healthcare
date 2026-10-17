@@ -48,12 +48,12 @@ components:
       schema:
         type: string
   responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
-    Success200:
-      description: Success
     ResourceNotFound404:
       description: Resource not found
+    Success200:
+      description: Success
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
   securitySchemes:
     OauthSecurity:
       type: oauth2

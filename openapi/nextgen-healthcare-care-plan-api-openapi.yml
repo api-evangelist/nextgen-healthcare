@@ -71,6 +71,34 @@ paths:
       operationId: getFhirR4CarePlan
       x-operation-id-source: derived
 components:
+  parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patient_id:
+      description: The id of the patient
+      name: patient
+      in: query
+      required: true
+      schema:
+        type: string
+    date:
+      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
+      name: date
+      in: query
+      schema:
+        type: string
+    cp_category:
+      description: Type of plan. See http://hl7.org/fhir/R4/valueset-care-plan-category.html
+      name: category
+      in: query
+      required: true
+      schema:
+        type: string
   schemas:
     CarePlanBundled:
       type: object
@@ -212,39 +240,11 @@ components:
       - status
       - activity
       - intent
-  parameters:
-    patient_id:
-      description: The id of the patient
-      name: patient
-      in: query
-      required: true
-      schema:
-        type: string
-    date:
-      description: A date parameter searches on a date/time or period. The only supported prefixes are - gt, lt, ge, le, eq. Example-gt2015-01-15. See https://www.hl7.org/fhir/R4/search.html#date.
-      name: date
-      in: query
-      schema:
-        type: string
-    cp_category:
-      description: Type of plan. See http://hl7.org/fhir/R4/valueset-care-plan-category.html
-      name: category
-      in: query
-      required: true
-      schema:
-        type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
     ResourceNotFound404:
       description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
   securitySchemes:
     OauthSecurity:
       type: oauth2

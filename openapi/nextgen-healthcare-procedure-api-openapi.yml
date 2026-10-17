@@ -71,59 +71,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Procedure:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          minLength: 1
-        id:
-          type: string
-          description: The id of the resource.
-        meta:
-          type: object
-          properties:
-            profile:
-              type: array
-              items:
-                type: string
-        status:
-          type: string
-          description: preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown
-        code:
-          type: object
-          description: Identification of the procedure
-          properties:
-            coding:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  system:
-                    type: string
-                  display:
-                    type: string
-            text:
-              type: string
-        subject:
-          type: object
-          description: Who the procedure was performed on.
-          properties:
-            reference:
-              type: string
-          required:
-          - reference
-        performedDateTime:
-          type: string
-          description: Date in format - YYYY-MM-DDThh:mm:ss+zz
-      required:
-      - status
-      - id
-      - resourceType
-      - meta
-      - subject
     ProcedureBundled:
       type: object
       properties:
@@ -181,7 +128,67 @@ components:
       - total
       - link
       - entry
+    Procedure:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          description: The id of the resource.
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+        status:
+          type: string
+          description: preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown
+        code:
+          type: object
+          description: Identification of the procedure
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  system:
+                    type: string
+                  display:
+                    type: string
+            text:
+              type: string
+        subject:
+          type: object
+          description: Who the procedure was performed on.
+          properties:
+            reference:
+              type: string
+          required:
+          - reference
+        performedDateTime:
+          type: string
+          description: Date in format - YYYY-MM-DDThh:mm:ss+zz
+      required:
+      - status
+      - id
+      - resourceType
+      - meta
+      - subject
   parameters:
+    id:
+      description: The id of the resource
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
     patient_id:
       description: The id of the patient
       name: patient
@@ -195,18 +202,11 @@ components:
       in: query
       schema:
         type: string
-    id:
-      description: The id of the resource
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   responses:
-    ResourceNotAuthorized401:
-      description: Resource not authorized to be viewed by this user
     ResourceNotFound404:
       description: Resource not found
+    ResourceNotAuthorized401:
+      description: Resource not authorized to be viewed by this user
   securitySchemes:
     OauthSecurity:
       type: oauth2
