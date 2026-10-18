@@ -50,6 +50,18 @@ image: https://nextgen.widen.net/content/mcckjhwu0f/svg/NG_Logo_Final_RGB.svg
 tags:
 - Healthcare
 - United States
+- Electronic Health Records
+- FHIR
+- HL7
+- Interoperability
+- SMART on FHIR
+- USCDI
+- Bulk FHIR
+- Patient Access
+- 21st Century Cures
+tags_raw:
+- Healthcare
+- United States
 - EHR
 - EMR
 - FHIR
@@ -202,6 +214,11 @@ apis:
   tags:
   - FHIR
   - Patient Access
+  - Electronic Health Records
+  - SMART on FHIR
+  tags_raw:
+  - FHIR
+  - Patient Access
   - EHR
   - SMART on FHIR
   properties:
@@ -228,6 +245,10 @@ apis:
   baseURL: https://www.nextgen.com/api
   tags:
   - REST
+  - Electronic Health Records
+  - Practice Management
+  tags_raw:
+  - REST
   - EHR
   - Practice Management
   properties:
@@ -247,6 +268,10 @@ apis:
   humanURL: https://www.nextgen.com/api/regulatory-ngo
   baseURL: https://fhir.meditouchehr.com/api/fhir/
   tags:
+  - FHIR
+  - Electronic Health Records
+  - C-CDA
+  tags_raw:
   - FHIR
   - EHR
   - C-CDA
@@ -977,6 +1002,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - AllergyIntolerance
+  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1023,6 +1050,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - CarePlan
+  tags_raw:
   - Care plan
   properties:
   - type: OpenAPI
@@ -1069,6 +1098,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - DocumentReference
+  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1115,6 +1146,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - MedicationAdministration
+  tags_raw:
   - Medication Administration
   properties:
   - type: OpenAPI
@@ -1161,6 +1194,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
@@ -1207,6 +1242,8 @@ apis:
   humanURL: https://www.nextgen.com/api/nge-fhir-r4
   baseURL: https://fhir.nextgen.com/nge/prod/fhir-api-r4/fhir/r4/
   tags:
+  - PractitionerRole
+  tags_raw:
   - Practitioner Role
   properties:
   - type: OpenAPI
