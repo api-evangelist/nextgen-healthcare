@@ -701,3 +701,40 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: nextgen-healthcare-directtrust-accreditation-health-it
+  label: DirectTrust Accreditation (health IT)
+  partner_name: DirectTrust Accreditation (health IT)
+  category: Health IT accreditation (Direct exchange, health networks, privacy & security)
+  type: register
+  channel: standard-directory
+  evidence: https://accreditation.directtrust.org/accredited-organization-detail/?accountID=6674830000002340131
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DirectTrust Accredited Organizations (accreditation.directtrust.org; EHNAC merged into DirectTrust)
+    spec_file: null
+    standard: DirectTrust / EHNAC health IT accreditation
+    role: accredited
+    registered_name: NextGen Healthcare, Inc.
+    register_id: '6674830000002340131'
+    website: http://www.nextgen.com/
+    matched_domain: nextgen.com
+    matched_by: domain
+    identity_source: the website the organization filed on its DirectTrust detail page (no lookup)
+    programs:
+    - program: Health Information Service Provider
+      status: Accreditation
+      expiry: '2028-08-31'
+    certified_products:
+    - product: DirectTrust Health Information Service Provider
+      program: Health Information Service Provider
+      lapsed: false
+      expiry: '2028-08-31'
+    market_fit: own apis.yml tags carry a health IT term
+    signal_note: certified_products = one entry per granted DirectTrust PROGRAM (accreditation type); Candidate
+      / Provisional = participation only; lapsed when the expiry month has passed; e-Rx programs (EPCS, ePrescribing-EHN)
+      are counted by e-prescribing, never here
+    detected_by: sweep-certified-health-it.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
