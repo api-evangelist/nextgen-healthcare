@@ -55,135 +55,159 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   finops/nextgen-healthcare-finops.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/nextgen-healthcare-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/nextgen-healthcare-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/nextgen-healthcare-context.jsonld:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  json-schema/nextgen-healthcare-allergy-intolerance-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-allergy-intolerance-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-bulk-data-status-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-care-plan-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-care-plan-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-care-team-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-condition-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-condition-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-coverage-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-coverage-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-create-bulk-fhir-patient-group-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-device-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-device-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-diagnostic-report-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-diagnostic-report-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-document-reference-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-encounter-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-encounter-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-goal-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-goal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-immunization-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-immunization-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-location-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-administration-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-administration-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-dispense-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-dispense-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-request-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-medication-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-observation-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-observation-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-organization-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-patient-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-patient-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-practitioner-role-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-practitioner-role-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-practitioner-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-procedure-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-procedure-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-provenance-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-related-person-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-related-person-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-specimen-bundled-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-specimen-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/nextgen-healthcare-update-bulk-fhir-patient-group-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -267,16 +291,31 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/nextgen-healthcare-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
+  llms/nextgen-healthcare-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/nextgen-healthcare-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
   mcp/nextgen-healthcare-mcp.yml:
-    method: derived
-    evidence: declared in the artifact
-  mcp/nextgen-healthcare-tool-crosswalk.yml:
     method: derived
     evidence: declared in the artifact
   openapi/_original/nextgen-office-bulk-fhir-r4-openapi.yml:
@@ -374,12 +413,96 @@ artifacts:
   openapi/nextgen-healthcare-specimen-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/nextgen-healthcare-allergy-intolerance-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-care-plan-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-careteam-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-ccda-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-condition-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-coverage-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-device-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-diagnosticreport-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-document-reference-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-encounter-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-export-apis-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-goal-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-group-apis-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-immunization-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-location-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-medication-administration-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-medication-request-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-medicationdispense-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-observation-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/nextgen-healthcare-office-bulk-fhir-r4-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/nextgen-healthcare-office-fhir-r4-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/nextgen-healthcare-organization-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-patient-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-patient-search-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-practitioner-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-practitioner-role-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-procedure-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-provenance-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-relatedperson-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/nextgen-healthcare-specimen-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   packages/nextgen-healthcare-packages.yml:
     method: searched
     evidence: declared in the artifact
@@ -387,7 +510,10 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   rate-limits/nextgen-healthcare-rate-limits.yml:
-    method: searched
+    method: unknown
+    evidence: no authorship recorded
+  rules/nextgen-healthcare-rules.yml:
+    method: generated
     evidence: declared in the artifact
   sandbox/nextgen-healthcare-sandbox.yml:
     method: searched
@@ -410,6 +536,12 @@ artifacts:
   skills/nextgen-healthcare-smart-patient-access.md:
     method: unknown
     evidence: no authorship recorded
+  vendors/nextgen-healthcare-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/nextgen-healthcare-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
   well-known/nextgen-healthcare-nge-openid-configuration.json:
     method: unknown
     evidence: no authorship recorded
